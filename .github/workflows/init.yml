@@ -1,0 +1,20 @@
+name: Check init
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: macos-12
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install ansible
+      run: brew install ansible
+    - name: Play init tasks
+      run: ansible-playbook playbook.yml -i hosts --tags=init
+
