@@ -1,0 +1,14 @@
+---
+- name: workspace
+  hosts: localhost
+  connection: local
+  gather_facts: yes
+  handlers:
+    - name: "Restart Dock"
+      shell: "killall Dock"
+    - name: "Restart Finder"
+      shell: "killall Finder"
+    - name: "Restart Safari"
+      shell: "killall Safari && open /Applications/Safari.app/"
+  roles:
+    - init

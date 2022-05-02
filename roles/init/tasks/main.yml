@@ -1,0 +1,3 @@
+---
+- name: Install bundle packages
+  command: bundle install
