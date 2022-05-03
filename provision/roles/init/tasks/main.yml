@@ -1,5 +1,10 @@
 ---
-- name: Install bundler
-  command: gem install bundler:1.17.2
-- name: Install bundle packages
-  command: bundle install
+- import_tasks: rbenv.yml
+
+- name: Install gem packages
+  gem:
+    name: "{{ item.name }}"
+    user_install: no
+  with_items:
+    - { name: bundler }
+    - { name: ansible_spec }
