@@ -13,10 +13,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Link dotfiles
+    - name: Copy dotfiles
       run: |
         cp -r .vim $HOME/
         cp .vimrc $HOME/
+        cp -r .gnupg $HOME/
     - name: Install ansible
       run: brew install ansible
     - name: Play init tasks

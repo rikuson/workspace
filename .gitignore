@@ -4,6 +4,9 @@
 .vim/bundle/*
 !.gitkeep
 
+.gnupg/*
+!.gitkeep
+
 .DS_Store
 
 .ssh/
