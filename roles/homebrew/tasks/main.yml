@@ -1,0 +1,23 @@
+---
+- name: Install brew packages
+  homebrew:
+    name: "{{ item.name }}"
+  with_items:
+    - { name: ffmpeg }
+    - { name: grex }
+    - { name: hexyl }
+    - { name: htop }
+    - { name: imagemagick }
+    - { name: jq }
+    - { name: neofetch }
+    - { name: nkf }
+    - { name: pandoc }
+    - { name: qrencode }
+    - { name: poppler }
+    - { name: postgresql }
+    - { name: tmux }
+    - { name: w3m }
+    - { name: ag }
+    - { name: gnu-sed }
+    - { name: ghc }
+    - { name: httpie }

@@ -11,4 +11,7 @@
     - name: "Restart Safari"
       shell: "killall Safari && open /Applications/Safari.app/"
   roles:
-    - init
+    - role: init
+      tags: init
+    - role: homebrew
+      tags: homebrew
