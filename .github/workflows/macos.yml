@@ -17,9 +17,9 @@ jobs:
       run: brew install ansible
     - name: Play init tasks
       run: ansible-playbook playbook.yml -i hosts --tags=init
+    - name: Check init spec
+      run: TARGET_HOST=localhost bundle exec rspec spec/localhost/init_spec.rb
     - name: Play homebrew tasks
       run: ansible-playbook playbook.yml -i hosts --tags=homebrew
     - name: Check homebrew spec
       run: TARGET_HOST=localhost bundle exec rspec spec/localhost/homebrew_spec.rb
-
-
