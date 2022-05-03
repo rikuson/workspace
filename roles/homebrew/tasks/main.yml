@@ -3,21 +3,28 @@
   homebrew:
     name: "{{ item.name }}"
   with_items:
+    - { name: ag }
+    - { name: bat }
     - { name: ffmpeg }
+    - { name: ghc }
+    - { name: gnu-sed }
     - { name: grex }
     - { name: hexyl }
     - { name: htop }
+    - { name: httpie }
     - { name: imagemagick }
     - { name: jq }
+    - { name: lsd }
     - { name: neofetch }
     - { name: nkf }
     - { name: pandoc }
-    - { name: qrencode }
+    - { name: pict }
     - { name: poppler }
     - { name: postgresql }
+    - { name: qrencode }
     - { name: tmux }
     - { name: w3m }
-    - { name: ag }
-    - { name: gnu-sed }
-    - { name: ghc }
-    - { name: httpie }
+
+- import_tasks: git.yml
+- import_tasks: lazygit.yml
+- import_tasks: vim.yml

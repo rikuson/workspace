@@ -1,0 +1,12 @@
+---
+- name: Setup global .gitignore
+  shell: git config --global core.excludesfile $HOME/.gitignore
+
+- name: Show Japanese properly
+  shell: git config --global core.quotepath false
+
+- name: Replace git to latest
+  homebrew:
+    name: "{{ item.name }}"
+  with_items:
+    - { name: git }
