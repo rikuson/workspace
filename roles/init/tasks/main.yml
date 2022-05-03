@@ -1,3 +1,5 @@
 ---
+- name: Install bundler
+  command: gem install bundler:1.17.2
 - name: Install bundle packages
   command: bundle install
