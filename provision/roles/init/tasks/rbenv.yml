@@ -1,0 +1,28 @@
+---
+- name: Detect if rbenv is installed
+  stat: path=$HOME/.rbenv
+  register: rbenv_dir
+
+- name: Install rbenv
+  homebrew:
+    name: rbenv
+  when: not rbenv_dir.stat.exists
+
+- name: Initialize rbenv
+  shell: eval "$(rbenv init -)"
+  when: not rbenv_dir.stat.exists
+
+- name: Detect if ruby is installed
+  stat: path=$HOME/.rbenv/shims/ruby
+  register: ruby_bin
+
+- name: Install latest ruby
+  shell: rbenv install $(rbenv install --list-all | grep -v - | tail -1)
+  when: not ruby_bin.stat.exists
+
+- name: Use latest ruby
+  shell: rbenv global $(rbenv install --list-all | grep -v - | tail -1)
+  when: not ruby_bin.stat.exists
+
+- name: Update gem
+  shell: $HOME/.rbenv/shims/gem update --system

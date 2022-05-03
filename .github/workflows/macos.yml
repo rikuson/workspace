@@ -24,11 +24,11 @@ jobs:
       run: ansible-playbook playbook.yml -i hosts --tags=init
       working-directory: provision
     - name: Check init spec
-      run: TARGET_HOST=localhost bundle exec rspec spec/localhost/init_spec.rb
+      run: rake serverspec:init
       working-directory: provision
     - name: Play homebrew tasks
       run: ansible-playbook playbook.yml -i hosts --tags=homebrew
       working-directory: provision
     - name: Check homebrew spec
-      run: TARGET_HOST=localhost bundle exec rspec spec/localhost/homebrew_spec.rb
+      run: rake serverspec:homebrew
       working-directory: provision
