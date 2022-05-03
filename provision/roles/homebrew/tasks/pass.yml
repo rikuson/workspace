@@ -14,6 +14,12 @@
 - name: Change permission
   shell: chmod 700 $HOME/.gnupg
 
+- name: Create conf
+  copy:
+    content: ''
+    dest: $HOME/.gnupg/gpg-agent.conf
+    force: no
+
 - name: Get path of pinentry-mac
   shell: which pinentry-mac
   register: pinentry_mac_path
