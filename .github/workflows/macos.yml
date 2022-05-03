@@ -12,14 +12,22 @@ jobs:
     runs-on: macos-12
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
+    - name: Link dotfiles
+      run: |
+        cp -r .vim $HOME/
+        cp .vimrc $HOME/
     - name: Install ansible
       run: brew install ansible
     - name: Play init tasks
       run: ansible-playbook playbook.yml -i hosts --tags=init
+      working-directory: provision
     - name: Check init spec
       run: TARGET_HOST=localhost bundle exec rspec spec/localhost/init_spec.rb
+      working-directory: provision
     - name: Play homebrew tasks
       run: ansible-playbook playbook.yml -i hosts --tags=homebrew
+      working-directory: provision
     - name: Check homebrew spec
       run: TARGET_HOST=localhost bundle exec rspec spec/localhost/homebrew_spec.rb
+      working-directory: provision

@@ -1,23 +1,33 @@
 require 'spec_helper'
 
 [
+  'bat',
   'ffmpeg',
+  'ghc',
+  'git',
+  'gnu-sed',
   'grex',
   'hexyl',
   'htop',
+  'httpie',
   'imagemagick',
   'jq',
+  'lazygit',
+  'lsd',
   'neofetch',
   'nkf',
   'pandoc',
-  'qrencode',
+  'pass',
+  'pass-otp',
+  'pict',
+  'pinentry-mac',
   'poppler',
   'postgresql',
+  'qrencode',
   'tmux',
+  'universal-ctags',
+  'vim',
   'w3m',
-  'gnu-sed',
-  'ghc',
-  'httpie',
 ].each do |item|
   describe package(item) do
     it { should be_installed }
