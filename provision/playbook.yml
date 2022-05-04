@@ -14,3 +14,11 @@
   roles:
     - role: homebrew
       tags: homebrew
+
+- name: native
+  hosts: localhost
+  connection: local
+  gather_facts: yes
+  roles:
+    - role: native
+      tags: native
