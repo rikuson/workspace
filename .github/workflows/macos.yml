@@ -7,17 +7,22 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
-
+  homebrew:
     runs-on: macos-12
-
     steps:
     - uses: actions/checkout@v3
-    - name: Copy dotfiles
-      run: |
-        cp -r .vim $HOME/
-        cp .vimrc $HOME/
-        cp -r .gnupg $HOME/
+    - name: Cache gem
+      uses: actions/cache@v3
+      with:
+        path: /Library/Ruby/Gems
+        key: ${{ runner.os }}-gem-${{ hashFiles('provision/roles/init/tasks/*.yml') }}
+        restore-keys: ${{ runner.os }}-gem-
+    - name: Cache homebrew
+      uses: actions/cache@v3
+      with:
+        path: /opt/homebrew
+        key: ${{ runner.os }}-homebrew-${{ hashFiles('provision/roles/homebrew/tasks/*.yml') }}
+        restore-keys: ${{ runner.os }}-homebrew-
     - name: Install ansible
       run: brew install ansible
     - name: Play init tasks
@@ -26,6 +31,11 @@ jobs:
     - name: Check init spec
       run: rake serverspec:init
       working-directory: provision
+    - name: Copy dotfiles
+      run: |
+        cp -r .vim $HOME/
+        cp .vimrc $HOME/
+        cp -r .gnupg $HOME/
     - name: Play homebrew tasks
       run: ansible-playbook playbook.yml -i hosts --tags=homebrew
       working-directory: provision
