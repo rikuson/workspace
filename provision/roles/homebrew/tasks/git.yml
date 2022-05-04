@@ -5,7 +5,15 @@
 - name: Show Japanese properly
   shell: git config --global core.quotepath false
 
-- name: Replace git to latest
+- name: Set pull rule
+  shell: git config --global pull.rebase true
+
+- name: Set git user
+  shell: |
+    git config --global user.email 'rikuson@users.noreply.github.com'
+    git config --global user.name 'Rikson'
+
+- name: Use homebrew based git
   homebrew:
     name: "{{ item.name }}"
   with_items:
