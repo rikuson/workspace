@@ -7,13 +7,12 @@
 mkdir $HOME/macOS
 git init --bare $HOME/macOS
 ssh-keygen -t rsa
-alias config='$@ --git-dir=$HOME/macOS/ --work-tree=$HOME'
-config git config status.showUntrackedFiles no
-config git config pull.rebase true
-config git remote add origin git@github.com:rikuson/macOS.git
-config git pull origin main
-config git branch --set-upstream-to=origin/main
-source $HOME/.bashrc
+alias config='git --git-dir=$HOME/macOS/ --work-tree=$HOME'
+config config status.showUntrackedFiles no
+config config pull.rebase true
+config remote add origin git@github.com:rikuson/macOS.git
+config pull origin main
+config branch --set-upstream-to=origin/main
 
 # Install homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
