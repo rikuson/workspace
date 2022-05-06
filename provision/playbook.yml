@@ -23,7 +23,7 @@
     - role: gui
       tags: gui
 
-- name: osx
+- name: os
   hosts: localhost
   connection: local
   gather_facts: yes
@@ -35,5 +35,5 @@
     - name: "Restart Safari"
       shell: "killall Safari && open /Applications/Safari.app"
   roles:
-    - role: osx
-      tags: osx
+    - role: os
+      tags: os
