@@ -1,0 +1,98 @@
+---
+- name: Install brew packages
+  homebrew:
+    name: "{{ item.name }}"
+  with_items:
+    - { name: ag }
+    - { name: bat }
+    - { name: ffmpeg }
+    - { name: ghc }
+    - { name: gnu-sed }
+    - { name: grex }
+    - { name: hexyl }
+    - { name: htop }
+    - { name: httpie }
+    - { name: imagemagick }
+    - { name: jq }
+    - { name: lsd }
+    - { name: neofetch }
+    - { name: nkf }
+    - { name: pandoc }
+    - { name: pict }
+    - { name: poppler }
+    - { name: postgresql }
+    - { name: qrencode }
+    - { name: tmux }
+    - { name: w3m }
+
+# git
+- name: Setup global .gitignore
+  shell: git config --global core.excludesfile $HOME/.gitignore
+- name: Show Japanese properly
+  shell: git config --global core.quotepath false
+- name: Set pull rule
+  shell: git config --global pull.rebase true
+- name: Set git user
+  shell: |
+    git config --global user.email 'rikuson@users.noreply.github.com'
+    git config --global user.name 'Rikson'
+- name: Use homebrew based git
+  homebrew:
+    name: "{{ item.name }}"
+  with_items:
+    - { name: git }
+
+# lazygit
+- name: Tap brew packages
+  homebrew_tap:
+    name: "{{ item.name }}"
+  with_items:
+    - { name: "jesseduffield/lazygit" }
+- name: Install brew packages
+  homebrew:
+    name: "{{ item.name }}"
+  with_items:
+    - { name: "jesseduffield/lazygit/lazygit" }
+
+# pass
+- name: Install brew packages
+  homebrew:
+    name: "{{ item.name }}"
+  with_items:
+    - { name: pass }
+    - { name: pass-otp }
+    - { name: pinentry-mac }
+- name: Install safari extension
+  homebrew_cask:
+    name: adur1990/tap/passformacos
+- name: Change permission
+  shell: chmod 700 $HOME/.gnupg
+- name: Create conf
+  copy:
+    content: ''
+    dest: $HOME/.gnupg/gpg-agent.conf
+    force: no
+- name: Get path of pinentry-mac
+  shell: which pinentry-mac
+  register: pinentry_mac_path
+- name: Change config
+  lineinfile:
+    path:  $HOME/.gnupg/gpg-agent.conf
+    line: 'pinentry-program {{ pinentry_mac_path }}'
+
+# vim
+- name: Tap brew packages
+  homebrew_tap:
+    name: "{{ item.name }}"
+  with_items:
+    - { name: universal-ctags/universal-ctags }
+- name: Install brew packages
+  homebrew:
+    name: "{{ item.name }}"
+  with_items:
+    - { name: vim }
+    - { name: universal-ctags }
+- name: Install vim plugin manager
+  get_url:
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    dest: $HOME/.vim/autoload/plug.vim

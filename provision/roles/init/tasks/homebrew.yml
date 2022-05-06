@@ -26,3 +26,4 @@
 
 - name: Update gem
   shell: gem update --user-install
+  when: not ruby_bin.stat.exists

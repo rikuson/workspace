@@ -7,21 +7,21 @@
     - role: init
       tags: init
 
-- name: homebrew
+- name: cui
   hosts: localhost
   connection: local
   gather_facts: yes
   roles:
-    - role: homebrew
-      tags: homebrew
+    - role: cui
+      tags: cui
 
-- name: native
+- name: gui
   hosts: localhost
   connection: local
   gather_facts: yes
   roles:
-    - role: native
-      tags: native
+    - role: gui
+      tags: gui
 
 - name: osx
   hosts: localhost
@@ -33,7 +33,7 @@
     - name: "Restart Finder"
       shell: "killall Finder"
     - name: "Restart Safari"
-      shell: "killall Safari && open /Applications/Safari.app/"
+      shell: "killall Safari && open /Applications/Safari.app"
   roles:
     - role: osx
       tags: osx
