@@ -25,4 +25,4 @@
   when: not ruby_bin.stat.exists
 
 - name: Update gem
-  shell: $HOME/.rbenv/shims/gem update --system
+  shell: gem update --user-install
