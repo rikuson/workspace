@@ -22,3 +22,18 @@
   roles:
     - role: native
       tags: native
+
+- name: osx
+  hosts: localhost
+  connection: local
+  gather_facts: yes
+  handlers:
+    - name: "Restart Dock"
+      shell: "killall Dock"
+    - name: "Restart Finder"
+      shell: "killall Finder"
+    - name: "Restart Safari"
+      shell: "killall Safari && open /Applications/Safari.app/"
+  roles:
+    - role: osx
+      tags: osx

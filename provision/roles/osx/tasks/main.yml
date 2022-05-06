@@ -1,0 +1,125 @@
+---
+- name: Enable three finder drag
+  osx_defaults:
+    domain: "{{ item.domain }}"
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+  with_items:
+    - domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+      key: TrackpadThreeFingerDrag
+      type: bool
+      value: true
+    - domain: com.apple.AppleMultitouchTrackpad
+      key: TrackpadThreeFingerDrag
+      type: bool
+      value: true
+
+- name: Enable tap
+  osx_defaults:
+    domain: com.apple.AppleMultitouchTrackpad
+    key: Clicking
+    type: int
+    value: 1
+
+- name: Show dotfiles
+  osx_defaults:
+    domain: com.apple.finder
+    key: AppleShowAllFiles
+    type: string
+    value: true
+  notify: Restart Finder
+
+- name: Hide recent items
+  osx_defaults:
+    domain: com.apple.dock
+    key: show-recents
+    type: int
+    value: 0
+  notify: Restart Dock
+
+- name: Disable writing network store .DS_Store
+  osx_defaults:
+    domain: com.apple.desktopservices
+    key: DSDontWriteNetworkStores
+    type: string
+    value: true
+  notify: Restart Finder
+
+- name: Auto hide dock
+  osx_defaults:
+    domain: com.apple.dock
+    key: autohide
+    type: int
+    value: 1
+
+- name: Enable Debug Menu
+  osx_defaults:
+    domain: com.apple.Safari
+    key: IncludeInternalDebugMenu
+    type: bool
+    value: true
+  notify: Restart Safari
+
+- name: Show battery status
+  osx_defaults:
+    domain: com.apple.menuextra.battery
+    key: ShowPercent
+    type: string
+    value: yes
+
+- name: Show path bar
+  osx_defaults:
+    domain: com.apple.finder
+    key: ShowPathbar
+    type: bool
+    value: true
+  notify: Restart Finder
+
+- name: Avoid opening mission control
+  osx_defaults:
+    domain: com.apple.spaces
+    key: spans-displays
+    type: bool
+    value: true
+
+- name: Disable screensaver
+  osx_defaults:
+    domain: com.apple.screensaver
+    host: currentHost
+    key: idleTime
+    type: int
+    value: 0
+
+  # notify: Restart OS
+
+# - name: Detect if QuickLook float
+#   command: defaults read com.apple.Finder QLHidePanelOnDeactivate
+#   register: apple_dont_float_quicklook
+#   changed_when: 0
+#   ignore_errors: yes
+# 
+# - name: Float QuickLook
+#   command: defaults write com.apple.Finder QLHidePanelOnDeactivate 0
+#   when: apple_dont_float_quicklook.stdout
+# 
+# - name: Enable copying QuickLook
+#   command: defaults read com.apple.finder QLEnableTextSelection
+#   register: apple_copy_quicklook
+#   changed_when: 0
+#   ignore_errors: yes
+# 
+# - name: Enable copying QuickLook
+#   command: defaults write com.apple.finder QLEnableTextSelection 1
+#   when: not apple_copy_quicklook.stdout
+# 
+# - name: Detect if autospelling correction
+#   command: defaults read -g NSAutomaticSpellingCorrectionEnabled
+#   register: apple_autospelling_correction
+#   changed_when: 0
+#   ignore_errors: yes
+# 
+# - name: Enable autospelling correction
+#   command: defaults write -g NSAutomaticSpellingCorrectionEnabled 0
+#   register: apple_autospelling_correction
+#   when: apple_autospelling_correction.stdout
