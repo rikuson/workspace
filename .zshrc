@@ -11,3 +11,6 @@ if [[ -d $HOME/.rbenv  ]]; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+bindkey '^P' history-beginning-search-backward
+bindkey '^N' history-beginning-search-forward
