@@ -28,6 +28,7 @@ end
   { 'name' => 'Spark', 'id' => 1176895641 },
   { 'name' => 'Xcode', 'id' => 497799835 },
   { 'name' => 'Keynote', 'id' => 409183694 },
+  { 'name' => 'Adblock Plus for Safari ABP', 'id' => 1432731683 },
 ].each do |item|
   describe command("mas info #{item['id']}") do
     its(:exit_status) { should eq 0 }
