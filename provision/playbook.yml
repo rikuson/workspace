@@ -32,8 +32,6 @@
       shell: "killall Dock"
     - name: "Restart Finder"
       shell: "killall Finder"
-    - name: "Restart Safari"
-      shell: "killall Safari && open /Applications/Safari.app"
   roles:
     - role: os
       tags: os
