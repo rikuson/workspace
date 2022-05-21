@@ -16,6 +16,7 @@ require 'spec_helper'
   'lsd',
   'neofetch',
   'nkf',
+  'nodebrew',
   'pandoc',
   'pass',
   'pass-otp',
@@ -36,6 +37,8 @@ end
 
 [
   'ag',
+  'node',
+  'npm',
 ].each do |item|
   describe command("which #{item}") do
     its(:exit_status) { should eq 0 }
