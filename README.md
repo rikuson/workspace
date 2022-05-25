@@ -11,8 +11,8 @@ alias config='git --git-dir=$HOME/macOS/ --work-tree=$HOME'
 config config status.showUntrackedFiles no
 config config pull.rebase true
 config remote add origin git@github.com:rikuson/macOS.git
-config pull origin main
-config branch --set-upstream-to=origin/main
+config pull origin master
+config branch --set-upstream-to=origin/master
 
 # Install homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
