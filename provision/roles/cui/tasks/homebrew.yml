@@ -54,6 +54,18 @@
   with_items:
     - { name: "jesseduffield/lazygit/lazygit" }
 
+# lazydocker
+- name: Tap brew packages
+  homebrew_tap:
+    name: "{{ item.name }}"
+  with_items:
+    - { name: "jesseduffield/lazydocker" }
+- name: Install brew packages
+  homebrew:
+    name: "{{ item.name }}"
+  with_items:
+    - { name: "jesseduffield/lazydocker/lazydocker" }
+
 # pass
 - name: Install brew packages
   homebrew:
