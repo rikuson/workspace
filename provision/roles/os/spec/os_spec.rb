@@ -11,6 +11,15 @@ end
 describe command('defaults read com.apple.AppleMultitouchTrackpad Clicking') do
   its(:stdout) { should match '1' }
 end
+describe command('defaults read NSGlobalDomain com.apple.trackpad.forceClick') do
+  its(:stdout) { should match '0' }
+end
+describe command('defaults read com.apple.AppleMultitouchTrackpad TrackpadThreeFingerTapGesture') do
+  its(:stdout) { should match '2' }
+end
+describe command('defaults read com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerTapGesture') do
+  its(:stdout) { should match '2' }
+end
 describe command('defaults read com.apple.finder AppleShowAllFiles') do
   its(:stdout) { should match 'True' }
 end
