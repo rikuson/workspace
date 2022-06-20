@@ -3,11 +3,11 @@
 ## How to detect default command property
 
 ```bash
-defaults read > before.json
+defaults read > before.js
 
 # Change settings on GUI
 
-defaults read > after.json
-diff before.json after.json
+defaults read > after.js
+diff before.js after.js
 # Recommend using colordiff
 ```
