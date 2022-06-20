@@ -94,3 +94,49 @@
     key: spans-displays
     type: bool
     value: true
+
+- name: Disable automatic spelling correction
+  osx_defaults:
+    domain: "{{ item.domain }}"
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+  with_items:
+    - domain: NSGlobalDomain
+      key: NSAutomaticSpellingCorrectionEnabled
+      type: int
+      value: 0
+    - domain: NSGlobalDomain
+      key: WebAutomaticSpellingCorrectionEnabled
+      type: int
+      value: 0
+
+- name: Disable automatic capitalization
+  osx_defaults:
+    domain: NSGlobalDomain
+    key: NSAutomaticCapitalizationEnabled
+    type: int
+    value: 0
+
+- name: Disable automatic period substitution
+  osx_defaults:
+    domain: NSGlobalDomain
+    key: NSAutomaticPeriodSubstitutionEnabled
+    type: int
+    value: 0
+
+- name: Disable smart quotes and dashs
+  osx_defaults:
+    domain: "{{ item.domain }}"
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+  with_items:
+    - domain: NSGlobalDomain
+      key: NSAutomaticDashSubstitutionEnabled
+      type: int
+      value: 0
+    - domain: NSGlobalDomain
+      key: NSAutomaticQuoteSubstitutionEnabled
+      type: int
+      value: 0

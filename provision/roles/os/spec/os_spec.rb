@@ -41,3 +41,21 @@ end
 describe command('defaults read com.apple.spaces spans-displays') do
   its(:stdout) { should match '1' }
 end
+describe command('defaults read -g NSAutomaticSpellingCorrectionEnabled') do
+  its(:stdout) { should match '0' }
+end
+describe command('defaults read -g WebAutomaticSpellingCorrectionEnabled') do
+  its(:stdout) { should match '0' }
+end
+describe command('defaults read -g NSAutomaticCapitalizationEnabled') do
+  its(:stdout) { should match '0' }
+end
+describe command('defaults read -g NSAutomaticPeriodSubstitutionEnabled') do
+  its(:stdout) { should match '0' }
+end
+describe command('defaults read -g NSAutomaticDashSubstitutionEnabled') do
+  its(:stdout) { should match '0' }
+end
+describe command('defaults read -g NSAutomaticQuoteSubstitutionEnabled') do
+  its(:stdout) { should match '0' }
+end
