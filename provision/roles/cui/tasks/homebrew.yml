@@ -104,6 +104,8 @@
   git:
     repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
     dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
+    depth: 1
+    version: "{{ item.version | default('HEAD') }}"
   with_items:
     - { namespace: airblade, name: vim-gitgutter }
     - { namespace: easymotion, name: vim-easymotion }
