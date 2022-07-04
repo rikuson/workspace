@@ -3,6 +3,7 @@ require 'spec_helper'
 [
   'bat',
   'ffmpeg',
+  'fzf',
   'ghc',
   'git',
   'gnu-sed',
@@ -15,6 +16,7 @@ require 'spec_helper'
   'lazygit',
   'lsd',
   'neofetch',
+  'neovim',
   'nkf',
   'nodebrew',
   'pandoc',

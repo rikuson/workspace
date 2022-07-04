@@ -6,6 +6,7 @@
     - { name: ag }
     - { name: bat }
     - { name: ffmpeg }
+    - { name: fzf }
     - { name: ghc }
     - { name: gnu-sed }
     - { name: grex }
@@ -16,6 +17,7 @@
     - { name: jq }
     - { name: lsd }
     - { name: neofetch }
+    - { name: neovim }
     - { name: nkf }
     - { name: pandoc }
     - { name: pict }
@@ -96,6 +98,21 @@
   get_url:
     url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     dest: $HOME/.vim/autoload/plug.vim
+
+# neovim
+- name: Install common plugins
+  git:
+    repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
+    dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
+  with_items:
+    - { namespace: airblade, name: vim-gitgutter }
+    - { namespace: easymotion, name: vim-easymotion }
+    - { namespace: itchyny, name: lightline.vim }
+    - { namespace: junegunn, name: fzf.vim }
+    - { namespace: mg979, name: vim-visual-multi }
+    - { namespace: ryanoasis, name: vim-devicons }
+    - { namespace: w0ng, name: vim-hybrid }
+    - { namespace: cocopon, name: vaffle.vim }
 
 # npm
 - file: path=$HOME/.nodebrew/src state=directory
