@@ -60,7 +60,11 @@ endfor
 "------------------------------
 " fzf
 "------------------------------
-set rtp+=/opt/homebrew/opt/fzf
+if isdirectory('/opt/homebrew')
+  set rtp+=/opt/homebrew/opt/fzf
+else
+  set rtp+=/usr/local/opt/fzf
+endif
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-s': 'split',
