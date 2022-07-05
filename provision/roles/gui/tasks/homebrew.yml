@@ -1,16 +1,3 @@
-- name: Install brew cask packages
-  homebrew_cask:
-    name: "{{ item.name }}"
-  with_items:
-    - { name: clipy }
-    - { name: docker }
-    - { name: drawio }
-    - { name: google-chrome }
-    - { name: resilio-sync }
-    - { name: spotify }
-    - { name: typora }
-    - { name: dynalist }
-
 - name: Tap brew packages
   homebrew_tap:
     name: "homebrew/cask-fonts"
@@ -23,3 +10,14 @@
     name: "{{ item.name }}"
   with_items:
     - { name: mas }
+
+- name: Install brew cask packages
+  homebrew_cask:
+    name: "{{ item.name }}"
+  with_items:
+    - { name: clipy }
+    - { name: docker }
+    - { name: drawio }
+    - { name: google-chrome }
+    - { name: typora }
+    - { name: dynalist }

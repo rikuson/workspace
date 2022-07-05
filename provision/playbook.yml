@@ -23,6 +23,14 @@
     - role: gui
       tags: gui
 
+- name: appstore
+  hosts: localhost
+  connection: local
+  gather_facts: yes
+  roles:
+    - role: appstore
+      tags: appstore
+
 - name: os
   hosts: localhost
   connection: local
