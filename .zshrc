@@ -17,7 +17,6 @@ if [[ -d $HOME/.rbenv  ]]; then
   eval "$(rbenv init -)"
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # alias
 alias ls='lsd -l'
