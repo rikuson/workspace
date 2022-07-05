@@ -2,7 +2,9 @@
 alias config='git --git-dir=$HOME/macOS/ --work-tree=$HOME'
 
 # Homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
+if [[ -d /opt/homebrew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 # nodebrew
 NODEBREW_HOME=$HOME/.nodebrew/current
@@ -29,3 +31,5 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
 bindkey '^U' backward-kill-line
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
