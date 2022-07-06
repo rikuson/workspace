@@ -57,6 +57,11 @@ endfor
 :command New :execute 'new +setf\ ' . &filetype
 :command Tabnew :execute 'tabnew +setf\ ' . &filetype
 
+"---------------------------
+" Matchit
+"---------------------------
+runtime macros/matchit.vim
+
 "------------------------------
 " fzf
 "------------------------------
@@ -69,6 +74,21 @@ let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-s': 'split',
   \ 'ctrl-v': 'vsplit' }
+" apply .gitignore
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+
+command! -bang -nargs=? -complete=dir Files
+      \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+" Command for git grep
+" - fzf#vim#grep(command, with_column, [options], [fullscreen])
+command! -bang -nargs=* Grep
+  \ call fzf#vim#grep(
+  \   'git grep --line-number '.shellescape(<q-args>), 0,
+  \   { 'dir': systemlist('git rev-parse --show-toplevel')[0] }, <bang>0)
+
+command! -bang Templates
+      \ call fzf#sonictemplate#run()
 
 nnoremap <Leader>f :<C-u>GFiles<Cr>
 nnoremap <Leader>s :<C-u>GFiles?<Cr>
@@ -77,10 +97,160 @@ nnoremap <Leader>t :<C-u>Templates<Cr>
 nnoremap <Leader>g :<C-u>Grep<Cr>
 nnoremap <Leader>h :<C-u>History<Cr>
 
+function! Fzf_dev()
+  function! s:files()
+    let files = split(system($FZF_DEFAULT_COMMAND), '\n')
+    return s:prepend_icon(files)
+  endfunction
+
+  function! s:prepend_icon(candidates)
+    let result = []
+    for candidate in a:candidates
+      let filename = fnamemodify(candidate, ':p:t')
+      let icon = WebDevIconsGetFileTypeSymbol(filename, isdirectory(filename))
+      call add(result, printf("%s %s", icon, candidate))
+    endfor
+
+    return result
+  endfunction
+
+  function! s:edit_file(item)
+    let parts = split(a:item, ' ')
+    let file_path = get(parts, 1, '')
+    execute 'silent e' file_path
+  endfunction
+
+  call fzf#run({
+        \ 'source': <sid>files(),
+        \ 'sink':   function('s:edit_file'),
+        \ 'options': '-m -x +s',
+        \ 'down':    '40%' })
+endfunction
+
+"------------------------------
+" vim-submode
+"------------------------------
+let g:submode_leave_with_key = 1
+call submode#enter_with('bufmove', 'n', '', '<C-w>>', '<C-w>>')
+call submode#enter_with('bufmove', 'n', '', '<C-w><', '<C-w><')
+call submode#enter_with('bufmove', 'n', '', '<C-w>+', '<C-w>+')
+call submode#enter_with('bufmove', 'n', '', '<C-w>-', '<C-w>-')
+call submode#map('bufmove', 'n', '', '>', '<C-w>>')
+call submode#map('bufmove', 'n', '', '<', '<C-w><')
+call submode#map('bufmove', 'n', '', '+', '<C-w>+')
+call submode#map('bufmove', 'n', '', '-', '<C-w>-')
+
+call submode#enter_with('undo', 'n', '', 'g-', 'g-')
+call submode#enter_with('redo', 'n', '', 'g+', 'g+')
+call submode#map('undo', 'n', '', '-', 'g-')
+call submode#map('redo', 'n', '', '+', 'g+')
+
+"------------------------------
+" lexima
+"------------------------------
+call lexima#add_rule({
+			\   'at': '<[^>\|\/]\+\%#',
+			\   'char': '>',
+			\   'input': '></<C-x><C-o><Esc>%i',
+			\   'filetype': ['html'],
+			\ })
+call lexima#add_rule({
+			\   'at': '<[^>\|\/]\+>\%#<\/[^>]\+>',
+			\   'char': '<Cr>',
+			\   'input': '<Cr><C-o>O',
+			\   'filetype': ['html'],
+			\ })
+call lexima#add_rule({
+			\   'at': '^- .*\%#',
+			\   'char': '<Cr>',
+			\   'input': '<Cr>- ',
+			\   'filetype': ['markdown'],
+			\ })
+call lexima#add_rule({
+			\   'at': '^> .*\%#',
+			\   'char': '<Cr>',
+			\   'input': '<Cr>> ',
+			\   'filetype': ['markdown'],
+			\ })
+
+"------------------------------
+" sandwich
+"------------------------------
+runtime macros/sandwich/keymap/surround.vim
+let g:sandwich_no_default_key_mappings = 1
+map s <Plug>(operator-sandwich-add)
+map S v$s
+
+let g:sandwich#recipes += [
+			\   {'buns': ['{ ', ' }'], 'nesting': 1, 'match_syntax': 1,
+			\    'kind': ['add', 'replace'], 'action': ['add'], 'input': ['{']},
+			\
+			\   {'buns': ['[ ', ' ]'], 'nesting': 1, 'match_syntax': 1,
+			\    'kind': ['add', 'replace'], 'action': ['add'], 'input': ['[']},
+			\
+			\   {'buns': ['( ', ' )'], 'nesting': 1, 'match_syntax': 1,
+			\    'kind': ['add', 'replace'], 'action': ['add'], 'input': ['(']},
+			\
+			\   {'buns': ['{\s*', '\s*}'],   'nesting': 1, 'regex': 1,
+			\    'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'],
+			\    'action': ['delete'], 'input': ['{']},
+			\
+			\   {'buns': ['\[\s*', '\s*\]'], 'nesting': 1, 'regex': 1,
+			\    'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'],
+			\    'action': ['delete'], 'input': ['[']},
+			\
+			\   {'buns': ['(\s*', '\s*)'],   'nesting': 1, 'regex': 1,
+			\    'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'],
+			\    'action': ['delete'], 'input': ['(']},
+			\ ]
+let g:sandwich#recipes += [
+			\   {
+			\     'buns'    : ['/*', '*/'],
+			\     'kind'    : ['add'],
+			\     'action'  : ['add'],
+			\     'input'   : ['\'],
+			\     'filetype': ['javascript', 'php']
+			\   },
+			\ ]
+let g:sandwich#recipes += [
+			\   {
+			\     'buns'    : ['<!--', '-->'],
+			\     'kind'    : ['add'],
+			\     'action'  : ['add'],
+			\     'input'   : ['\'],
+			\     'filetype': ['html', 'markdown']
+			\   },
+			\ ]
+
 "------------------------------
 " easymotion
 "------------------------------
 map <C-s> <Plug>(easymotion-prefix)
+
+"------------------------------
+" quickrun
+"------------------------------
+if v:version >= 802
+  let g:quickrun_config = {
+        \ '_': {
+        \     'outputter': 'popup'
+        \   }
+        \ }
+endif
+let g:quickrun_no_default_key_mappings = 1
+
+"------------------------
+" vim-illuminate
+"------------------------
+augroup illuminate_augroup
+    autocmd!
+    autocmd VimEnter * hi illuminatedWord cterm=underline gui=underline
+augroup END
+
+"------------------------------
+" vim-highlightedyank
+"------------------------------
+let g:highlightedyank_highlight_duration = 500
 
 "------------------------
 " gitgutter
@@ -90,6 +260,30 @@ augroup GITGUTTER
 	autocmd!
 	autocmd BufWritePre * :GitGutter
 augroup END
+
+"------------------------------
+" ALE
+"------------------------------
+let g:ale_linters = {
+      \ 'javascript': ['eslint'],
+      \ 'markdown': ['textlint'],
+\}
+let g:ale_fixers = {
+      \ 'javascript': ['prettier'],
+      \ 'css': ['prettier'],
+      \ 'php': ['php_cs_fixer'],
+\}
+let g:ale_fix_on_save = 1
+let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_lint_on_text_changed = 0
+let g:ale_markdown_prettier_options = ''
+let g:ale_sign_error = ''
+let g:ale_sign_warning = ''
+let g:airline#extensions#ale#open_lnum_symbol = '('
+let g:airline#extensions#ale#close_lnum_symbol = ')'
+let g:ale_echo_msg_format = '[%linter%]%code: %%s'
+highlight link ALEErrorSign Tag
+highlight link ALEWarningSign StorageClass
 
 "------------------------
 " lightline
@@ -216,6 +410,14 @@ set noignorecase
 
 " Indentation
 set tabstop=2
+
+" History
+set noswapfile
+set hidden
+if has("persistent_undo")
+    set undodir=~/.vim/undo/
+    set undofile
+endif
 
 " Cursor
 set cursorline

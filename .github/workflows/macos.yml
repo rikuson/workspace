@@ -33,8 +33,6 @@ jobs:
       working-directory: provision
     - name: Copy dotfiles
       run: |
-        cp -r .vim $HOME/
-        cp .vimrc $HOME/
         cp -r .gnupg $HOME/
     - name: Play cui tasks
       run: ansible-playbook playbook.yml -i hosts --tags=cui

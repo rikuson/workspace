@@ -28,8 +28,6 @@ require 'spec_helper'
   'postgresql',
   'qrencode',
   'tmux',
-  'universal-ctags',
-  'vim',
   'w3m',
 ].each do |item|
   describe package(item) do
