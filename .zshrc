@@ -19,7 +19,6 @@ if [[ -d $HOME/.rbenv  ]]; then
   eval "$(rbenv init -)"
 fi
 
-
 # alias
 alias ls='lsd -l'
 alias cat='bat'
@@ -32,4 +31,10 @@ bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
 bindkey '^U' backward-kill-line
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Zsh plugins
+[ -f /usr/local/opt/antigen/share/antigen/antigen.zsh ] && source /usr/local/opt/antigen/share/antigen/antigen.zsh
+antigen use oh-my-zsh
+antigen bundle pass
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen theme af-magic
+antigen apply

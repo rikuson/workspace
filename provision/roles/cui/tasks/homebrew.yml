@@ -4,6 +4,7 @@
     name: "{{ item.name }}"
   with_items:
     - { name: ag }
+    - { name: antigen }
     - { name: bat }
     - { name: ffmpeg }
     - { name: fzf }
