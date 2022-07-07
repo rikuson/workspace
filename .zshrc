@@ -32,7 +32,7 @@ bindkey '^N' history-beginning-search-forward
 bindkey '^U' backward-kill-line
 
 # Zsh plugins
-[ -f /usr/local/opt/antigen/share/antigen/antigen.zsh ] && source /usr/local/opt/antigen/share/antigen/antigen.zsh
+[ -f $(brew --prefix)/opt/antigen/share/antigen/antigen.zsh ] && source $(brew --prefix)/opt/antigen/share/antigen/antigen.zsh
 antigen use oh-my-zsh
 antigen bundle pass
 antigen bundle zsh-users/zsh-syntax-highlighting
