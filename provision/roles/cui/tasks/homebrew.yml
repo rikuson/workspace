@@ -80,7 +80,7 @@
 - name: Change config
   lineinfile:
     path:  $HOME/.gnupg/gpg-agent.conf
-    line: 'pinentry-program {{ pinentry_mac_path }}'
+    line: 'pinentry-program {{ pinentry_mac_path.stdout }}'
 
 # neovim
 - name: Install common plugins
