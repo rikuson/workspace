@@ -21,7 +21,7 @@ fi
 
 # alias
 alias ls='lsd -l'
-alias cat='bat'
+alias cat='bat --paging=never'
 alias tree='lsd --tree'
 
 # Better man
