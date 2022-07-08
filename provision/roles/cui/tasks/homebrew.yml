@@ -16,6 +16,7 @@
     - { name: httpie }
     - { name: imagemagick }
     - { name: jq }
+    - { name: jump }
     - { name: lsd }
     - { name: neofetch }
     - { name: neovim }
