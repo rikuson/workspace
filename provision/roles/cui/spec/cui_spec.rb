@@ -13,6 +13,7 @@ require 'spec_helper'
   'httpie',
   'imagemagick',
   'jq',
+  'jump',
   'lazygit',
   'lsd',
   'neofetch',
