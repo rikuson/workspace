@@ -1,0 +1,9 @@
+---
+- name: Install npm packages 
+  npm:
+    global: yes
+    name: "{{ item.name }}"
+  with_items:
+    - { name: typescript }
+    - { name: typescript-language-server }
+    - { name: browser-sync }
