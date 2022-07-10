@@ -242,7 +242,7 @@ let g:quickrun_no_default_key_mappings = 1
 "------------------------
 " vim-illuminate
 "------------------------
-augroup illuminate_augroup
+augroup ILLUMINATE_AUGROUP
     autocmd!
     autocmd VimEnter * hi illuminatedWord cterm=underline gui=underline
 augroup END
@@ -251,6 +251,23 @@ augroup END
 " vim-highlightedyank
 "------------------------------
 let g:highlightedyank_highlight_duration = 500
+
+"------------------------------
+" typescript-vim
+"------------------------------
+augroup TYPESCRIPT_VIM
+    autocmd!
+    autocmd Filetype typescript packadd typescript-vim
+    autocmd Filetype typescriptreact packadd typescript-vim
+augroup END
+
+"------------------------------
+" vim-jsx-pretty
+"------------------------------
+augroup VIM_JSX_TYPESCRIPT
+    autocmd!
+    autocmd Filetype typescriptreact packadd vim-jsx-pretty
+augroup END
 
 "------------------------
 " gitgutter
@@ -410,6 +427,7 @@ set noignorecase
 
 " Indentation
 set tabstop=2
+set shiftwidth=2
 
 " History
 set noswapfile
