@@ -9,6 +9,7 @@
     - { name: ffmpeg }
     - { name: fzf }
     - { name: ghc }
+    - { name: git } # Use homebrew based git
     - { name: gnu-sed }
     - { name: grex }
     - { name: hexyl }
@@ -21,6 +22,7 @@
     - { name: neofetch }
     - { name: neovim }
     - { name: nkf }
+    - { name: nodebrew }
     - { name: pandoc }
     - { name: pict }
     - { name: poppler }
@@ -28,25 +30,6 @@
     - { name: qrencode }
     - { name: tmux }
     - { name: w3m }
-
-# git
-- name: Setup global .gitignore
-  shell: git config --global core.excludesfile $HOME/.gitignore
-- name: Show Japanese properly
-  shell: git config --global core.quotepath false
-- name: Set pull rule
-  shell: git config --global pull.rebase true
-- name: Disable pager for branch
-  shell: git config --global pager.branch false
-- name: Set git user
-  shell: |
-    git config --global user.email 'rikuson@users.noreply.github.com'
-    git config --global user.name 'Rikson'
-- name: Use homebrew based git
-  homebrew:
-    name: "{{ item.name }}"
-  with_items:
-    - { name: git }
 
 # lazygit
 - name: Tap brew packages
@@ -61,7 +44,7 @@
     - { name: "jesseduffield/lazygit/lazygit" }
 
 # pass
-- name: Install brew packages
+- name: Install pass
   homebrew:
     name: "{{ item.name }}"
   with_items:
@@ -85,49 +68,3 @@
   lineinfile:
     path:  $HOME/.gnupg/gpg-agent.conf
     line: 'pinentry-program {{ pinentry_mac_path.stdout }}'
-
-# neovim
-- name: Install common plugins
-  git:
-    repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
-    dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
-    depth: 1
-    version: "{{ item.version | default('HEAD') }}"
-  with_items:
-    - { namespace: RRethy, name: vim-illuminate }
-    - { namespace: Yggdroot, name: indentLine }
-    - { namespace: airblade, name: vim-gitgutter }
-    - { namespace: cocopon, name: vaffle.vim }
-    - { namespace: cohama, name: lexima.vim }
-    - { namespace: dense-analysis, name: ale }
-    - { namespace: easymotion, name: vim-easymotion }
-    - { namespace: editorconfig, name: editorconfig-vim }
-    - { namespace: itchyny, name: lightline.vim }
-    - { namespace: junegunn, name: fzf.vim }
-    - { namespace: machakann, name: vim-highlightedyank }
-    - { namespace: machakann, name: vim-sandwich }
-    - { namespace: mbbill, name: undotree }
-    - { namespace: mg979, name: vim-visual-multi }
-    - { namespace: ryanoasis, name: vim-devicons }
-    - { namespace: thinca, name: vim-quickrun }
-    - { namespace: thinca, name: vim-submode }
-    - { namespace: tpope, name: vim-abolish }
-    - { namespace: w0ng, name: vim-hybrid }
-
-# npm
-- file: path=$HOME/.nodebrew/src state=directory
-- name: Detect if nodebrew is installed
-  stat: path=$HOME/.nodebrew/current/bin/nodebrew
-  register: nodebrew_bin
-- name: Install nodebrew
-  homebrew:
-    name: nodebrew
-- name: Detect if npm is installed
-  stat: path=$HOME/.nodebrew/current/bin/npm
-  register: npm_bin
-- name: Install NodeJS
-  shell: nodebrew install latest
-  when: not npm_bin.stat.exists
-- name: Use latest NodeJS
-  shell: nodebrew use latest
-  when: not npm_bin.stat.exists
