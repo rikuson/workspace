@@ -1,6 +1,5 @@
 ---
-# Install for neovim
-- name: Install common plugins
+- name: Install for neovim general plugins
   git:
     repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
     dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
@@ -26,3 +25,13 @@
     - { namespace: thinca, name: vim-submode }
     - { namespace: tpope, name: vim-abolish }
     - { namespace: w0ng, name: vim-hybrid }
+
+- name: Install for neovim special plugins
+  git:
+    repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
+    dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/opt/{{ item.name }}"
+    depth: 1
+    version: "{{ item.version | default('HEAD') }}"
+  with_items:
+    - { namespace: leafgarland, name: typescript-vim }
+    - { namespace: maxmellon, name: vim-jsx-pretty }
