@@ -36,7 +36,6 @@ cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 
 " Prevent default
-noremap <C-z> <Nop>
 nmap s <Nop>
 xmap s <Nop>
 nnoremap Q gq
@@ -144,6 +143,32 @@ call submode#enter_with('undo', 'n', '', 'g-', 'g-')
 call submode#enter_with('redo', 'n', '', 'g+', 'g+')
 call submode#map('undo', 'n', '', '-', 'g-')
 call submode#map('redo', 'n', '', '+', 'g+')
+
+"------------------------------
+" asyncomplete.vim
+"------------------------------
+call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+	\ 'name': 'buffer',
+	\ 'allowlist': ['*'],
+	\ 'blocklist': ['go'],
+	\ 'completor': function('asyncomplete#sources#buffer#completor'),
+	\ 'config': {
+	\    'max_buffer_size': 5000000,
+	\  },
+	\ }))
+
+if executable('typescript-language-server')
+	au User lsp_setup call lsp#register_server({
+		\ 'name': 'typescript-language-server',
+		\ 'cmd': { server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+		\ 'whitelist': ['typescript', 'typescriptreact']
+		\ })
+endif
+
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+let g:lsp_async_completion = 1
 
 "------------------------------
 " lexima
@@ -456,3 +481,4 @@ else
 	inoremap <Esc> <Esc>
 endif
 set virtualedit=block 
+set mouse=n

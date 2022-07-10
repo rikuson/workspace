@@ -30,6 +30,7 @@
     - { name: qrencode }
     - { name: tmux }
     - { name: w3m }
+    - { name: yarn }
 
 # lazygit
 - name: Tap brew packages
