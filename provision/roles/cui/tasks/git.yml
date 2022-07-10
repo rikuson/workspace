@@ -1,0 +1,28 @@
+---
+# Install for neovim
+- name: Install common plugins
+  git:
+    repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
+    dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
+    depth: 1
+    version: "{{ item.version | default('HEAD') }}"
+  with_items:
+    - { namespace: RRethy, name: vim-illuminate }
+    - { namespace: Yggdroot, name: indentLine }
+    - { namespace: airblade, name: vim-gitgutter }
+    - { namespace: cocopon, name: vaffle.vim }
+    - { namespace: cohama, name: lexima.vim }
+    - { namespace: dense-analysis, name: ale }
+    - { namespace: easymotion, name: vim-easymotion }
+    - { namespace: editorconfig, name: editorconfig-vim }
+    - { namespace: itchyny, name: lightline.vim }
+    - { namespace: junegunn, name: fzf.vim }
+    - { namespace: machakann, name: vim-highlightedyank }
+    - { namespace: machakann, name: vim-sandwich }
+    - { namespace: mbbill, name: undotree }
+    - { namespace: mg979, name: vim-visual-multi }
+    - { namespace: ryanoasis, name: vim-devicons }
+    - { namespace: thinca, name: vim-quickrun }
+    - { namespace: thinca, name: vim-submode }
+    - { namespace: tpope, name: vim-abolish }
+    - { namespace: w0ng, name: vim-hybrid }
