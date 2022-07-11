@@ -24,6 +24,7 @@
     - { namespace: thinca, name: vim-quickrun }
     - { namespace: thinca, name: vim-submode }
     - { namespace: tpope, name: vim-abolish }
+    - { namespace: tpope, name: vim-fugitive }
     - { namespace: w0ng, name: vim-hybrid }
 
 - name: Install for neovim special plugins
