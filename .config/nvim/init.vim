@@ -308,10 +308,12 @@ augroup END
 "------------------------------
 let g:ale_linters = {
       \ 'javascript': ['eslint'],
+      \ 'typescript': ['eslint'],
       \ 'markdown': ['textlint'],
 \}
 let g:ale_fixers = {
       \ 'javascript': ['prettier'],
+      \ 'typescript': ['prettier'],
       \ 'css': ['prettier'],
       \ 'php': ['php_cs_fixer'],
 \}
