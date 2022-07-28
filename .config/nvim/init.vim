@@ -314,6 +314,7 @@ let g:ale_linters = {
 let g:ale_fixers = {
       \ 'javascript': ['prettier'],
       \ 'typescript': ['prettier'],
+      \ 'typescriptreact': ['prettier'],
       \ 'css': ['prettier'],
       \ 'php': ['php_cs_fixer'],
 \}
