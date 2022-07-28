@@ -1,3 +1,6 @@
 ---
+- name: Create profile
+  file: path=$HOME/.zprofile state=touch mode="u=rw,g=r,o=r"
+
 - import_tasks: homebrew.yml
 - import_tasks: gem.yml

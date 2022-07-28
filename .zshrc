@@ -13,12 +13,6 @@ export NODEBREW_ROOT=$HOME/.nodebrew
 export PATH=$NODEBREW_HOME/bin:$PATH
 export NODE_BINARY=$NODEBREW_HOME/bin/node
 
-# rbenv
-if [[ -d $HOME/.rbenv  ]]; then
-  export PATH=${HOME}/.rbenv/bin:${PATH}
-  eval "$(rbenv init -)"
-fi
-
 # alias
 alias ls='lsd -l'
 alias cat='bat --paging=never'

@@ -1,27 +1,33 @@
 ---
-- name: Detect if rbenv is installed
-  stat: path=$HOME/.rbenv
-  register: rbenv_dir
-
 - name: Install rbenv
   homebrew:
     name: rbenv
-  when: not rbenv_dir.stat.exists
 
-- name: Initialize rbenv
-  shell: eval "$(rbenv init -)"
-  when: not rbenv_dir.stat.exists
+- name: Set profile
+  blockinfile:
+    path: $HOME/.zprofile
+    block: |
+      export RBENV_ROOT="$HOME/.rbenv"
+      eval "$(rbenv init -)"
+
+- name: Init rbenv
+  shell: rbenv init -
 
 - name: Detect if ruby is installed
   stat: path=$HOME/.rbenv/shims/ruby
   register: ruby_bin
 
+- name: Get latest ruby version
+  shell: rbenv install --list-all | grep -v - | tail -1
+  register: ruby_version
+  when: not ruby_bin.stat.exists
+
 - name: Install latest ruby
-  shell: rbenv install $(rbenv install --list-all | grep -v - | tail -1)
+  shell: zsh -lc "rbenv install -s {{ ruby_version.stdout }}"
   when: not ruby_bin.stat.exists
 
 - name: Use latest ruby
-  shell: rbenv global $(rbenv install --list-all | grep -v - | tail -1)
+  shell: rbenv global {{ ruby_version.stdout }}
   when: not ruby_bin.stat.exists
 
 - name: Update gem
