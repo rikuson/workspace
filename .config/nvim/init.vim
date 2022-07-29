@@ -308,10 +308,13 @@ augroup END
 "------------------------------
 let g:ale_linters = {
       \ 'javascript': ['eslint'],
+      \ 'typescript': ['eslint'],
       \ 'markdown': ['textlint'],
 \}
 let g:ale_fixers = {
       \ 'javascript': ['prettier'],
+      \ 'typescript': ['prettier'],
+      \ 'typescriptreact': ['prettier'],
       \ 'css': ['prettier'],
       \ 'php': ['php_cs_fixer'],
 \}
@@ -453,6 +456,7 @@ set noignorecase
 " Indentation
 set tabstop=2
 set shiftwidth=2
+set expandtab
 
 " History
 set noswapfile
