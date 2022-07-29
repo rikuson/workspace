@@ -30,6 +30,11 @@
     name: pager.branch
     value: false
     scope: global
+- name: Disable pager for stash
+  git_config:
+    name: pager.stash
+    value: false
+    scope: global
 - name: Set git email
   git_config:
     name: user.email
