@@ -1,6 +1,11 @@
 # Bare repo
 alias config='git --git-dir=$HOME/macOS/ --work-tree=$HOME'
 
+# Ansible Playbook
+provision () {
+  cd $HOME/provision && ansible-playbook playbook.yml -i hosts --tags="$@" && cd -
+}
+
 # Homebrew
 if [[ -d /opt/homebrew ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
