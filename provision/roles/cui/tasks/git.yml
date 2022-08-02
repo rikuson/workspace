@@ -14,6 +14,7 @@
     - { namespace: dense-analysis, name: ale }
     - { namespace: easymotion, name: vim-easymotion }
     - { namespace: editorconfig, name: editorconfig-vim }
+    - { namespace: elzr, name: vim-json }
     - { namespace: hashivim, name: vim-terraform }
     - { namespace: itchyny, name: lightline.vim }
     - { namespace: junegunn, name: fzf.vim }
