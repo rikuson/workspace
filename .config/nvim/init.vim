@@ -278,6 +278,13 @@ augroup END
 let g:highlightedyank_highlight_duration = 500
 
 "------------------------------
+" vim-json
+"------------------------------
+" indentLine hides double quotation
+"------------------------------
+let g:vim_json_syntax_conceal = 0
+
+"------------------------------
 " typescript-vim
 "------------------------------
 augroup TYPESCRIPT_VIM
