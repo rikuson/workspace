@@ -8,6 +8,7 @@
 !.gitkeep
 
 .DS_Store
+.envrc
 
 .ssh/
 

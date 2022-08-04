@@ -2,6 +2,7 @@ require 'spec_helper'
 
 [
   'bat',
+  'direnv',
   'ffmpeg',
   'fzf',
   'ghc',

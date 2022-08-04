@@ -6,6 +6,7 @@
     - { name: ag }
     - { name: antigen }
     - { name: bat }
+    - { name: direnv }
     - { name: ffmpeg }
     - { name: fzf }
     - { name: ghc }
