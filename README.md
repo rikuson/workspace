@@ -25,10 +25,10 @@ brew install ansible
 ```
 ## Provisioning
 
+Run ansible-playbook and serverspec.
+
 ```bash
-cd ~/provision
-ansible-playbook playbook.yml -i hosts
-rake serverspec:all
+provision all
 ```
 
 ## Terminal font setting
