@@ -1,0 +1,11 @@
+---
+- name: List existing plugins
+  command: "asdf plugin list"
+  register: plugins
+  ignore_errors: yes
+
+- name: Add asdf plugin
+  command: "asdf plugin add {{ item.name }}"
+  when: item.name not in plugins.stdout_lines
+  with_items:
+    - { name: terraform }
