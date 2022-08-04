@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 [
+  'antigen',
+  'asdf',
   'bat',
   'direnv',
   'ffmpeg',

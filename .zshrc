@@ -33,6 +33,7 @@ bindkey '^U' backward-kill-line
 # Zsh plugins
 [ -f $(brew --prefix)/opt/antigen/share/antigen/antigen.zsh ] && source $(brew --prefix)/opt/antigen/share/antigen/antigen.zsh
 antigen use oh-my-zsh
+antigen bundle asdf
 antigen bundle direnv
 antigen bundle fzf
 antigen bundle jump

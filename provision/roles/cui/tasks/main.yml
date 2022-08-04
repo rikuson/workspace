@@ -1,6 +1,7 @@
 ---
 - import_tasks: homebrew.yml
 - import_tasks: git.yml
+- import_tasks: asdf.yml
 - import_tasks: nodebrew.yml
 - import_tasks: npm.yml
 

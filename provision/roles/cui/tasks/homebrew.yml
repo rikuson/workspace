@@ -5,6 +5,7 @@
   with_items:
     - { name: ag }
     - { name: antigen }
+    - { name: asdf }
     - { name: bat }
     - { name: direnv }
     - { name: ffmpeg }
