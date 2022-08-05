@@ -15,31 +15,31 @@ jobs:
       uses: actions/cache@v3
       with:
         path: /Library/Ruby/Gems
-        key: ${{ runner.os }}-gem-${{ hashFiles('provision/roles/*/tasks/gem.yml') }}
+        key: ${{ runner.os }}-gem-${{ hashFiles('.provision/roles/*/tasks/gem.yml') }}
         restore-keys: ${{ runner.os }}-gem-
     - name: Cache homebrew
       uses: actions/cache@v3
       with:
         path: /opt/homebrew
-        key: ${{ runner.os }}-homebrew-${{ hashFiles('provision/roles/*/tasks/homebrew.yml') }}
+        key: ${{ runner.os }}-homebrew-${{ hashFiles('.provision/roles/*/tasks/homebrew.yml') }}
         restore-keys: ${{ runner.os }}-homebrew-
     - name: Install ansible
       run: brew install ansible
     - name: Play init tasks
       run: ansible-playbook playbook.yml -i hosts --tags=init
-      working-directory: provision
+      working-directory: .provision
     - name: Check init spec
       run: rake serverspec:init
-      working-directory: provision
+      working-directory: .provision
     - name: Copy dotfiles
       run: |
         cp -r .gnupg $HOME/
     - name: Play cui tasks
       run: ansible-playbook playbook.yml -i hosts --tags=cui
-      working-directory: provision
+      working-directory: .provision
     - name: Check cui spec
       run: rake serverspec:cui
-      working-directory: provision
+      working-directory: .provision
   os:
     runs-on: macos-12
     steps:
@@ -48,25 +48,25 @@ jobs:
       uses: actions/cache@v3
       with:
         path: /Library/Ruby/Gems
-        key: ${{ runner.os }}-gem-${{ hashFiles('provision/roles/*/tasks/gem.yml') }}
+        key: ${{ runner.os }}-gem-${{ hashFiles('.provision/roles/*/tasks/gem.yml') }}
         restore-keys: ${{ runner.os }}-gem-
     - name: Cache homebrew
       uses: actions/cache@v3
       with:
         path: /opt/homebrew
-        key: ${{ runner.os }}-homebrew-${{ hashFiles('provision/roles/*/tasks/homebrew.yml') }}
+        key: ${{ runner.os }}-homebrew-${{ hashFiles('.provision/roles/*/tasks/homebrew.yml') }}
         restore-keys: ${{ runner.os }}-homebrew-
     - name: Install ansible
       run: brew install ansible
     - name: Play init tasks
       run: ansible-playbook playbook.yml -i hosts --tags=init
-      working-directory: provision
+      working-directory: .provision
     - name: Check init spec
       run: rake serverspec:init
-      working-directory: provision
+      working-directory: .provision
     - name: Play os tasks
       run: ansible-playbook playbook.yml -i hosts --tags=os
-      working-directory: provision
+      working-directory: .provision
     - name: Check os spec
       run: rake serverspec:os
-      working-directory: provision
+      working-directory: .provision
