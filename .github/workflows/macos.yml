@@ -1,4 +1,4 @@
-name: Check init
+name: Check provision
 
 on:
   push:
@@ -23,17 +23,9 @@ jobs:
         path: /opt/homebrew
         key: ${{ runner.os }}-homebrew-${{ hashFiles('.provision/roles/*/tasks/homebrew.yml') }}
         restore-keys: ${{ runner.os }}-homebrew-
-    - name: Install ansible
-      run: brew install ansible
-    - name: Play init tasks
-      run: ansible-playbook playbook.yml -i hosts --tags=init
-      working-directory: .provision
-    - name: Check init spec
-      run: rake serverspec:init
-      working-directory: .provision
-    - name: Copy dotfiles
-      run: |
-        cp -r .gnupg $HOME/
+    - name: Install
+      shell: zsh
+      run: sh install.sh
     - name: Play cui tasks
       run: ansible-playbook playbook.yml -i hosts --tags=cui
       working-directory: .provision
@@ -56,14 +48,9 @@ jobs:
         path: /opt/homebrew
         key: ${{ runner.os }}-homebrew-${{ hashFiles('.provision/roles/*/tasks/homebrew.yml') }}
         restore-keys: ${{ runner.os }}-homebrew-
-    - name: Install ansible
-      run: brew install ansible
-    - name: Play init tasks
-      run: ansible-playbook playbook.yml -i hosts --tags=init
-      working-directory: .provision
-    - name: Check init spec
-      run: rake serverspec:init
-      working-directory: .provision
+    - name: Install
+      shell: zsh
+      run: sh install.sh
     - name: Play os tasks
       run: ansible-playbook playbook.yml -i hosts --tags=os
       working-directory: .provision
