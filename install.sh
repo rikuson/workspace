@@ -9,12 +9,14 @@ abort() {
 
 # Install homebrew
 /bin/bash -c `curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh`
-eval `/opt/homebrew/bin/brew shellenv`
+if [[ -d /opt/homebrew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 brew update
 brew upgrade
 
 # Create bare repository
-if [ -e $HOME/macOS ]; then
+if [[ -e $HOME/macOS ]]; then
   abort "`macOS` directory already exists."
 fi
 mkdir $HOME/macOS
@@ -28,5 +30,5 @@ config branch --set-upstream-to=origin/master
 
 # Install ansible
 brew install ansible
-source $HOME/.zshrc
+eval $HOME/.zshrc
 provision init
