@@ -33,5 +33,7 @@ config branch --set-upstream-to=origin/master
 
 # Install ansible
 brew install ansible
-eval $HOME/.zshrc
-provision init
+cd $HOME/.provision
+ansible-playbook playbook.yml -i hosts --tags=init
+rake serverspec:init
+cd -
