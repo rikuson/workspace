@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ master ]
 
+env:
+  WORKSPACE_REPOSITORY_URL: https://github.com/rikuson/macOS.git
+
 jobs:
   cui:
     runs-on: macos-12

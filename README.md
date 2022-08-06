@@ -11,7 +11,7 @@ ssh-keygen -t rsa
 ## Install config command
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/rikuson/macOS/HEAD/install.sh | zsh -
+curl -fsSL https://raw.githubusercontent.com/rikuson/macOS/HEAD/install.sh | WORKSPACE_REPOSITORY_URL=git@github.com:rikuson/macOS.git && zsh -
 ```
 
 ## Provisioning
