@@ -24,8 +24,7 @@ jobs:
         key: ${{ runner.os }}-homebrew-${{ hashFiles('.provision/roles/*/tasks/homebrew.yml') }}
         restore-keys: ${{ runner.os }}-homebrew-
     - name: Install
-      shell: zsh
-      run: sh install.sh
+      run: /bin/zsh ./install.sh
     - name: Play cui tasks
       run: ansible-playbook playbook.yml -i hosts --tags=cui
       working-directory: .provision
@@ -49,8 +48,7 @@ jobs:
         key: ${{ runner.os }}-homebrew-${{ hashFiles('.provision/roles/*/tasks/homebrew.yml') }}
         restore-keys: ${{ runner.os }}-homebrew-
     - name: Install
-      shell: zsh
-      run: sh install.sh
+      run: /bin/zsh ./install.sh
     - name: Play os tasks
       run: ansible-playbook playbook.yml -i hosts --tags=os
       working-directory: .provision
