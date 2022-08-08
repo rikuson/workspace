@@ -22,6 +22,20 @@
     type: int
     value: 1
 
+- name: Disable gesture of notification center
+  osx_defaults:
+    domain: com.apple.AppleMultitouchTrackpad
+    key: TrackpadTwoFingerFromRightEdgeSwipeGesture
+    type: int
+    value: 0
+
+- name: Disable blueotooth gesture of notification center
+  osx_defaults:
+    domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+    key: TrackpadTwoFingerFromRightEdgeSwipeGesture
+    type: int
+    value: 0
+
 - name: Enable three finger tap
   osx_defaults:
     domain: "{{ item.domain }}"
