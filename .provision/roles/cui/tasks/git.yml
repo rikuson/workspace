@@ -18,10 +18,12 @@
     - { namespace: hashivim, name: vim-terraform }
     - { namespace: itchyny, name: lightline.vim }
     - { namespace: junegunn, name: fzf.vim }
+    - { namespace: kevinhwang91, name: nvim-hlslens }
     - { namespace: machakann, name: vim-highlightedyank }
     - { namespace: machakann, name: vim-sandwich }
     - { namespace: mbbill, name: undotree }
     - { namespace: mg979, name: vim-visual-multi }
+    - { namespace: petertriho, name: nvim-scrollbar }
     - { namespace: prabirshrestha, name: asyncomplete-buffer.vim }
     - { namespace: prabirshrestha, name: asyncomplete-lsp.vim }
     - { namespace: prabirshrestha, name: asyncomplete.vim }
