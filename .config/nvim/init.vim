@@ -311,6 +311,12 @@ augroup GITGUTTER
 augroup END
 
 "------------------------------
+" scrollbar
+"------------------------------
+lua require("scrollbar").setup()
+lua require("scrollbar.handlers.search").setup()
+
+"------------------------------
 " ALE
 "------------------------------
 let g:ale_linters = {
