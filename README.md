@@ -1,26 +1,31 @@
 # My workspace on macOS
 
-## Register ssh key
+## Install
 
-Paste public key on GitHub.
+Generate ssh keypair and register public key on GitHub.
 
 ```bash
 ssh-keygen -t rsa
 ```
 
-## Install config command
+Run install script.
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/rikuson/macOS/HEAD/install.sh | WORKSPACE_REPOSITORY_URL=git@github.com:rikuson/macOS.git && zsh -
 ```
 
-## Provisioning
-
-Run ansible-playbook and serverspec.
+Restart terminal and run `provision`.
 
 ```bash
-provision all
+ws provision all
 ```
+
+## Command
+
+`ws` which is shorthand of `workspace` is available for provisioning.
+
+- ws git: Git command targetting config repository.
+- ws provision: Run ansible-playbook and serverspec.
 
 ## Terminal font setting
 

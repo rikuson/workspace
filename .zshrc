@@ -1,11 +1,3 @@
-# Bare repo
-alias config='git --git-dir=$HOME/macOS/ --work-tree=$HOME'
-
-# Ansible Playbook
-provision () {
-  cd $HOME/.provision && ansible-playbook playbook.yml -i hosts --tags="$@" && rake serverspec:$@ && cd -
-}
-
 # Homebrew
 if [[ -d /opt/homebrew ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -41,4 +33,8 @@ antigen bundle pass
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 antigen theme af-magic
+
+fpath=($HOME/.zsh/ws $fpath)
+source $HOME/.zsh/ws/ws.plugin.zsh
+
 antigen apply
