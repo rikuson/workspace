@@ -33,19 +33,17 @@
     - { name: w3m }
     - { name: yarn }
 
-# lazygit
-- name: Tap brew packages
+- name: Tap lazygit
   homebrew_tap:
     name: "{{ item.name }}"
   with_items:
     - { name: "jesseduffield/lazygit" }
-- name: Install brew packages
+- name: Install lazygit
   homebrew:
     name: "{{ item.name }}"
   with_items:
     - { name: "jesseduffield/lazygit/lazygit" }
 
-# pass
 - name: Install pass
   homebrew:
     name: "{{ item.name }}"
@@ -70,3 +68,19 @@
   lineinfile:
     path:  $HOME/.gnupg/gpg-agent.conf
     line: 'pinentry-program {{ pinentry_mac_path.stdout }}'
+
+- name: Set up lsd
+  blockinfile:
+    path: $HOME/.zprofile
+    block: |
+      alias ls='lsd -l'
+      alias tree='lsd --tree'
+    marker: "# {mark} ANSIBLE MANAGED BLOCK lsd"
+
+- name: Set up bat
+  blockinfile:
+    path: $HOME/.zprofile
+    block: |
+      alias cat='bat --paging=never'
+      export MANPAGER='`col -bx | bat -l man -p`'
+    marker: "# {mark} ANSIBLE MANAGED BLOCK bat"
