@@ -3,6 +3,11 @@ bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
 bindkey '^U' backward-kill-line
 
+# homebrew
+if [[ -d /opt/homebrew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 # oh-my-zsh
 if [[ -d $HOME/.oh-my-zsh ]]; then
   export ZSH="$HOME/.oh-my-zsh"
