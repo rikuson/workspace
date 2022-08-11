@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 set -u
 
@@ -31,12 +31,20 @@ config remote add origin $WORKSPACE_REPOSITORY_URL
 config pull origin master
 config branch --set-upstream-to=origin/master
 
-# Install ansible
-brew install ansible
-cd $HOME/.provision
-ansible-playbook playbook.yml -i hosts --tags=init
-rake serverspec:init
-cd -
-
 # Install oh-my-zsh
 sh -c `curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh`
+
+# Initialize
+brew install ansible asdf
+asdf plugin add terraform
+asdf install terraform latest
+asdf global terraform latest
+asdf plugin add ruby
+asdf install ruby latest
+asdf global ruby latest
+asdf plugin add nodejs
+asdf install nodejs latest
+asdf global nodejs latest
+gem install bundler ansible_spec
+
+touch $HOME/.zprofile

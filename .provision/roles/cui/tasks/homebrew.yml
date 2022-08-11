@@ -4,7 +4,6 @@
     name: "{{ item.name }}"
   with_items:
     - { name: ag }
-    - { name: asdf }
     - { name: bat }
     - { name: direnv }
     - { name: ffmpeg }
@@ -23,7 +22,6 @@
     - { name: neofetch }
     - { name: neovim }
     - { name: nkf }
-    - { name: nodebrew }
     - { name: pandoc }
     - { name: pict }
     - { name: poppler }

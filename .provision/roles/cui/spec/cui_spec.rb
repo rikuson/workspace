@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 [
-  'asdf',
   'bat',
   'direnv',
   'ffmpeg',
@@ -21,7 +20,6 @@ require 'spec_helper'
   'neofetch',
   'neovim',
   'nkf',
-  'nodebrew',
   'pandoc',
   'pass',
   'pass-otp',
