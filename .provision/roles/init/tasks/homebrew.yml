@@ -3,13 +3,6 @@
   homebrew:
     name: rbenv
 
-- name: Set profile
-  blockinfile:
-    path: $HOME/.zprofile
-    block: |
-      export RBENV_ROOT="$HOME/.rbenv"
-      eval "$(rbenv init -)"
-
 - name: Init rbenv
   shell: rbenv init -
 

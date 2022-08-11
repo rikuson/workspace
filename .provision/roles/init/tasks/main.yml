@@ -2,5 +2,23 @@
 - name: Create profile
   file: path=$HOME/.zprofile state=touch mode="u=rw,g=r,o=r"
 
+- name: Load homebrew
+  blockinfile:
+    path: $HOME/.zprofile
+    block: |
+      if [[ -d /opt/homebrew ]]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+      fi
+    marker: "# {mark} ANSIBLE MANAGED BLOCK homebrew"
+
 - import_tasks: homebrew.yml
+
+- name: Load rbenv
+  blockinfile:
+    path: $HOME/.zprofile
+    block: |
+      export RBENV_ROOT="$HOME/.rbenv"
+      eval "$(rbenv init -)"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK rbenv"
+
 - import_tasks: gem.yml
