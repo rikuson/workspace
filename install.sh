@@ -18,8 +18,7 @@ fi
 if [[ -d /opt/homebrew ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
-brew update
-brew upgrade
+brew update -q
 
 # Create bare repository
 mkdir $HOME/macOS
@@ -35,7 +34,7 @@ config branch --set-upstream-to=origin/master
 sh -c `curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh`
 
 # Initialize
-brew install ansible asdf
+brew install -q ansible asdf
 asdf plugin add terraform
 asdf install terraform latest
 asdf global terraform latest
