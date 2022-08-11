@@ -37,3 +37,6 @@ cd $HOME/.provision
 ansible-playbook playbook.yml -i hosts --tags=init
 rake serverspec:init
 cd -
+
+# Install oh-my-zsh
+sh -c `curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh`
