@@ -4,7 +4,6 @@
     name: "{{ item.name }}"
   with_items:
     - { name: ag }
-    - { name: antigen }
     - { name: asdf }
     - { name: bat }
     - { name: direnv }

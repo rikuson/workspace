@@ -22,19 +22,20 @@ bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
 bindkey '^U' backward-kill-line
 
-# Zsh plugins
-[ -f $(brew --prefix)/opt/antigen/share/antigen/antigen.zsh ] && source $(brew --prefix)/opt/antigen/share/antigen/antigen.zsh
-antigen use oh-my-zsh
-antigen bundle asdf
-antigen bundle direnv
-antigen bundle fzf
-antigen bundle jump
-antigen bundle pass
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-autosuggestions
-antigen theme af-magic
-
+# ws command
 fpath=($HOME/.zsh/ws $fpath)
 source $HOME/.zsh/ws/ws.plugin.zsh
 
-antigen apply
+# oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
+plugins=(
+  asdf
+  direnv
+  fzf
+  jump
+  pass
+  zsh-syntax-highlighting
+  zsh-autosuggestions
+)
+ZSH_THEME="af-magic"
+source $ZSH/oh-my-zsh.sh
