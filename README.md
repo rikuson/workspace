@@ -5,7 +5,7 @@
 Generate ssh keypair and register public key on GitHub.
 
 ```bash
-ssh-keygen -t rsa
+ssh-keygen -t ed25519
 ```
 
 Run install script.
