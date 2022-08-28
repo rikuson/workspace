@@ -22,6 +22,7 @@
     - { name: neofetch }
     - { name: neovim }
     - { name: nkf }
+    - { name: p7zip }
     - { name: pandoc }
     - { name: pict }
     - { name: poppler }
