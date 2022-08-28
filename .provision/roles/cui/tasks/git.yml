@@ -28,6 +28,7 @@
     - { namespace: prabirshrestha, name: asyncomplete-lsp.vim }
     - { namespace: prabirshrestha, name: asyncomplete.vim }
     - { namespace: ryanoasis, name: vim-devicons }
+    - { namespace: statianzo, name: vim-jade }
     - { namespace: thinca, name: vim-quickrun }
     - { namespace: thinca, name: vim-submode }
     - { namespace: tpope, name: vim-abolish }
