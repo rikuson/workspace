@@ -12,7 +12,7 @@
 - name: Setup global .gitignore
   git_config:
     name: core.excludesfile
-    value: $HOME/.gitignore
+    value: ~/.gitignore
     scope: global
 - name: Show Japanese properly
   git_config:
