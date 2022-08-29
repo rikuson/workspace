@@ -23,10 +23,10 @@
     - { namespace: machakann, name: vim-sandwich }
     - { namespace: mbbill, name: undotree }
     - { namespace: mg979, name: vim-visual-multi }
-    - { namespace: petertriho, name: nvim-scrollbar }
     - { namespace: prabirshrestha, name: asyncomplete-buffer.vim }
     - { namespace: prabirshrestha, name: asyncomplete-lsp.vim }
     - { namespace: prabirshrestha, name: asyncomplete.vim }
+    - { namespace: psliwka, name: vim-smoothie }
     - { namespace: ryanoasis, name: vim-devicons }
     - { namespace: statianzo, name: vim-jade }
     - { namespace: thinca, name: vim-quickrun }
