@@ -45,6 +45,9 @@ asdf global ruby latest
 asdf plugin add nodejs
 asdf install nodejs latest
 asdf global nodejs latest
+asdf plugin add helm
+asdf install helm latest
+asdf global helm latest
 gem install bundler ansible_spec
 
 touch $HOME/.zprofile
