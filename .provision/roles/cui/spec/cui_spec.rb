@@ -26,7 +26,6 @@ require 'spec_helper'
   'pict',
   'pinentry-mac',
   'poppler',
-  'postgresql',
   'qrencode',
   'tmux',
   'w3m',
@@ -40,6 +39,7 @@ end
   'ag',
   'node',
   'npm',
+  'psql',
 ].each do |item|
   describe command("which #{item}") do
     its(:exit_status) { should eq 0 }
