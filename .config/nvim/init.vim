@@ -64,11 +64,7 @@ runtime macros/matchit.vim
 "------------------------------
 " telescope
 "------------------------------
-nnoremap <leader>f <cmd>Telescope git_files<cr>
-nnoremap <Leader>s <cmd>Telescope git_status<cr>
-nnoremap <leader>b <cmd>Telescope buffers<cr>
-nnoremap <leader>g <cmd>Telescope live_grep<cr>
-nnoremap <leader>h <cmd>Telescope oldfiles<cr>
+lua require('plugin.telescope')
 
 "------------------------------
 " vim-submode
@@ -271,6 +267,7 @@ let g:ale_fixers = {
 \}
 let g:ale_fix_on_save = 1
 let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_typescript_prettier_use_local_config = 1
 let g:ale_lint_on_text_changed = 0
 let g:ale_markdown_prettier_options = ''
 let g:ale_sign_error = ''
