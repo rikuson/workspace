@@ -17,7 +17,6 @@
     - { namespace: elzr, name: vim-json }
     - { namespace: hashivim, name: vim-terraform }
     - { namespace: itchyny, name: lightline.vim }
-    - { namespace: junegunn, name: fzf.vim }
     - { namespace: kevinhwang91, name: nvim-hlslens }
     - { namespace: machakann, name: vim-highlightedyank }
     - { namespace: machakann, name: vim-sandwich }
@@ -45,24 +44,17 @@
     - { namespace: leafgarland, name: typescript-vim }
     - { namespace: maxmellon, name: vim-jsx-pretty }
 
-- name: Install oh-my-zsh
-  git:
-    repo: "https://github.com/ohmyzsh/ohmyzsh.git"
-    dest: "$HOME/.oh-my-zsh"
-    depth: 1
-
-- name: Install oh-my-zsh plugin
-  git:
-    repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
-    dest: "$HOME/.oh-my-zsh/custom/plugins/{{ item.name }}"
-    depth: 1
-    version: "{{ item.version | default('HEAD') }}"
-  with_items:
-    - { namespace: zsh-users, name: zsh-syntax-highlighting }
-    - { namespace: zsh-users, name: zsh-autosuggestions }
-
-- name: Link custom plugin
-  file:
-    src: $HOME/.zsh/ws
-    dest: $HOME/.oh-my-zsh/custom/plugins/ws
-    state: link
+- name: Install telescope.nvim
+  block:
+    - name: brew packages
+      homebrew:
+        name: ripgrep
+    - name: neovim plugins
+      git:
+        repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
+        dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
+        depth: 1
+        version: "{{ item.version | default('HEAD') }}"
+      with_items:
+        - { namespace: nvim-lua, name: plenary.nvim  }
+        - { namespace: nvim-telescope, name: telescope.nvim }

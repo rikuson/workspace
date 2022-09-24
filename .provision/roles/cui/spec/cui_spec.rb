@@ -30,14 +30,14 @@ require 'spec_helper'
   'qrencode',
   'tmux',
   'w3m',
+  'websocat',
 ].each do |item|
   describe package(item) do
-    it { should be_installed }
+    it { should be_installed.by('homebrew') }
   end
 end
 
 [
-  'ag',
   'node',
   'npm',
 ].each do |item|

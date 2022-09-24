@@ -62,69 +62,13 @@ endfor
 runtime macros/matchit.vim
 
 "------------------------------
-" fzf
+" telescope
 "------------------------------
-if isdirectory('/opt/homebrew')
-  set rtp+=/opt/homebrew/opt/fzf
-else
-  set rtp+=/usr/local/opt/fzf
-endif
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-s': 'split',
-  \ 'ctrl-v': 'vsplit' }
-" apply .gitignore
-let $FZF_DEFAULT_COMMAND = 'ag -g ""'
-
-command! -bang -nargs=? -complete=dir Files
-      \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
-
-" Command for git grep
-" - fzf#vim#grep(command, with_column, [options], [fullscreen])
-command! -bang -nargs=* Grep
-  \ call fzf#vim#grep(
-  \   'git grep --line-number '.shellescape(<q-args>), 0,
-  \   { 'dir': systemlist('git rev-parse --show-toplevel')[0] }, <bang>0)
-
-command! -bang Templates
-      \ call fzf#sonictemplate#run()
-
-nnoremap <Leader>f :<C-u>GFiles<Cr>
-nnoremap <Leader>s :<C-u>GFiles?<Cr>
-nnoremap <Leader>b :<C-u>Buffers<Cr>
-nnoremap <Leader>t :<C-u>Templates<Cr>
-nnoremap <Leader>g :<C-u>Grep<Cr>
-nnoremap <Leader>h :<C-u>History<Cr>
-
-function! Fzf_dev()
-  function! s:files()
-    let files = split(system($FZF_DEFAULT_COMMAND), '\n')
-    return s:prepend_icon(files)
-  endfunction
-
-  function! s:prepend_icon(candidates)
-    let result = []
-    for candidate in a:candidates
-      let filename = fnamemodify(candidate, ':p:t')
-      let icon = WebDevIconsGetFileTypeSymbol(filename, isdirectory(filename))
-      call add(result, printf("%s %s", icon, candidate))
-    endfor
-
-    return result
-  endfunction
-
-  function! s:edit_file(item)
-    let parts = split(a:item, ' ')
-    let file_path = get(parts, 1, '')
-    execute 'silent e' file_path
-  endfunction
-
-  call fzf#run({
-        \ 'source': <sid>files(),
-        \ 'sink':   function('s:edit_file'),
-        \ 'options': '-m -x +s',
-        \ 'down':    '40%' })
-endfunction
+nnoremap <leader>f <cmd>Telescope git_files<cr>
+nnoremap <Leader>s <cmd>Telescope git_status<cr>
+nnoremap <leader>b <cmd>Telescope buffers<cr>
+nnoremap <leader>g <cmd>Telescope live_grep<cr>
+nnoremap <leader>h <cmd>Telescope oldfiles<cr>
 
 "------------------------------
 " vim-submode
