@@ -4,7 +4,7 @@ ws () {
     echo 'Usage: ws <subcommand>'
     echo
     echo 'Subcommands:'
-    echo '  git, provision'
+    echo '  git, provision, test'
   }
 
   die() {
@@ -23,6 +23,12 @@ ws () {
     git --git-dir=$HOME/macOS/ --work-tree=$HOME "$@"
   }
 
+  cmd_test () {
+    cd $HOME/.provision
+    rake serverspec:$1
+    cd -
+  }
+
   err_not_found () {
     die "ws: invalid subcommand $1"
   }
@@ -30,6 +36,7 @@ ws () {
   case "$1" in
     -h|--help) help ;;
     provision) shift; cmd_provision "$@" ;;
+    test) shift; cmd_test "$@" ;;
     git) shift; cmd_git "$@" ;;
     *) err_not_found "$@" ;;
   esac
