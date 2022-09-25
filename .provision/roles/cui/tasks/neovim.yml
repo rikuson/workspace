@@ -10,7 +10,6 @@
     - { namespace: RRethy, name: vim-illuminate }
     - { namespace: Yggdroot, name: indentLine }
     - { namespace: airblade, name: vim-gitgutter }
-    - { namespace: cocopon, name: vaffle.vim }
     - { namespace: cohama, name: lexima.vim }
     - { namespace: dense-analysis, name: ale }
     - { namespace: easymotion, name: vim-easymotion }
@@ -23,7 +22,6 @@
     - { namespace: hrsh7th, name: cmp-path }
     - { namespace: hrsh7th, name: nvim-cmp }
     - { namespace: itchyny, name: lightline.vim }
-    - { namespace: junegunn, name: fzf.vim }
     - { namespace: kevinhwang91, name: nvim-hlslens }
     - { namespace: machakann, name: vim-highlightedyank }
     - { namespace: machakann, name: vim-sandwich }
@@ -32,7 +30,6 @@
     - { namespace: neovim, name: nvim-lspconfig }
     - { namespace: onsails, name: lspkind-nvim }
     - { namespace: psliwka, name: vim-smoothie }
-    - { namespace: ryanoasis, name: vim-devicons }
     - { namespace: statianzo, name: vim-jade }
     - { namespace: thinca, name: vim-quickrun }
     - { namespace: thinca, name: vim-submode }
@@ -50,24 +47,42 @@
     - { namespace: leafgarland, name: typescript-vim }
     - { namespace: maxmellon, name: vim-jsx-pretty }
 
-- name: Install oh-my-zsh
-  git:
-    repo: "https://github.com/ohmyzsh/ohmyzsh.git"
-    dest: "$HOME/.oh-my-zsh"
-    depth: 1
+- name: Install vaffle.vim
+  block:
+    - name: Install neovim plugins for vaffle.vim
+      git:
+        repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
+        dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
+        depth: 1
+        version: "{{ item.version | default('HEAD') }}"
+      with_items:
+        - { namespace: cocopon, name: vaffle.vim }
+        - { namespace: ryanoasis, name: vim-devicons }
 
-- name: Install oh-my-zsh plugin
-  git:
-    repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
-    dest: "$HOME/.oh-my-zsh/custom/plugins/{{ item.name }}"
-    depth: 1
-    version: "{{ item.version | default('HEAD') }}"
-  with_items:
-    - { namespace: zsh-users, name: zsh-syntax-highlighting }
-    - { namespace: zsh-users, name: zsh-autosuggestions }
+- name: Install lightline.vim
+  block:
+    - name: Install neovim plugins for lightline.vim
+      git:
+        repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
+        dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
+        depth: 1
+        version: "{{ item.version | default('HEAD') }}"
+      with_items:
+        - { namespace: itchyny, name: lightline.vim }
+        - { namespace: ryanoasis, name: vim-devicons }
 
-- name: Link custom plugin
-  file:
-    src: $HOME/.zsh/ws
-    dest: $HOME/.oh-my-zsh/custom/plugins/ws
-    state: link
+- name: Install telescope.nvim
+  block:
+    - name: Install brew packages for telescope.nvim
+      homebrew:
+        name: ripgrep
+    - name: Install neovim plugins for telescope.nvim
+      git:
+        repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
+        dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
+        depth: 1
+        version: "{{ item.version | default('HEAD') }}"
+      with_items:
+        - { namespace: kyazdani42, name: nvim-web-devicons }
+        - { namespace: nvim-lua, name: plenary.nvim  }
+        - { namespace: nvim-telescope, name: telescope.nvim }

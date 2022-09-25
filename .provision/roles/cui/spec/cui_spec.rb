@@ -26,20 +26,19 @@ require 'spec_helper'
   'pict',
   'pinentry-mac',
   'poppler',
-  'postgresql',
   'qrencode',
   'tmux',
   'w3m',
 ].each do |item|
   describe package(item) do
-    it { should be_installed }
+    it { should be_installed.by('homebrew') }
   end
 end
 
 [
-  'ag',
   'node',
   'npm',
+  'psql',
 ].each do |item|
   describe command("which #{item}") do
     its(:exit_status) { should eq 0 }

@@ -1,0 +1,22 @@
+---
+- name: Install oh-my-zsh
+  git:
+    repo: "https://github.com/ohmyzsh/ohmyzsh.git"
+    dest: "$HOME/.oh-my-zsh"
+    depth: 1
+
+- name: Install oh-my-zsh plugin
+  git:
+    repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
+    dest: "$HOME/.oh-my-zsh/custom/plugins/{{ item.name }}"
+    depth: 1
+    version: "{{ item.version | default('HEAD') }}"
+  with_items:
+    - { namespace: zsh-users, name: zsh-syntax-highlighting }
+    - { namespace: zsh-users, name: zsh-autosuggestions }
+
+- name: Link custom plugin
+  file:
+    src: $HOME/.zsh/ws
+    dest: $HOME/.oh-my-zsh/custom/plugins/ws
+    state: link
