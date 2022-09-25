@@ -87,12 +87,12 @@ call submode#map('redo', 'n', '', '+', 'g+')
 "------------------------------
 " nvim-lspconfig
 "------------------------------
-lua require('plugins.nvim-lspconfig')
+lua require('plugin.nvim-lspconfig')
 
 "------------------------------
 " nvim-cmp
 "------------------------------
-lua require('plugins.nvim-cmp')
+lua require('plugin.nvim-cmp')
 set completeopt=menuone,noinsert,noselect
 highlight! default link CmpItemKind CmpItemMenuDefault
 
