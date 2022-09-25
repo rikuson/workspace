@@ -6,6 +6,7 @@
     depth: 1
     version: "{{ item.version | default('HEAD') }}"
   with_items:
+    - { namespace: L3MON4D3, name: LuaSnip }
     - { namespace: RRethy, name: vim-illuminate }
     - { namespace: Yggdroot, name: indentLine }
     - { namespace: airblade, name: vim-gitgutter }
@@ -16,6 +17,11 @@
     - { namespace: editorconfig, name: editorconfig-vim }
     - { namespace: elzr, name: vim-json }
     - { namespace: hashivim, name: vim-terraform }
+    - { namespace: hrsh7th, name: cmp-buffer }
+    - { namespace: hrsh7th, name: cmp-cmdline }
+    - { namespace: hrsh7th, name: cmp-nvim-lsp }
+    - { namespace: hrsh7th, name: cmp-path }
+    - { namespace: hrsh7th, name: nvim-cmp }
     - { namespace: itchyny, name: lightline.vim }
     - { namespace: junegunn, name: fzf.vim }
     - { namespace: kevinhwang91, name: nvim-hlslens }
@@ -23,9 +29,8 @@
     - { namespace: machakann, name: vim-sandwich }
     - { namespace: mbbill, name: undotree }
     - { namespace: mg979, name: vim-visual-multi }
-    - { namespace: prabirshrestha, name: asyncomplete-buffer.vim }
-    - { namespace: prabirshrestha, name: asyncomplete-lsp.vim }
-    - { namespace: prabirshrestha, name: asyncomplete.vim }
+    - { namespace: neovim, name: nvim-lspconfig }
+    - { namespace: onsails, name: lspkind-nvim }
     - { namespace: psliwka, name: vim-smoothie }
     - { namespace: ryanoasis, name: vim-devicons }
     - { namespace: statianzo, name: vim-jade }
