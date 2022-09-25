@@ -9,7 +9,6 @@
     - { namespace: RRethy, name: vim-illuminate }
     - { namespace: Yggdroot, name: indentLine }
     - { namespace: airblade, name: vim-gitgutter }
-    - { namespace: cocopon, name: vaffle.vim }
     - { namespace: cohama, name: lexima.vim }
     - { namespace: dense-analysis, name: ale }
     - { namespace: easymotion, name: vim-easymotion }
@@ -26,7 +25,6 @@
     - { namespace: prabirshrestha, name: asyncomplete-lsp.vim }
     - { namespace: prabirshrestha, name: asyncomplete.vim }
     - { namespace: psliwka, name: vim-smoothie }
-    - { namespace: ryanoasis, name: vim-devicons }
     - { namespace: statianzo, name: vim-jade }
     - { namespace: thinca, name: vim-quickrun }
     - { namespace: thinca, name: vim-submode }
@@ -44,17 +42,42 @@
     - { namespace: leafgarland, name: typescript-vim }
     - { namespace: maxmellon, name: vim-jsx-pretty }
 
-- name: Install telescope.nvim
+- name: Install vaffle.vim
   block:
-    - name: brew packages
-      homebrew:
-        name: ripgrep
-    - name: neovim plugins
+    - name: Install neovim plugins for vaffle.vim
       git:
         repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
         dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
         depth: 1
         version: "{{ item.version | default('HEAD') }}"
       with_items:
+        - { namespace: cocopon, name: vaffle.vim }
+        - { namespace: ryanoasis, name: vim-devicons }
+
+- name: Install lightline.vim
+  block:
+    - name: Install neovim plugins for lightline.vim
+      git:
+        repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
+        dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
+        depth: 1
+        version: "{{ item.version | default('HEAD') }}"
+      with_items:
+        - { namespace: itchyny, name: lightline.vim }
+        - { namespace: ryanoasis, name: vim-devicons }
+
+- name: Install telescope.nvim
+  block:
+    - name: Install brew packages for telescope.nvim
+      homebrew:
+        name: ripgrep
+    - name: Install neovim plugins for telescope.nvim
+      git:
+        repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
+        dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
+        depth: 1
+        version: "{{ item.version | default('HEAD') }}"
+      with_items:
+        - { namespace: kyazdani42, name: nvim-web-devicons }
         - { namespace: nvim-lua, name: plenary.nvim  }
         - { namespace: nvim-telescope, name: telescope.nvim }
