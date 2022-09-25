@@ -31,12 +31,11 @@ require 'spec_helper'
   'w3m',
 ].each do |item|
   describe package(item) do
-    it { should be_installed }
+    it { should be_installed.by('homebrew') }
   end
 end
 
 [
-  'ag',
   'node',
   'npm',
   'psql',

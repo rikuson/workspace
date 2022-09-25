@@ -1,6 +1,7 @@
 ---
 - import_tasks: homebrew.yml
-- import_tasks: git.yml
+- import_tasks: ohmyzsh.yml
+- import_tasks: neovim.yml
 - import_tasks: npm.yml
 
 # git
