@@ -33,3 +33,27 @@ end
     it { should be_directory }
   end
 end
+
+# nvim-lspconfig
+[
+  { 'namespace' => 'neovim', 'name' => 'nvim-lspconfig' },
+].each do |item|
+  describe file("#{home_path}/.local/share/nvim/site/pack/#{item['namespace']}/start/#{item['name']}") do
+    it { should be_directory }
+  end
+end
+
+# nvim-cmp
+[
+  { 'namespace' => 'L3MON4D3', 'name' => 'LuaSnip' },
+  { 'namespace' => 'hrsh7th', 'name' => 'cmp-buffer' },
+  { 'namespace' => 'hrsh7th', 'name' => 'cmp-cmdline' },
+  { 'namespace' => 'hrsh7th', 'name' => 'cmp-nvim-lsp' },
+  { 'namespace' => 'hrsh7th', 'name' => 'cmp-path' },
+  { 'namespace' => 'hrsh7th', 'name' => 'nvim-cmp' },
+  { 'namespace' => 'onsails', 'name' => 'lspkind-nvim' },
+].each do |item|
+  describe file("#{home_path}/.local/share/nvim/site/pack/#{item['namespace']}/start/#{item['name']}") do
+    it { should be_directory }
+  end
+end

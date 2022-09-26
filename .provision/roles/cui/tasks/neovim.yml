@@ -79,23 +79,23 @@
         - { namespace: nvim-lua, name: plenary.nvim  }
         - { namespace: nvim-telescope, name: telescope.nvim }
 
-- name: Install neovim lsp
+- name: Install neovim nvim-lspconfig
   block:
-    - name: Install neovim plugins for lsp
+    - name: Install neovim plugins for nvim-lspconfig
       git:
         repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
-        dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/opt/{{ item.name }}"
+        dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
         depth: 1
         version: "{{ item.version | default('HEAD') }}"
       with_items:
         - { namespace: neovim, name: nvim-lspconfig }
 
-- name: Install neovim completion
+- name: Install nvim-cmp
   block:
-    - name: Install neovim plugins for completion
+    - name: Install neovim plugins for nvim-cmp
       git:
         repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
-        dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/opt/{{ item.name }}"
+        dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
         depth: 1
         version: "{{ item.version | default('HEAD') }}"
       with_items:
