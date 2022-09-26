@@ -85,30 +85,16 @@ call submode#map('undo', 'n', '', '-', 'g-')
 call submode#map('redo', 'n', '', '+', 'g+')
 
 "------------------------------
-" asyncomplete.vim
+" nvim-lspconfig
 "------------------------------
-call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
-	\ 'name': 'buffer',
-	\ 'allowlist': ['*'],
-	\ 'blocklist': ['go'],
-	\ 'completor': function('asyncomplete#sources#buffer#completor'),
-	\ 'config': {
-	\    'max_buffer_size': 5000000,
-	\  },
-	\ }))
+lua require('plugin.nvim-lspconfig')
 
-if executable('typescript-language-server')
-	au User lsp_setup call lsp#register_server({
-		\ 'name': 'typescript-language-server',
-		\ 'cmd': { server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
-		\ 'whitelist': ['typescript', 'typescriptreact']
-		\ })
-endif
-
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
-let g:lsp_async_completion = 1
+"------------------------------
+" nvim-cmp
+"------------------------------
+lua require('plugin.nvim-cmp')
+set completeopt=menuone,noinsert,noselect
+highlight! default link CmpItemKind CmpItemMenuDefault
 
 "------------------------------
 " lexima
