@@ -84,9 +84,9 @@
     - name: Install neovim plugins for lsp
       git:
         repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
-      dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/opt/{{ item.name }}"
-      depth: 1
-      version: "{{ item.version | default('HEAD') }}"
+        dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/opt/{{ item.name }}"
+        depth: 1
+        version: "{{ item.version | default('HEAD') }}"
       with_items:
         - { namespace: neovim, name: nvim-lspconfig }
 
@@ -95,9 +95,9 @@
     - name: Install neovim plugins for completion
       git:
         repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
-      dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/opt/{{ item.name }}"
-      depth: 1
-      version: "{{ item.version | default('HEAD') }}"
+        dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/opt/{{ item.name }}"
+        depth: 1
+        version: "{{ item.version | default('HEAD') }}"
       with_items:
         - { namespace: L3MON4D3, name: LuaSnip }
         - { namespace: hrsh7th, name: cmp-buffer }
