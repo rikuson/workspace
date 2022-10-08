@@ -402,7 +402,7 @@ endif
 
 " Cursor
 set cursorline
-hi clear CursorLine
+set cursorcolumn
 set wrap
 set number
 set backspace=indent,eol,start
