@@ -34,3 +34,4 @@ ws provision all
 - Size: 12
 - Character Spacing: 1
 - Line Spacing: 0.85
+- Cursor Color: Iron
