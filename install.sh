@@ -6,8 +6,8 @@ abort() {
   printf "%s\n" "$@" >&2
   exit 1
 }
-if [[ -e $HOME/macOS ]]; then
-  abort '`macOS` directory already exists.'
+if [[ -e $HOME/workspace ]]; then
+  abort '`workspace` directory already exists.'
 fi
 if [[ -z "$WORKSPACE_REPOSITORY_URL" ]]; then
   abort '`WORKSPACE_REPOSITORY_URL` is undefined.'
@@ -22,9 +22,9 @@ brew update
 brew upgrade
 
 # Create bare repository
-mkdir $HOME/macOS
-git init --bare $HOME/macOS
-alias config='git --git-dir=$HOME/macOS/ --work-tree=$HOME'
+mkdir $HOME/workspace
+git init --bare $HOME/workspace
+alias config='git --git-dir=$HOME/workspace/ --work-tree=$HOME'
 config config status.showUntrackedFiles no
 config config pull.rebase true
 config remote add origin $WORKSPACE_REPOSITORY_URL
