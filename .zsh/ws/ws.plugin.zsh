@@ -20,7 +20,7 @@ ws () {
   }
 
   cmd_git () {
-    git --git-dir=$HOME/macOS/ --work-tree=$HOME "$@"
+    git --git-dir=$HOME/workspace/ --work-tree=$HOME "$@"
   }
 
   cmd_test () {
