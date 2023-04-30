@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 env:
-  WORKSPACE_REPOSITORY_URL: https://github.com/rikuson/macOS.git
+  WORKSPACE_REPOSITORY_URL: https://github.com/rikuson/workspace.git
 
 jobs:
   cui:
@@ -18,14 +18,17 @@ jobs:
       uses: actions/cache@v3
       with:
         path: /Library/Ruby/Gems
-        key: ${{ runner.os }}-gem-${{ hashFiles('.provision/roles/*/tasks/gem.yml') }}
-        restore-keys: ${{ runner.os }}-gem-
+        key: ${{ runner.os }}-gem-${{ hashFiles('install.sh') }}
     - name: Cache homebrew
       uses: actions/cache@v3
       with:
-        path: /opt/homebrew
-        key: ${{ runner.os }}-homebrew-${{ hashFiles('.provision/roles/*/tasks/homebrew.yml') }}
-        restore-keys: ${{ runner.os }}-homebrew-
+        path: /Users/runner/Library/Caches/Homebrew
+        key: ${{ runner.os }}-homebrew-${{ hashFiles('install.sh', '.provision/roles/*/tasks/homebrew.yml') }}
+    - name: Cache asdf
+      uses: actions/cache@v3
+      with:
+        path: /Users/runner/.asdf
+        key: ${{ runner.os }}-asdf-${{ hashFiles('install.sh') }}
     - name: Install
       run: /bin/zsh ./install.sh
     - name: Play cui tasks
@@ -42,14 +45,17 @@ jobs:
       uses: actions/cache@v3
       with:
         path: /Library/Ruby/Gems
-        key: ${{ runner.os }}-gem-${{ hashFiles('.provision/roles/*/tasks/gem.yml') }}
-        restore-keys: ${{ runner.os }}-gem-
+        key: ${{ runner.os }}-gem-${{ hashFiles('install.sh') }}
     - name: Cache homebrew
       uses: actions/cache@v3
       with:
-        path: /opt/homebrew
-        key: ${{ runner.os }}-homebrew-${{ hashFiles('.provision/roles/*/tasks/homebrew.yml') }}
-        restore-keys: ${{ runner.os }}-homebrew-
+        path: /Users/runner/Library/Caches/Homebrew
+        key: ${{ runner.os }}-homebrew-${{ hashFiles('install.sh') }}
+    - name: Cache asdf
+      uses: actions/cache@v3
+      with:
+        path: /Users/runner/.asdf
+        key: ${{ runner.os }}-asdf-${{ hashFiles('install.sh') }}
     - name: Install
       run: /bin/zsh ./install.sh
     - name: Play os tasks
