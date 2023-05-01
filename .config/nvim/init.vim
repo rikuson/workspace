@@ -401,8 +401,16 @@ if has("persistent_undo")
 endif
 
 " Cursor
-set cursorline
-set cursorcolumn
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
+augroup CursorColumn
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorcolumn
+  au WinLeave * setlocal nocursorcolumn
+augroup END
 set wrap
 set number
 set backspace=indent,eol,start
