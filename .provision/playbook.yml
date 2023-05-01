@@ -19,19 +19,10 @@
   hosts: localhost
   connection: local
   gather_facts: yes
-  roles:
-    - role: macos
-      tags: macos
-
-- name: os
-  hosts: localhost
-  connection: local
-  gather_facts: yes
   handlers:
     - name: "Restart Dock"
       shell: "killall Dock"
     - name: "Restart Finder"
       shell: "killall Finder"
   roles:
-    - role: os
-      tags: os
+    - role: macos

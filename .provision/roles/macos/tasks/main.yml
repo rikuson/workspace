@@ -1,2 +1,5 @@
 ---
 - import_tasks: appstore.yml
+  tags: appstore
+- import_tasks: os.yml
+  tags: os
