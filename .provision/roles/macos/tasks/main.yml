@@ -3,3 +3,6 @@
   tags: appstore
 - import_tasks: os.yml
   tags: os
+- import_tasks: command.yml
+- import_tasks: gui.yml
+  tags: gui

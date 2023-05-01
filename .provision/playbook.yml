@@ -7,14 +7,6 @@
     - role: cui
       tags: cui
 
-- name: gui
-  hosts: localhost
-  connection: local
-  gather_facts: yes
-  roles:
-    - role: gui
-      tags: gui
-
 - name: macos
   hosts: localhost
   connection: local

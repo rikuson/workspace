@@ -1,0 +1,6 @@
+---
+- name: Install mas which is package manager of Mac App Store
+  homebrew:
+    name: "{{ item.name }}"
+  with_items:
+    - { name: mas }
