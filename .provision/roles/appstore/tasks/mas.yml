@@ -1,6 +1,7 @@
 ---
 - name: Install mas packages
-  shell: "mas install {{ item.id }}"
+  mas:
+    id: "{{ item.id }}"
   with_items:
     - { name: BetterSnapTool, id: 417375580 }
     - { name: Evernote, id: 406056744 }
