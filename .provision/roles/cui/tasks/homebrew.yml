@@ -18,6 +18,7 @@
     - { name: jq }
     - { name: jump }
     - { name: lsd }
+    - { name: mas }
     - { name: neofetch }
     - { name: neovim }
     - { name: nkf }

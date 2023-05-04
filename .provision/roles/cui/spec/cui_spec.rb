@@ -17,6 +17,7 @@ require 'spec_helper'
   'jump',
   'lazygit',
   'lsd',
+  'mas',
   'neofetch',
   'neovim',
   'nkf',
