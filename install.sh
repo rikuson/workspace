@@ -39,9 +39,6 @@ brew install ansible asdf
 asdf plugin add terraform
 asdf install terraform latest
 asdf global terraform latest
-asdf plugin add ruby
-asdf install ruby latest
-asdf global ruby latest
 asdf plugin add nodejs
 asdf install nodejs latest
 asdf global nodejs latest
