@@ -1,15 +1,7 @@
+---
 - name: Tap brew packages
   homebrew_tap:
     name: "homebrew/cask-fonts"
-- name: Install font
-  homebrew_cask:
-    name: font-fira-code-nerd-font
-
-- name: Install mas which is package manager of Mac App Store
-  homebrew:
-    name: "{{ item.name }}"
-  with_items:
-    - { name: mas }
 
 - name: Install brew cask packages
   homebrew_cask:
@@ -18,6 +10,7 @@
     - { name: clipy }
     - { name: docker }
     - { name: drawio }
+    - { name: dynalist }
+    - { name: font-fira-code-nerd-font }
     - { name: google-chrome }
     - { name: typora }
-    - { name: dynalist }

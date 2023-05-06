@@ -7,23 +7,7 @@
     - role: cui
       tags: cui
 
-- name: gui
-  hosts: localhost
-  connection: local
-  gather_facts: yes
-  roles:
-    - role: gui
-      tags: gui
-
-- name: appstore
-  hosts: localhost
-  connection: local
-  gather_facts: yes
-  roles:
-    - role: appstore
-      tags: appstore
-
-- name: os
+- name: macos
   hosts: localhost
   connection: local
   gather_facts: yes
@@ -33,5 +17,4 @@
     - name: "Restart Finder"
       shell: "killall Finder"
   roles:
-    - role: os
-      tags: os
+    - role: macos
