@@ -3,6 +3,7 @@
   homebrew:
     name: "{{ item.name }}"
   with_items:
+    - { name: asdf }
     - { name: bat }
     - { name: direnv }
     - { name: ffmpeg }
@@ -18,6 +19,7 @@
     - { name: jq }
     - { name: jump }
     - { name: lsd }
+    - { name: mas }
     - { name: neofetch }
     - { name: neovim }
     - { name: nkf }

@@ -35,19 +35,7 @@ config branch --set-upstream-to=origin/master
 sh -c `curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh`
 
 # Initialize
-brew install ansible asdf
-asdf plugin add terraform
-asdf install terraform latest
-asdf global terraform latest
-asdf plugin add ruby
-asdf install ruby latest
-asdf global ruby latest
-asdf plugin add nodejs
-asdf install nodejs latest
-asdf global nodejs latest
-asdf plugin add helm
-asdf install helm latest
-asdf global helm latest
+brew install ansible
 gem install bundler ansible_spec
 
 touch $HOME/.zprofile
