@@ -32,6 +32,11 @@
     - { name: w3m }
     - { name: yarn }
 
+- name: Create .tmux.conf
+  template:
+    src: roles/cui/templates/.tmux.conf
+    dest: $HOME
+
 - name: Tap lazygit
   homebrew_tap:
     name: "{{ item.name }}"
@@ -67,6 +72,11 @@
   lineinfile:
     path:  $HOME/.gnupg/gpg-agent.conf
     line: 'pinentry-program {{ pinentry_mac_path.stdout }}'
+
+- name: Create .asdfrc
+  template:
+    src: roles/cui/templates/.asdfrc
+    dest: $HOME
 
 - name: Set up lsd
   blockinfile:
