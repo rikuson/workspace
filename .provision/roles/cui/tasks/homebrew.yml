@@ -3,6 +3,7 @@
   homebrew:
     name: "{{ item.name }}"
   with_items:
+    - { name: asdf }
     - { name: bat }
     - { name: direnv }
     - { name: ffmpeg }
