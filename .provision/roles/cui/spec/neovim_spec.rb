@@ -57,3 +57,12 @@ end
     it { should be_directory }
   end
 end
+
+# copilot
+[
+  { 'namespace' => 'github', 'name' => 'copilot.vim' },
+].each do |item|
+  describe file("#{home_path}/.local/share/nvim/site/pack/#{item['namespace']}/start/#{item['name']}") do
+    it { should be_directory }
+  end
+end
