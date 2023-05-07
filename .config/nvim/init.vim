@@ -90,6 +90,11 @@ call submode#map('redo', 'n', '', '+', 'g+')
 lua require('plugin.nvim-lspconfig')
 
 "------------------------------
+" nvim-hlslens
+"------------------------------
+lua require('plugin.nvim-hlslens')
+
+"------------------------------
 " nvim-cmp
 "------------------------------
 lua require('plugin.nvim-cmp')
