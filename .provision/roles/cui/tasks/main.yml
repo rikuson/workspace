@@ -55,3 +55,8 @@
     name: user.name
     value: 'Riku Takeuchi'
     scope: global
+- name: Set case-sensitive
+  git_config:
+    name: core.ignorecase
+    value: false
+    scope: global
