@@ -12,4 +12,5 @@
     - { name: dynalist }
     - { name: font-fira-code-nerd-font }
     - { name: google-chrome }
+    - { name: rectangle }
     - { name: typora }
