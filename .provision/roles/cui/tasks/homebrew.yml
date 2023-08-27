@@ -27,7 +27,6 @@
     - { name: pandoc }
     - { name: pict }
     - { name: poppler }
-    - { name: postgresql }
     - { name: qrencode }
     - { name: tmux }
     - { name: w3m }
