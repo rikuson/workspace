@@ -8,6 +8,7 @@
     - { name: helm }
     - { name: nodejs }
     - { name: postgresql }
+    - { name: python }
     - { name: ruby }
     - { name: terraform }
 
