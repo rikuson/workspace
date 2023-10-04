@@ -1,10 +1,10 @@
-#compdef ws
+#compdef space
 
-_ws () {
+_space () {
   _values \
     'subcommand' \
     'git[Git command targetting config repository.]' \
     'provision[Run ansible-playbook and serverspec.]'
 }
 
-compdef _ws ws
+compdef _space space

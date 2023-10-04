@@ -1,7 +1,7 @@
-# ws command
-ws () {
+# space command
+space () {
   help() {
-    echo 'Usage: ws <subcommand>'
+    echo 'Usage: space <subcommand>'
     echo
     echo 'Subcommands:'
     echo '  git, provision, test'
@@ -30,7 +30,7 @@ ws () {
   }
 
   err_not_found () {
-    die "ws: invalid subcommand $1"
+    die "space: invalid subcommand $1"
   }
 
   case "$1" in

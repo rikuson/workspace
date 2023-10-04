@@ -17,14 +17,12 @@ curl -fsSL https://raw.githubusercontent.com/rikuson/workspace/HEAD/install.sh |
 Restart terminal and run `provision`.
 
 ```bash
-ws provision all
+space provision all
 ```
 
 ## Command
 
-`ws` which is shorthand of `workspace` is available for provisioning.
-
-- ws git: Git command targetting config repository.
+- space git: Git command targetting config repository.
 - ws provision: Run ansible-playbook and serverspec.
 
 ## Terminal font setting

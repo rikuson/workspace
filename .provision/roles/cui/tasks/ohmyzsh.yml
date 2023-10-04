@@ -17,6 +17,6 @@
 
 - name: Link custom plugin
   file:
-    src: $HOME/.zsh/ws
-    dest: $HOME/.oh-my-zsh/custom/plugins/ws
+    src: $HOME/.zsh/space
+    dest: $HOME/.oh-my-zsh/custom/plugins/space
     state: link

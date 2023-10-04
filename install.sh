@@ -24,12 +24,12 @@ brew upgrade
 # Create bare repository
 mkdir $HOME/workspace
 git init --bare $HOME/workspace
-alias config='git --git-dir=$HOME/workspace/ --work-tree=$HOME'
-config config status.showUntrackedFiles no
-config config pull.rebase true
-config remote add origin $WORKSPACE_REPOSITORY_URL
-config pull origin master
-config branch --set-upstream-to=origin/master
+alias space='git --git-dir=$HOME/workspace/ --work-tree=$HOME'
+space config status.showUntrackedFiles no
+space config pull.rebase true
+space remote add origin $WORKSPACE_REPOSITORY_URL
+space pull origin master
+space branch --set-upstream-to=origin/master
 
 # Install oh-my-zsh
 sh -c `curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh`
