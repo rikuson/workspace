@@ -23,7 +23,7 @@ space provision all
 ## Command
 
 - space git: Git command targetting config repository.
-- ws provision: Run ansible-playbook and serverspec.
+- space provision: Run ansible-playbook and serverspec.
 
 ## Terminal font setting
 
