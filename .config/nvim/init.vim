@@ -102,34 +102,6 @@ set completeopt=menuone,noinsert,noselect
 highlight! default link CmpItemKind CmpItemMenuDefault
 
 "------------------------------
-" lexima
-"------------------------------
-call lexima#add_rule({
-			\   'at': '<[^>\|\/]\+\%#',
-			\   'char': '>',
-			\   'input': '></<C-x><C-o><Esc>%i',
-			\   'filetype': ['html'],
-			\ })
-call lexima#add_rule({
-			\   'at': '<[^>\|\/]\+>\%#<\/[^>]\+>',
-			\   'char': '<Cr>',
-			\   'input': '<Cr><C-o>O',
-			\   'filetype': ['html'],
-			\ })
-call lexima#add_rule({
-			\   'at': '^- .*\%#',
-			\   'char': '<Cr>',
-			\   'input': '<Cr>- ',
-			\   'filetype': ['markdown'],
-			\ })
-call lexima#add_rule({
-			\   'at': '^> .*\%#',
-			\   'char': '<Cr>',
-			\   'input': '<Cr>> ',
-			\   'filetype': ['markdown'],
-			\ })
-
-"------------------------------
 " sandwich
 "------------------------------
 runtime macros/sandwich/keymap/surround.vim

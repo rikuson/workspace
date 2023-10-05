@@ -9,7 +9,6 @@
     - { namespace: RRethy, name: vim-illuminate }
     - { namespace: Yggdroot, name: indentLine }
     - { namespace: airblade, name: vim-gitgutter }
-    - { namespace: cohama, name: lexima.vim }
     - { namespace: dense-analysis, name: ale }
     - { namespace: easymotion, name: vim-easymotion }
     - { namespace: editorconfig, name: editorconfig-vim }
