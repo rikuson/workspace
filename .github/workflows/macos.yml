@@ -23,7 +23,7 @@ jobs:
       uses: actions/cache@v3
       with:
         path: /Users/runner/Library/Caches/Homebrew
-        key: ${{ runner.os }}-homebrew-${{ hashFiles('install.sh', '.provision/roles/*/tasks/homebrew.yml') }}
+        key: ${{ runner.os }}-homebrew-${{ hashFiles('install.sh', 'roles/*/tasks/homebrew.yml') }}
     - name: Cache asdf
       uses: actions/cache@v3
       with:
@@ -33,10 +33,8 @@ jobs:
       run: /bin/zsh ./install.sh
     - name: Play cui tasks
       run: ansible-playbook playbook.yml -i hosts --tags=cui
-      working-directory: .provision
     - name: Check cui spec
       run: rake serverspec:cui
-      working-directory: .provision
   os:
     runs-on: macos-12
     steps:
@@ -60,7 +58,5 @@ jobs:
       run: /bin/zsh ./install.sh
     - name: Play os tasks
       run: ansible-playbook playbook.yml -i hosts --tags=os
-      working-directory: .provision
     - name: Check os spec
       run: rake serverspec:os
-      working-directory: .provision
