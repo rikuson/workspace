@@ -14,9 +14,3 @@
   with_items:
     - { namespace: zsh-users, name: zsh-syntax-highlighting }
     - { namespace: zsh-users, name: zsh-autosuggestions }
-
-- name: Link custom plugin
-  file:
-    src: $HOME/.zsh/space
-    dest: $HOME/.oh-my-zsh/custom/plugins/space
-    state: link

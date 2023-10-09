@@ -14,16 +14,7 @@ Run install script.
 curl -fsSL https://raw.githubusercontent.com/rikuson/workspace/HEAD/install.sh | WORKSPACE_REPOSITORY_URL=git@github.com:rikuson/workspace.git && zsh -
 ```
 
-Restart terminal and run `provision`.
-
-```bash
-space provision all
-```
-
-## Command
-
-- space git: Git command targetting config repository.
-- space provision: Run ansible-playbook and serverspec.
+Restart terminal and run `make`.
 
 ## Terminal font setting
 
