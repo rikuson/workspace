@@ -1,4 +1,9 @@
 ---
+- name: Create .zshrc
+  template:
+    src: roles/cui/templates/.zshrc
+    dest: $HOME
+
 - import_tasks: homebrew.yml
 
 - name: Install runtime
@@ -22,7 +27,11 @@
     name: core.editor
     scope: global
     value: nvim
-- name: Setup global .gitignore
+- name: Create .gitignore
+  template:
+    src: roles/cui/templates/.gitignore
+    dest: $HOME
+- name: Set up global .gitignore
   git_config:
     name: core.excludesfile
     value: ~/.gitignore
