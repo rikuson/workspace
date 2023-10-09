@@ -32,7 +32,7 @@ jobs:
     - name: Install
       run: /bin/zsh ./install.sh
     - name: Play cui tasks
-      run: ansible-playbook playbook.yml -i hosts --tags=cui
+      run: make cui
     - name: Check cui spec
       run: rake serverspec:cui
   os:
@@ -57,6 +57,6 @@ jobs:
     - name: Install
       run: /bin/zsh ./install.sh
     - name: Play os tasks
-      run: ansible-playbook playbook.yml -i hosts --tags=os
+      run: make os
     - name: Check os spec
       run: rake serverspec:os

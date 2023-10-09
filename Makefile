@@ -8,3 +8,5 @@ appstore:
 	ansible-playbook playbook.yml -i hosts --tags="appstore"
 os:
 	ansible-playbook playbook.yml -i hosts --tags="os"
+test:
+	rake serverspec:all
