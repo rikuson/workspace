@@ -19,7 +19,6 @@ if [[ -d $HOME/.oh-my-zsh ]]; then
     pass
     zsh-syntax-highlighting
     zsh-autosuggestions
-    space
   )
   ZSH_THEME="af-magic"
   source $ZSH/oh-my-zsh.sh

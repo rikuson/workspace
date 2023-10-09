@@ -58,6 +58,11 @@
 - name: Install safari extension
   homebrew_cask:
     name: adur1990/tap/passformacos
+- name: Create gnupg directory
+  file:
+    path: $HOME/.gnupg
+    state: directory
+    mode: 700
 - name: Change permission
   shell: chmod 700 $HOME/.gnupg
 - name: Create conf
