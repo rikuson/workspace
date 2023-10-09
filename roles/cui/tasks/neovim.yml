@@ -3,7 +3,7 @@
   file:
     path: $HOME/.config/nvim/lua/plugin
     state: directory
-    mode: 755
+    mode: '755'
 
 - name: Install for neovim general plugins
   block:
