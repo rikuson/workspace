@@ -12,7 +12,7 @@
   with_items:
     - { name: helm }
     - { name: nodejs }
-    - { name: postgresql }
+    - { name: postgres }
     - { name: python }
     - { name: ruby }
     - { name: terraform }
