@@ -58,13 +58,19 @@
 - name: Install safari extension
   homebrew_cask:
     name: adur1990/tap/passformacos
+- name: Check if gnupg exists
+  stat:
+    path: $HOME/.gnupg
+  register: gnupg_dir
 - name: Create gnupg directory
   file:
     path: $HOME/.gnupg
     state: directory
     mode: 700
+  when: not gnupg_dir.stat.isdir
 - name: Change permission
   shell: chmod 700 $HOME/.gnupg
+  when: not gnupg_dir.stat.isdir
 - name: Create conf
   copy:
     content: ''
@@ -73,6 +79,7 @@
 - name: Get path of pinentry-mac
   shell: which pinentry-mac
   register: pinentry_mac_path
+  changed_when: false
 - name: Change config
   lineinfile:
     path:  $HOME/.gnupg/gpg-agent.conf
