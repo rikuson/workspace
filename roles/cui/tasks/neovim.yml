@@ -11,6 +11,7 @@
         repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
         dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
         depth: 1
+        update: false
         version: "{{ item.version | default('HEAD') }}"
       with_items:
         - { namespace: RRethy, name: vim-illuminate }
@@ -44,6 +45,7 @@
     repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
     dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/opt/{{ item.name }}"
     depth: 1
+    update: false
     version: "{{ item.version | default('HEAD') }}"
   with_items:
     - { namespace: leafgarland, name: typescript-vim }
@@ -56,6 +58,7 @@
         repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
         dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
         depth: 1
+        update: false
         version: "{{ item.version | default('HEAD') }}"
       with_items:
         - { namespace: cocopon, name: vaffle.vim }
@@ -68,6 +71,7 @@
         repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
         dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
         depth: 1
+        update: false
         version: "{{ item.version | default('HEAD') }}"
       with_items:
         - { namespace: itchyny, name: lightline.vim }
@@ -81,6 +85,7 @@
         repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
         dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
         depth: 1
+        update: false
         version: "{{ item.version | default('HEAD') }}"
       with_items:
         - { namespace: kyazdani42, name: nvim-web-devicons }
@@ -96,6 +101,7 @@
         repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
         dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
         depth: 1
+        update: false
         version: "{{ item.version | default('HEAD') }}"
       with_items:
         - { namespace: neovim, name: nvim-lspconfig }
@@ -109,6 +115,7 @@
         repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
         dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
         depth: 1
+        update: false
         version: "{{ item.version | default('HEAD') }}"
       with_items:
         - { namespace: L3MON4D3, name: LuaSnip }
@@ -130,6 +137,7 @@
         repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
         dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
         depth: 1
+        update: false
         version: "{{ item.version | default('HEAD') }}"
       with_items:
         - { namespace: github, name: copilot.vim }
