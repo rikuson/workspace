@@ -48,7 +48,8 @@
     update: false
     version: "{{ item.version | default('HEAD') }}"
   with_items:
-    - { namespace: leafgarland, name: typescript-vim }
+    # Specify version for incompatibility with telescope
+    - { namespace: leafgarland, name: typescript-vim, version: 31ede5ad905ce4159a5e285073a391daa3bf83fa }
     - { namespace: maxmellon, name: vim-jsx-pretty }
 
 - name: Install vaffle.vim
