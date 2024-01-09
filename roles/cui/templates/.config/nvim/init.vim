@@ -90,6 +90,11 @@ call submode#map('redo', 'n', '', '+', 'g+')
 lua require('plugin.nvim-lspconfig')
 
 "------------------------------
+" none-ls
+"------------------------------
+lua require('plugin.none-ls')
+
+"------------------------------
 " nvim-hlslens
 "------------------------------
 lua require('plugin.nvim-hlslens')
@@ -240,34 +245,6 @@ augroup GITGUTTER
 	autocmd!
 	autocmd BufWritePre * :GitGutter
 augroup END
-
-"------------------------------
-" ALE
-"------------------------------
-let g:ale_linters = {
-      \ 'javascript': ['eslint'],
-      \ 'typescript': ['eslint'],
-      \ 'markdown': ['textlint'],
-\}
-let g:ale_fixers = {
-      \ 'javascript': ['prettier'],
-      \ 'typescript': ['prettier'],
-      \ 'typescriptreact': ['prettier'],
-      \ 'css': ['prettier'],
-      \ 'php': ['php_cs_fixer'],
-\}
-let g:ale_fix_on_save = 1
-let g:ale_javascript_prettier_use_local_config = 1
-let g:ale_typescript_prettier_use_local_config = 1
-let g:ale_lint_on_text_changed = 0
-let g:ale_markdown_prettier_options = ''
-let g:ale_sign_error = ''
-let g:ale_sign_warning = ''
-let g:airline#extensions#ale#open_lnum_symbol = '('
-let g:airline#extensions#ale#close_lnum_symbol = ')'
-let g:ale_echo_msg_format = '[%linter%]%code: %%s'
-highlight link ALEErrorSign Tag
-highlight link ALEWarningSign StorageClass
 
 "------------------------
 " lightline

@@ -18,7 +18,6 @@
         - { namespace: Yggdroot, name: indentLine }
         - { namespace: airblade, name: vim-gitgutter }
         - { namespace: cohama, name: lexima.vim }
-        - { namespace: dense-analysis, name: ale }
         - { namespace: easymotion, name: vim-easymotion }
         - { namespace: editorconfig, name: editorconfig-vim }
         - { namespace: elzr, name: vim-json }
@@ -96,7 +95,7 @@
         src: roles/cui/templates/.config/nvim/lua/plugin/telescope.lua
         dest: $HOME/.config/nvim/lua/plugin/telescope.lua
 
-- name: Install neovim nvim-lspconfig
+- name: Install lsp plugins
   block:
     - git:
         repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
@@ -106,9 +105,13 @@
         version: "{{ item.version | default('HEAD') }}"
       with_items:
         - { namespace: neovim, name: nvim-lspconfig }
+        - { namespace: nvimtools, name: none-ls.nvim }
     - template:
         src: roles/cui/templates/.config/nvim/lua/plugin/nvim-lspconfig.lua
         dest: $HOME/.config/nvim/lua/plugin/nvim-lspconfig.lua
+    - template:
+        src: roles/cui/templates/.config/nvim/lua/plugin/none-ls.lua
+        dest: $HOME/.config/nvim/lua/plugin/none-ls.lua
 
 - name: Install nvim-cmp
   block:
