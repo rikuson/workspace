@@ -64,9 +64,9 @@
         - { namespace: cocopon, name: vaffle.vim }
         - { namespace: ryanoasis, name: vim-devicons }
 
-- name: Install lightline.vim
+- name: Install lualine.nvim
   block:
-    - name: Install neovim plugins for lightline.vim
+    - name: Install neovim plugins for lualine.nvim
       git:
         repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
         dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
@@ -74,8 +74,11 @@
         update: false
         version: "{{ item.version | default('HEAD') }}"
       with_items:
-        - { namespace: itchyny, name: lightline.vim }
-        - { namespace: ryanoasis, name: vim-devicons }
+        - { namespace: nvim-lualine, name: lualine.nvim }
+        - { namespace: nvim-tree, name: nvim-web-devicons }
+    - template:
+        src: roles/cui/templates/.config/nvim/lua/plugin/lualine.lua
+        dest: $HOME/.config/nvim/lua/plugin/lualine.lua
 
 - name: Install telescope.nvim
   block:
