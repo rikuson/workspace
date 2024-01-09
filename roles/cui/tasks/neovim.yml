@@ -106,6 +106,8 @@
       with_items:
         - { namespace: neovim, name: nvim-lspconfig }
         - { namespace: nvimtools, name: none-ls.nvim }
+        - { namespace: williamboman, name: mason-lspconfig.nvim }
+        - { namespace: williamboman, name: mason.nvim }
     - template:
         src: roles/cui/templates/.config/nvim/lua/plugin/nvim-lspconfig.lua
         dest: $HOME/.config/nvim/lua/plugin/nvim-lspconfig.lua
