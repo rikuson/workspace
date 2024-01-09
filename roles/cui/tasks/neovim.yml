@@ -131,22 +131,11 @@
         - { namespace: hrsh7th, name: cmp-path }
         - { namespace: hrsh7th, name: nvim-cmp }
         - { namespace: onsails, name: lspkind-nvim }
+        - { namespace: zbirenbaum, name: copilot-cmp }
+        - { namespace: zbirenbaum, name: copilot.lua } # Run `:Copilot auth`
     - template:
         src: roles/cui/templates/.config/nvim/lua/plugin/nvim-cmp.lua
         dest: $HOME/.config/nvim/lua/plugin/nvim-cmp.lua
-
-# After installation, start Neovim and invoke :Copilot setup.
-- name: Enable copilot
-  block:
-    - name: Install copilot neovim plugins
-      git:
-        repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
-        dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
-        depth: 1
-        update: false
-        version: "{{ item.version | default('HEAD') }}"
-      with_items:
-        - { namespace: github, name: copilot.vim }
 
 - name: Create config file
   template:
