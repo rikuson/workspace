@@ -220,14 +220,10 @@ let g:highlightedyank_highlight_duration = 500
 "------------------------------
 let g:vim_json_syntax_conceal = 0
 
-"------------------------------
-" typescript-vim
-"------------------------------
-augroup TYPESCRIPT_VIM
-    autocmd!
-    autocmd Filetype typescript packadd typescript-vim
-    autocmd Filetype typescriptreact packadd typescript-vim
-augroup END
+"------------------------
+" treesitter
+"------------------------
+lua require('plugin.treesitter')
 
 "------------------------------
 " vim-jsx-pretty
@@ -252,10 +248,14 @@ augroup END
 lua require('plugin.lualine')
 
 "-----------------------------
-" Hybrid
+" colorscheme
 "-----------------------------
+if has('termguicolors')
+  set termguicolors
+endif
+lua vim.g.one_nvim_transparent_bg = true
 set background=dark
-colorscheme hybrid
+colorscheme one-nvim
 
 "-----------------------------
 " Basic

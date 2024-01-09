@@ -15,6 +15,7 @@
         version: "{{ item.version | default('HEAD') }}"
       with_items:
         - { namespace: RRethy, name: vim-illuminate }
+        - { namespace: Th3Whit3Wolf, name: one-nvim }
         - { namespace: Yggdroot, name: indentLine }
         - { namespace: airblade, name: vim-gitgutter }
         - { namespace: cohama, name: lexima.vim }
@@ -28,16 +29,19 @@
         - { namespace: machakann, name: vim-sandwich }
         - { namespace: mbbill, name: undotree }
         - { namespace: mg979, name: vim-visual-multi }
+        - { namespace: nvim-treesitter, name: nvim-treesitter }
         - { namespace: psliwka, name: vim-smoothie }
         - { namespace: statianzo, name: vim-jade }
         - { namespace: thinca, name: vim-quickrun }
         - { namespace: thinca, name: vim-submode }
         - { namespace: tpope, name: vim-abolish }
         - { namespace: tpope, name: vim-fugitive }
-        - { namespace: w0ng, name: vim-hybrid }
     - template:
         src: roles/cui/templates/.config/nvim/lua/plugin/nvim-hlslens.lua
         dest: $HOME/.config/nvim/lua/plugin/nvim-hlslens.lua
+    - template:
+        src: roles/cui/templates/.config/nvim/lua/plugin/treesitter.lua
+        dest: $HOME/.config/nvim/lua/plugin/treesitter.lua
 
 - name: Install for neovim special plugins
   git:
@@ -47,8 +51,6 @@
     update: false
     version: "{{ item.version | default('HEAD') }}"
   with_items:
-    # Specify version for incompatibility with telescope
-    - { namespace: leafgarland, name: typescript-vim, version: 31ede5ad905ce4159a5e285073a391daa3bf83fa }
     - { namespace: maxmellon, name: vim-jsx-pretty }
 
 - name: Install vaffle.vim
