@@ -16,7 +16,6 @@
       with_items:
         - { namespace: RRethy, name: vim-illuminate }
         - { namespace: Yggdroot, name: indentLine }
-        - { namespace: airblade, name: vim-gitgutter }
         - { namespace: easymotion, name: vim-easymotion }
         - { namespace: editorconfig, name: editorconfig-vim }
         - { namespace: elzr, name: vim-json }
@@ -24,6 +23,7 @@
         - { namespace: hashivim, name: vim-terraform }
         - { namespace: itchyny, name: lightline.vim }
         - { namespace: kevinhwang91, name: nvim-hlslens }
+        - { namespace: lewis6991, name: gitsigns.nvim }
         - { namespace: machakann, name: vim-highlightedyank }
         - { namespace: mbbill, name: undotree }
         - { namespace: mg979, name: vim-visual-multi }

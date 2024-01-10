@@ -162,13 +162,9 @@ augroup VIM_JSX_TYPESCRIPT
 augroup END
 
 "------------------------
-" gitgutter
+" gitsigns
 "------------------------
-let g:gitgutter_async = 0
-augroup GITGUTTER
-	autocmd!
-	autocmd BufWritePre * :GitGutter
-augroup END
+lua require('gitsigns').setup()
 
 "------------------------
 " lualine
