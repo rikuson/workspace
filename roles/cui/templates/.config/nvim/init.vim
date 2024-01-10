@@ -112,6 +112,11 @@ lua require("nvim-surround").setup()
 map <C-s> <Plug>(easymotion-prefix)
 
 "------------------------------
+" which-key
+"------------------------------
+lua require("which-key").setup()
+
+"------------------------------
 " quickrun
 "------------------------------
 if v:version >= 802
