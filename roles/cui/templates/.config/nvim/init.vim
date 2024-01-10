@@ -250,12 +250,7 @@ lua require('plugin.lualine')
 "-----------------------------
 " colorscheme
 "-----------------------------
-if has('termguicolors')
-  set termguicolors
-endif
-lua vim.g.one_nvim_transparent_bg = true
-set background=dark
-colorscheme one-nvim
+colorscheme kanagawa-dragon
 
 "-----------------------------
 " Basic

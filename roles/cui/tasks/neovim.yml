@@ -15,7 +15,6 @@
         version: "{{ item.version | default('HEAD') }}"
       with_items:
         - { namespace: RRethy, name: vim-illuminate }
-        - { namespace: Th3Whit3Wolf, name: one-nvim }
         - { namespace: Yggdroot, name: indentLine }
         - { namespace: airblade, name: vim-gitgutter }
         - { namespace: cohama, name: lexima.vim }
@@ -31,6 +30,7 @@
         - { namespace: mg979, name: vim-visual-multi }
         - { namespace: nvim-treesitter, name: nvim-treesitter }
         - { namespace: psliwka, name: vim-smoothie }
+        - { namespace: rebelot, name: kanagawa.nvim }
         - { namespace: statianzo, name: vim-jade }
         - { namespace: thinca, name: vim-quickrun }
         - { namespace: thinca, name: vim-submode }
