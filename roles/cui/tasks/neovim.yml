@@ -17,7 +17,6 @@
         - { namespace: RRethy, name: vim-illuminate }
         - { namespace: Yggdroot, name: indentLine }
         - { namespace: airblade, name: vim-gitgutter }
-        - { namespace: cohama, name: lexima.vim }
         - { namespace: easymotion, name: vim-easymotion }
         - { namespace: editorconfig, name: editorconfig-vim }
         - { namespace: elzr, name: vim-json }
@@ -25,7 +24,6 @@
         - { namespace: itchyny, name: lightline.vim }
         - { namespace: kevinhwang91, name: nvim-hlslens }
         - { namespace: machakann, name: vim-highlightedyank }
-        - { namespace: machakann, name: vim-sandwich }
         - { namespace: mbbill, name: undotree }
         - { namespace: mg979, name: vim-visual-multi }
         - { namespace: psliwka, name: vim-smoothie }
@@ -60,7 +58,9 @@
         version: "{{ item.version | default('HEAD') }}"
       with_items:
         - { namespace: andymass, name: vim-matchup }
+        - { namespace: kylechui, name: nvim-surround }
         - { namespace: nvim-treesitter, name: nvim-treesitter }
+        - { namespace: windwp, name: nvim-ts-autotag }
     - template:
         src: roles/cui/templates/.config/nvim/lua/plugin/treesitter.lua
         dest: $HOME/.config/nvim/lua/plugin/treesitter.lua

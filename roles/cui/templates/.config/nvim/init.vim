@@ -102,81 +102,9 @@ set completeopt=menuone,noinsert,noselect
 highlight! default link CmpItemKind CmpItemMenuDefault
 
 "------------------------------
-" lexima
+" nvim-surround
 "------------------------------
-call lexima#add_rule({
-			\   'at': '<[^>\|\/]\+\%#',
-			\   'char': '>',
-			\   'input': '></<C-x><C-o><Esc>%i',
-			\   'filetype': ['html'],
-			\ })
-call lexima#add_rule({
-			\   'at': '<[^>\|\/]\+>\%#<\/[^>]\+>',
-			\   'char': '<Cr>',
-			\   'input': '<Cr><C-o>O',
-			\   'filetype': ['html'],
-			\ })
-call lexima#add_rule({
-			\   'at': '^- .*\%#',
-			\   'char': '<Cr>',
-			\   'input': '<Cr>- ',
-			\   'filetype': ['markdown'],
-			\ })
-call lexima#add_rule({
-			\   'at': '^> .*\%#',
-			\   'char': '<Cr>',
-			\   'input': '<Cr>> ',
-			\   'filetype': ['markdown'],
-			\ })
-
-"------------------------------
-" sandwich
-"------------------------------
-runtime macros/sandwich/keymap/surround.vim
-let g:sandwich_no_default_key_mappings = 1
-map s <Plug>(operator-sandwich-add)
-map S v$s
-
-let g:sandwich#recipes += [
-			\   {'buns': ['{ ', ' }'], 'nesting': 1, 'match_syntax': 1,
-			\    'kind': ['add', 'replace'], 'action': ['add'], 'input': ['{']},
-			\
-			\   {'buns': ['[ ', ' ]'], 'nesting': 1, 'match_syntax': 1,
-			\    'kind': ['add', 'replace'], 'action': ['add'], 'input': ['[']},
-			\
-			\   {'buns': ['( ', ' )'], 'nesting': 1, 'match_syntax': 1,
-			\    'kind': ['add', 'replace'], 'action': ['add'], 'input': ['(']},
-			\
-			\   {'buns': ['{\s*', '\s*}'],   'nesting': 1, 'regex': 1,
-			\    'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'],
-			\    'action': ['delete'], 'input': ['{']},
-			\
-			\   {'buns': ['\[\s*', '\s*\]'], 'nesting': 1, 'regex': 1,
-			\    'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'],
-			\    'action': ['delete'], 'input': ['[']},
-			\
-			\   {'buns': ['(\s*', '\s*)'],   'nesting': 1, 'regex': 1,
-			\    'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'],
-			\    'action': ['delete'], 'input': ['(']},
-			\ ]
-let g:sandwich#recipes += [
-			\   {
-			\     'buns'    : ['/*', '*/'],
-			\     'kind'    : ['add'],
-			\     'action'  : ['add'],
-			\     'input'   : ['\'],
-			\     'filetype': ['javascript', 'php']
-			\   },
-			\ ]
-let g:sandwich#recipes += [
-			\   {
-			\     'buns'    : ['<!--', '-->'],
-			\     'kind'    : ['add'],
-			\     'action'  : ['add'],
-			\     'input'   : ['\'],
-			\     'filetype': ['html', 'markdown']
-			\   },
-			\ ]
+lua require("nvim-surround").setup()
 
 "------------------------------
 " easymotion
