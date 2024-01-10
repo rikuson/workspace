@@ -56,11 +56,6 @@ endfor
 :command New :execute 'new +setf\ ' . &filetype
 :command Tabnew :execute 'tabnew +setf\ ' . &filetype
 
-"---------------------------
-" Matchit
-"---------------------------
-runtime macros/matchit.vim
-
 "------------------------------
 " telescope
 "------------------------------

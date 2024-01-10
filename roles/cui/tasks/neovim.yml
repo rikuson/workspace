@@ -28,7 +28,6 @@
         - { namespace: machakann, name: vim-sandwich }
         - { namespace: mbbill, name: undotree }
         - { namespace: mg979, name: vim-visual-multi }
-        - { namespace: nvim-treesitter, name: nvim-treesitter }
         - { namespace: psliwka, name: vim-smoothie }
         - { namespace: rebelot, name: kanagawa.nvim }
         - { namespace: statianzo, name: vim-jade }
@@ -39,9 +38,6 @@
     - template:
         src: roles/cui/templates/.config/nvim/lua/plugin/nvim-hlslens.lua
         dest: $HOME/.config/nvim/lua/plugin/nvim-hlslens.lua
-    - template:
-        src: roles/cui/templates/.config/nvim/lua/plugin/treesitter.lua
-        dest: $HOME/.config/nvim/lua/plugin/treesitter.lua
 
 - name: Install for neovim special plugins
   git:
@@ -52,6 +48,22 @@
     version: "{{ item.version | default('HEAD') }}"
   with_items:
     - { namespace: maxmellon, name: vim-jsx-pretty }
+
+- name: Install treesitter
+  block:
+    - name: Install neovim plugins for treesitter
+      git:
+        repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
+        dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
+        depth: 1
+        update: false
+        version: "{{ item.version | default('HEAD') }}"
+      with_items:
+        - { namespace: andymass, name: vim-matchup }
+        - { namespace: nvim-treesitter, name: nvim-treesitter }
+    - template:
+        src: roles/cui/templates/.config/nvim/lua/plugin/treesitter.lua
+        dest: $HOME/.config/nvim/lua/plugin/treesitter.lua
 
 - name: Install vaffle.vim
   block:
