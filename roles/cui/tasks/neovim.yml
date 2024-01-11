@@ -95,6 +95,20 @@
         src: roles/cui/templates/.config/nvim/lua/plugin/lualine.lua
         dest: $HOME/.config/nvim/lua/plugin/lualine.lua
 
+- name: Install lazygit.nvim
+  block:
+    - homebrew:
+        name: ripgrep
+    - git:
+        repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
+        dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
+        depth: 1
+        update: false
+        version: "{{ item.version | default('HEAD') }}"
+      with_items:
+        - { namespace: kdheepak, name: lazygit.nvim }
+        - { namespace: nvim-lua, name: plenary.nvim }
+
 - name: Install telescope.nvim
   block:
     - homebrew:
