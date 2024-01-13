@@ -136,6 +136,7 @@
         update: false
         version: "{{ item.version | default('HEAD') }}"
       with_items:
+        - { namespace: jay-babu, name: mason-null-ls.nvim }
         - { namespace: neovim, name: nvim-lspconfig }
         - { namespace: nvimtools, name: none-ls.nvim }
         - { namespace: williamboman, name: mason-lspconfig.nvim }
