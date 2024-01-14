@@ -106,6 +106,12 @@ highlight! default link CmpItemKind CmpItemMenuDefault
 "------------------------------
 lua require("nvim-surround").setup()
 
+
+"------------------------------
+" nvim-autopairs
+"------------------------------
+lua require('plugin.nvim-autopairs')
+
 "------------------------------
 " easymotion
 "------------------------------

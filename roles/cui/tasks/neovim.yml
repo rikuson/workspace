@@ -65,10 +65,14 @@
         - { namespace: andymass, name: vim-matchup }
         - { namespace: kylechui, name: nvim-surround }
         - { namespace: nvim-treesitter, name: nvim-treesitter }
+        - { namespace: windwp, name: nvim-autopairs }
         - { namespace: windwp, name: nvim-ts-autotag }
     - template:
         src: roles/cui/templates/.config/nvim/lua/plugin/treesitter.lua
         dest: $HOME/.config/nvim/lua/plugin/treesitter.lua
+    - template:
+        src: roles/cui/templates/.config/nvim/lua/plugin/nvim-autopairs.lua
+        dest: $HOME/.config/nvim/lua/plugin/nvim-autopairs.lua
 
 - name: Install lualine.nvim
   block:
