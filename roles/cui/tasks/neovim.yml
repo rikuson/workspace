@@ -16,6 +16,7 @@
       with_items:
         - { namespace: RRethy, name: vim-illuminate }
         - { namespace: Yggdroot, name: indentLine }
+        - { namespace: akinsho, name: bufferline.nvim }
         - { namespace: easymotion, name: vim-easymotion }
         - { namespace: editorconfig, name: editorconfig-vim }
         - { namespace: elzr, name: vim-json }
@@ -34,6 +35,9 @@
         - { namespace: thinca, name: vim-submode }
         - { namespace: tpope, name: vim-abolish }
         - { namespace: tpope, name: vim-fugitive }
+    - template:
+        src: roles/cui/templates/.config/nvim/lua/plugin/bufferline.lua
+        dest: $HOME/.config/nvim/lua/plugin/bufferline.lua
     - template:
         src: roles/cui/templates/.config/nvim/lua/plugin/nvim-hlslens.lua
         dest: $HOME/.config/nvim/lua/plugin/nvim-hlslens.lua

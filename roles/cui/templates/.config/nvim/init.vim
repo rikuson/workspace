@@ -181,6 +181,11 @@ lua require('gitsigns').setup()
 "------------------------
 lua require('plugin.lualine')
 
+"------------------------
+" bufferline
+"------------------------
+lua require('plugin.bufferline')
+
 "-----------------------------
 " colorscheme
 "-----------------------------
