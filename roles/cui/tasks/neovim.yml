@@ -66,19 +66,6 @@
         src: roles/cui/templates/.config/nvim/lua/plugin/treesitter.lua
         dest: $HOME/.config/nvim/lua/plugin/treesitter.lua
 
-- name: Install vaffle.vim
-  block:
-    - name: Install neovim plugins for vaffle.vim
-      git:
-        repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
-        dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
-        depth: 1
-        update: false
-        version: "{{ item.version | default('HEAD') }}"
-      with_items:
-        - { namespace: cocopon, name: vaffle.vim }
-        - { namespace: ryanoasis, name: vim-devicons }
-
 - name: Install lualine.nvim
   block:
     - name: Install neovim plugins for lualine.nvim
