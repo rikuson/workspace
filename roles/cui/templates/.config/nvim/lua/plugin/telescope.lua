@@ -1,3 +1,4 @@
+local actions = require "telescope.actions"
 require('telescope').setup{
   defaults = {
     mappings = {
@@ -9,6 +10,11 @@ require('telescope').setup{
   extensions = {
     file_browser = {
       hijack_netrw = true,
+      mappings = {
+        i = {
+          ["<C-t>"] = actions.select_tab,
+        }
+      }
     }
   }
 }
