@@ -41,20 +41,13 @@ xmap s <Nop>
 nnoremap Q gq
 
 " Pane
-nnoremap <C-w>t :<C-u>tabnew<Space>%:h<Cr>
-nnoremap <C-w>s :<C-u>new<Space>%:h<Cr>
-nnoremap <C-w>v :<C-u>vnew<Space>%:h<Cr>
-nnoremap <C-w>e :<C-u>e<Space>%:h<Cr>
+nnoremap <C-w>t :<C-u>tabnew<Space>%<Cr>
 nnoremap <C-w>w :<C-u>w<Cr>
 nnoremap <C-w>n gt
 nnoremap <C-w>p gT
 for n in range(1, 9)
  execute 'nnoremap <silent> <C-w>'.n ':<C-u>tabnext'.n.'<Cr>'
 endfor
-
-:command Vnew :execute 'vnew +setf\ ' . &filetype
-:command New :execute 'new +setf\ ' . &filetype
-:command Tabnew :execute 'tabnew +setf\ ' . &filetype
 
 "------------------------------
 " telescope
