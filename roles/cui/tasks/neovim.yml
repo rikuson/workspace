@@ -36,6 +36,9 @@
         - { namespace: tpope, name: vim-abolish }
         - { namespace: tpope, name: vim-fugitive }
     - template:
+        src: roles/cui/templates/.config/nvim/lua/plugin/easymotion.lua
+        dest: $HOME/.config/nvim/lua/plugin/easymotion.lua
+    - template:
         src: roles/cui/templates/.config/nvim/lua/plugin/bufferline.lua
         dest: $HOME/.config/nvim/lua/plugin/bufferline.lua
     - template:

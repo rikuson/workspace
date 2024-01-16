@@ -109,6 +109,7 @@ lua require('plugin.nvim-autopairs')
 " easymotion
 "------------------------------
 map <C-s> <Plug>(easymotion-prefix)
+lua require('plugin.easymotion')
 
 "------------------------------
 " which-key
