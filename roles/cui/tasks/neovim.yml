@@ -122,13 +122,9 @@
         - { namespace: nvim-lua, name: plenary.nvim }
         - { namespace: nvim-telescope, name: telescope-file-browser.nvim }
         - { namespace: nvim-telescope, name: telescope.nvim }
-        - { namespace: startup-nvim, name: startup.nvim }
     - template:
         src: roles/cui/templates/.config/nvim/lua/plugin/telescope.lua
         dest: $HOME/.config/nvim/lua/plugin/telescope.lua
-    - template:
-        src: roles/cui/templates/.config/nvim/lua/plugin/startup.lua
-        dest: $HOME/.config/nvim/lua/plugin/startup.lua
 
 - name: Install lsp plugins
   block:

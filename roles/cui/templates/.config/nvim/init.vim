@@ -117,16 +117,6 @@ lua require('plugin.easymotion')
 lua require("which-key").setup()
 
 "------------------------------
-" startup
-"------------------------------
-lua require('plugin.startup')
-let b:indentLine_enabled = 0
-augroup ENABLE_INDENT_LINE
-  autocmd!
-  autocmd FileType * if &ft !=# 'startup' | let b:indentLine_enabled = 1 | endif
-augroup END
-
-"------------------------------
 " quickrun
 "------------------------------
 if v:version >= 802
