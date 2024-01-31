@@ -45,16 +45,6 @@
         src: roles/cui/templates/.config/nvim/lua/plugin/nvim-hlslens.lua
         dest: $HOME/.config/nvim/lua/plugin/nvim-hlslens.lua
 
-- name: Install for neovim special plugins
-  git:
-    repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
-    dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/opt/{{ item.name }}"
-    depth: 1
-    update: false
-    version: "{{ item.version | default('HEAD') }}"
-  with_items:
-    - { namespace: maxmellon, name: vim-jsx-pretty }
-
 - name: Install treesitter
   block:
     - name: Install neovim plugins for treesitter

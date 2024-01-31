@@ -153,14 +153,6 @@ let g:vim_json_syntax_conceal = 0
 "------------------------
 lua require('plugin.treesitter')
 
-"------------------------------
-" vim-jsx-pretty
-"------------------------------
-augroup VIM_JSX_TYPESCRIPT
-    autocmd!
-    autocmd Filetype typescriptreact packadd vim-jsx-pretty
-augroup END
-
 "------------------------
 " gitsigns
 "------------------------
