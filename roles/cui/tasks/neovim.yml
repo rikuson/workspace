@@ -61,6 +61,9 @@
         - { namespace: windwp, name: nvim-autopairs }
         - { namespace: windwp, name: nvim-ts-autotag }
     - template:
+        src: roles/cui/templates/.config/nvim/lua/plugin/nvim-surround.lua
+        dest: $HOME/.config/nvim/lua/plugin/nvim-surround.lua
+    - template:
         src: roles/cui/templates/.config/nvim/lua/plugin/treesitter.lua
         dest: $HOME/.config/nvim/lua/plugin/treesitter.lua
     - template:

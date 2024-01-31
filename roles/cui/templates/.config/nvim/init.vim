@@ -97,8 +97,7 @@ highlight! default link CmpItemKind CmpItemMenuDefault
 "------------------------------
 " nvim-surround
 "------------------------------
-lua require("nvim-surround").setup()
-
+lua require('plugin.nvim-surround')
 
 "------------------------------
 " nvim-autopairs
