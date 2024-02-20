@@ -1,5 +1,5 @@
 require("mason").setup()
-require("mason-lspconfig").setup()
+require("mason-lspconfig").setup({ automatic_installation = true })
 local status, nvim_lsp = pcall(require, "lspconfig")
 if (not status) then return end
 
@@ -19,11 +19,3 @@ end
 nvim_lsp.tsserver.setup {
   on_attach = on_attach,
 }
-
--- Fix on save
-vim.api.nvim_create_autocmd("BufWritePre", {
-  buffer = buffer,
-  callback = function()
-    vim.lsp.buf.format { async = false }
-  end
-})
