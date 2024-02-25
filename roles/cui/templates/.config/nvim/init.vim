@@ -140,13 +140,6 @@ augroup END
 "------------------------------
 let g:highlightedyank_highlight_duration = 500
 
-"------------------------------
-" vim-json
-"------------------------------
-" indentLine hides double quotation
-"------------------------------
-let g:vim_json_syntax_conceal = 0
-
 "------------------------
 " treesitter
 "------------------------
@@ -175,6 +168,8 @@ colorscheme kanagawa-dragon
 "-----------------------------
 " Basic
 "-----------------------------
+set conceallevel=0
+
 " Charcode
 set encoding=utf-8
 scriptencoding utf-8

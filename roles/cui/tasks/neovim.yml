@@ -19,7 +19,6 @@
         - { namespace: akinsho, name: bufferline.nvim }
         - { namespace: easymotion, name: vim-easymotion }
         - { namespace: editorconfig, name: editorconfig-vim }
-        - { namespace: elzr, name: vim-json }
         - { namespace: folke, name: which-key.nvim }
         - { namespace: hashivim, name: vim-terraform }
         - { namespace: itchyny, name: lightline.vim }
