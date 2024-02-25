@@ -160,6 +160,11 @@ lua require('plugin.lualine')
 "------------------------
 lua require('plugin.bufferline')
 
+"------------------------
+" Indent Blankline
+"------------------------
+lua require('ibl').setup({ indent = { char = '¦' } })
+
 "-----------------------------
 " colorscheme
 "-----------------------------

@@ -15,7 +15,6 @@
         version: "{{ item.version | default('HEAD') }}"
       with_items:
         - { namespace: RRethy, name: vim-illuminate }
-        - { namespace: Yggdroot, name: indentLine }
         - { namespace: akinsho, name: bufferline.nvim }
         - { namespace: easymotion, name: vim-easymotion }
         - { namespace: editorconfig, name: editorconfig-vim }
@@ -24,6 +23,7 @@
         - { namespace: itchyny, name: lightline.vim }
         - { namespace: kevinhwang91, name: nvim-hlslens }
         - { namespace: lewis6991, name: gitsigns.nvim }
+        - { namespace: lukas-reineke, name: indent-blankline.nvim }
         - { namespace: machakann, name: vim-highlightedyank }
         - { namespace: mbbill, name: undotree }
         - { namespace: mg979, name: vim-visual-multi }
