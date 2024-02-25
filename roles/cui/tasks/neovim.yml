@@ -68,7 +68,11 @@
         - { namespace: andymass, name: vim-matchup }
         - { namespace: kylechui, name: nvim-surround }
         - { namespace: nvim-treesitter, name: nvim-treesitter }
-        - { namespace: windwp, name: nvim-autopairs }
+        - {
+            namespace: windwp,
+            name: nvim-autopairs,
+            version: 2e8a10c5fc0dcaf8296a5f1a7077efcd37065cc8,
+          }
         - { namespace: windwp, name: nvim-ts-autotag }
     - template:
         src: roles/cui/templates/.config/nvim/lua/plugin/nvim-surround.lua
