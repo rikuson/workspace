@@ -19,7 +19,6 @@
 
 - import_tasks: ohmyzsh.yml
 - import_tasks: neovim.yml
-- import_tasks: npm.yml
 
 # git
 - name: Set git editor

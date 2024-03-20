@@ -41,25 +41,13 @@ xmap s <Nop>
 nnoremap Q gq
 
 " Pane
-nnoremap <C-w>t :<C-u>tabnew<Space>%:h<Cr>
-nnoremap <C-w>s :<C-u>new<Space>%:h<Cr>
-nnoremap <C-w>v :<C-u>vnew<Space>%:h<Cr>
-nnoremap <C-w>e :<C-u>e<Space>%:h<Cr>
+nnoremap <C-w>t :<C-u>tabnew<Space>%<Cr>
 nnoremap <C-w>w :<C-u>w<Cr>
 nnoremap <C-w>n gt
 nnoremap <C-w>p gT
 for n in range(1, 9)
  execute 'nnoremap <silent> <C-w>'.n ':<C-u>tabnext'.n.'<Cr>'
 endfor
-
-:command Vnew :execute 'vnew +setf\ ' . &filetype
-:command New :execute 'new +setf\ ' . &filetype
-:command Tabnew :execute 'tabnew +setf\ ' . &filetype
-
-"---------------------------
-" Matchit
-"---------------------------
-runtime macros/matchit.vim
 
 "------------------------------
 " telescope
@@ -90,6 +78,11 @@ call submode#map('redo', 'n', '', '+', 'g+')
 lua require('plugin.nvim-lspconfig')
 
 "------------------------------
+" none-ls
+"------------------------------
+lua require('plugin.none-ls')
+
+"------------------------------
 " nvim-hlslens
 "------------------------------
 lua require('plugin.nvim-hlslens')
@@ -102,86 +95,25 @@ set completeopt=menuone,noinsert,noselect
 highlight! default link CmpItemKind CmpItemMenuDefault
 
 "------------------------------
-" lexima
+" nvim-surround
 "------------------------------
-call lexima#add_rule({
-			\   'at': '<[^>\|\/]\+\%#',
-			\   'char': '>',
-			\   'input': '></<C-x><C-o><Esc>%i',
-			\   'filetype': ['html'],
-			\ })
-call lexima#add_rule({
-			\   'at': '<[^>\|\/]\+>\%#<\/[^>]\+>',
-			\   'char': '<Cr>',
-			\   'input': '<Cr><C-o>O',
-			\   'filetype': ['html'],
-			\ })
-call lexima#add_rule({
-			\   'at': '^- .*\%#',
-			\   'char': '<Cr>',
-			\   'input': '<Cr>- ',
-			\   'filetype': ['markdown'],
-			\ })
-call lexima#add_rule({
-			\   'at': '^> .*\%#',
-			\   'char': '<Cr>',
-			\   'input': '<Cr>> ',
-			\   'filetype': ['markdown'],
-			\ })
+lua require('plugin.nvim-surround')
 
 "------------------------------
-" sandwich
+" nvim-autopairs
 "------------------------------
-runtime macros/sandwich/keymap/surround.vim
-let g:sandwich_no_default_key_mappings = 1
-map s <Plug>(operator-sandwich-add)
-map S v$s
-
-let g:sandwich#recipes += [
-			\   {'buns': ['{ ', ' }'], 'nesting': 1, 'match_syntax': 1,
-			\    'kind': ['add', 'replace'], 'action': ['add'], 'input': ['{']},
-			\
-			\   {'buns': ['[ ', ' ]'], 'nesting': 1, 'match_syntax': 1,
-			\    'kind': ['add', 'replace'], 'action': ['add'], 'input': ['[']},
-			\
-			\   {'buns': ['( ', ' )'], 'nesting': 1, 'match_syntax': 1,
-			\    'kind': ['add', 'replace'], 'action': ['add'], 'input': ['(']},
-			\
-			\   {'buns': ['{\s*', '\s*}'],   'nesting': 1, 'regex': 1,
-			\    'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'],
-			\    'action': ['delete'], 'input': ['{']},
-			\
-			\   {'buns': ['\[\s*', '\s*\]'], 'nesting': 1, 'regex': 1,
-			\    'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'],
-			\    'action': ['delete'], 'input': ['[']},
-			\
-			\   {'buns': ['(\s*', '\s*)'],   'nesting': 1, 'regex': 1,
-			\    'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'],
-			\    'action': ['delete'], 'input': ['(']},
-			\ ]
-let g:sandwich#recipes += [
-			\   {
-			\     'buns'    : ['/*', '*/'],
-			\     'kind'    : ['add'],
-			\     'action'  : ['add'],
-			\     'input'   : ['\'],
-			\     'filetype': ['javascript', 'php']
-			\   },
-			\ ]
-let g:sandwich#recipes += [
-			\   {
-			\     'buns'    : ['<!--', '-->'],
-			\     'kind'    : ['add'],
-			\     'action'  : ['add'],
-			\     'input'   : ['\'],
-			\     'filetype': ['html', 'markdown']
-			\   },
-			\ ]
+lua require('plugin.nvim-autopairs')
 
 "------------------------------
 " easymotion
 "------------------------------
 map <C-s> <Plug>(easymotion-prefix)
+lua require('plugin.easymotion')
+
+"------------------------------
+" which-key
+"------------------------------
+lua require("which-key").setup()
 
 "------------------------------
 " quickrun
@@ -208,176 +140,41 @@ augroup END
 "------------------------------
 let g:highlightedyank_highlight_duration = 500
 
-"------------------------------
-" vim-json
-"------------------------------
-" indentLine hides double quotation
-"------------------------------
-let g:vim_json_syntax_conceal = 0
-
-"------------------------------
-" typescript-vim
-"------------------------------
-augroup TYPESCRIPT_VIM
-    autocmd!
-    autocmd Filetype typescript packadd typescript-vim
-    autocmd Filetype typescriptreact packadd typescript-vim
-augroup END
-
-"------------------------------
-" vim-jsx-pretty
-"------------------------------
-augroup VIM_JSX_TYPESCRIPT
-    autocmd!
-    autocmd Filetype typescriptreact packadd vim-jsx-pretty
-augroup END
+"------------------------
+" treesitter
+"------------------------
+lua require('plugin.treesitter')
 
 "------------------------
-" gitgutter
+" gitsigns
 "------------------------
-let g:gitgutter_async = 0
-augroup GITGUTTER
-	autocmd!
-	autocmd BufWritePre * :GitGutter
-augroup END
-
-"------------------------------
-" ALE
-"------------------------------
-let g:ale_linters = {
-      \ 'javascript': ['eslint'],
-      \ 'typescript': ['eslint'],
-      \ 'markdown': ['textlint'],
-\}
-let g:ale_fixers = {
-      \ 'javascript': ['prettier'],
-      \ 'typescript': ['prettier'],
-      \ 'typescriptreact': ['prettier'],
-      \ 'css': ['prettier'],
-      \ 'php': ['php_cs_fixer'],
-\}
-let g:ale_fix_on_save = 1
-let g:ale_javascript_prettier_use_local_config = 1
-let g:ale_typescript_prettier_use_local_config = 1
-let g:ale_lint_on_text_changed = 0
-let g:ale_markdown_prettier_options = ''
-let g:ale_sign_error = ''
-let g:ale_sign_warning = ''
-let g:airline#extensions#ale#open_lnum_symbol = '('
-let g:airline#extensions#ale#close_lnum_symbol = ')'
-let g:ale_echo_msg_format = '[%linter%]%code: %%s'
-highlight link ALEErrorSign Tag
-highlight link ALEWarningSign StorageClass
+lua require('gitsigns').setup()
 
 "------------------------
-" lightline
+" lualine
 "------------------------
-set noshowmode
-set showtabline=2
-let g:lightline = {
-			\ 'colorscheme': 'wombat',
-			\ 'active': {
-			\   'left': [
-			\     ['paste'],
-			\     ['fugitive', 'gitgutter', 'filename'],
-			\   ],
-			\   'right': [
-			\     ['lineinfo'],
-			\     ['percent'],
-			\     ['fileformat', 'fileencoding'],
-			\   ]
-			\ },
-			\ 'component_function': {
-			\   'modified': 'MyModified',
-			\   'readonly': 'MyReadonly',
-			\   'fugitive': 'MyFugitive',
-			\   'filename': 'MyFilename',
-			\   'fileformat': 'MyFileformat',
-			\   'fileencoding': 'MyFileencoding',
-      \   'gitgutter': 'MyGitGutter' },
-			\ 'separator': {'left': '', 'right': ''},
-			\ 'subseparator': {'left': '', 'right': '|'},
-			\ 'tab': {
-			\   'active': ['tabnum', 'filename', 'modified'],
-			\   'inactive': ['tabnum', 'filename', 'modified'] },
-      \ 'tab_component_function': {
-      \   'filename': 'lightline#tab#filename',
-      \   'modified': 'lightline#tab#modified',
-      \   'readonly': 'lightline#tab#readonly',
-      \   'tabnum': 'lightline#tab#tabnum' }
-			\ }
+lua require('plugin.lualine')
 
-function! MyReadonly()
-  if &filetype == "help"
-    return ""
-  elseif &readonly
-    return "?"
-  else
-    return ""
-  endif
-endfunction
+"------------------------
+" bufferline
+"------------------------
+lua require('plugin.bufferline')
 
-function! MyFileType()
-  return &filetype ==# 'vaffle' ? g:DevIconsDefaultFolderOpenSymbol : WebDevIconsGetFileTypeSymbol()
-endfunction
-
-function! MyFilename()
-	return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
-				\ (strlen(&filetype) ? MyFileType() . ' ' : '') .
-				\  (&ft == 'vaffle' ? substitute(expand('%:p'),'vaffle://[0-9]\+/'.getcwd(),'','') :
-				\ '' != expand('%:p') ? substitute(expand('%:p'),getcwd().'/','','') : '[No Name]')
-endfunction
-
-" fugitiveのコマンドを実行するまでアイコンが表示されない
-function! MyFugitive()
-  try
-    if exists("*fugitive#head")
-      let _ = fugitive#head()
-      return strlen(_) ? '?'._ : ''
-    endif
-  catch
-  endtry
-  return ''
-endfunction
-
-function! MyFileformat()
-	return winwidth(0) > 70 ? &fileformat : ''
-endfunction
-
-function! MyFileencoding()
-	return winwidth('.') > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
-endfunction
-
-function! MyGitGutter()
-	if ! exists('*GitGutterGetHunkSummary')
-				\ || ! get(g:, 'gitgutter_enabled', 0)
-				\ || winwidth('.') <= 90
-		return ''
-	endif
-	let symbols = [
-				\ g:gitgutter_sign_added . ' ',
-				\ g:gitgutter_sign_modified . ' ',
-				\ g:gitgutter_sign_removed . ' '
-				\ ]
-	let hunks = GitGutterGetHunkSummary()
-	let ret = []
-	for i in [0, 1, 2]
-		if hunks[i] > 0
-			call add(ret, symbols[i] . hunks[i])
-		endif
-	endfor
-	return join(ret, ' ')
-endfunction
+"------------------------
+" Indent Blankline
+"------------------------
+lua require('ibl').setup({ indent = { char = '¦' } })
 
 "-----------------------------
-" Hybrid
+" colorscheme
 "-----------------------------
-set background=dark
-colorscheme hybrid
+colorscheme kanagawa-dragon
 
 "-----------------------------
 " Basic
 "-----------------------------
+set conceallevel=0
+
 " Charcode
 set encoding=utf-8
 scriptencoding utf-8

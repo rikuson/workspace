@@ -11,67 +11,108 @@
         repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
         dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
         depth: 1
+        update: false
         version: "{{ item.version | default('HEAD') }}"
       with_items:
         - { namespace: RRethy, name: vim-illuminate }
-        - { namespace: Yggdroot, name: indentLine }
-        - { namespace: airblade, name: vim-gitgutter }
-        - { namespace: cohama, name: lexima.vim }
-        - { namespace: dense-analysis, name: ale }
+        - { namespace: akinsho, name: bufferline.nvim }
         - { namespace: easymotion, name: vim-easymotion }
         - { namespace: editorconfig, name: editorconfig-vim }
-        - { namespace: elzr, name: vim-json }
+        - { namespace: folke, name: which-key.nvim }
         - { namespace: hashivim, name: vim-terraform }
         - { namespace: itchyny, name: lightline.vim }
         - { namespace: kevinhwang91, name: nvim-hlslens }
+        - { namespace: lewis6991, name: gitsigns.nvim }
+        - { namespace: lukas-reineke, name: indent-blankline.nvim }
         - { namespace: machakann, name: vim-highlightedyank }
-        - { namespace: machakann, name: vim-sandwich }
         - { namespace: mbbill, name: undotree }
         - { namespace: mg979, name: vim-visual-multi }
         - { namespace: psliwka, name: vim-smoothie }
+        - { namespace: rebelot, name: kanagawa.nvim }
         - { namespace: statianzo, name: vim-jade }
         - { namespace: thinca, name: vim-quickrun }
         - { namespace: thinca, name: vim-submode }
         - { namespace: tpope, name: vim-abolish }
         - { namespace: tpope, name: vim-fugitive }
-        - { namespace: w0ng, name: vim-hybrid }
+    - template:
+        src: roles/cui/templates/.config/nvim/lua/plugin/easymotion.lua
+        dest: $HOME/.config/nvim/lua/plugin/easymotion.lua
+    - template:
+        src: roles/cui/templates/.config/nvim/lua/plugin/bufferline.lua
+        dest: $HOME/.config/nvim/lua/plugin/bufferline.lua
     - template:
         src: roles/cui/templates/.config/nvim/lua/plugin/nvim-hlslens.lua
         dest: $HOME/.config/nvim/lua/plugin/nvim-hlslens.lua
 
-- name: Install for neovim special plugins
+- name: Install Trouble
   git:
     repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
-    dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/opt/{{ item.name }}"
+    dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
     depth: 1
+    update: false
     version: "{{ item.version | default('HEAD') }}"
   with_items:
-    - { namespace: leafgarland, name: typescript-vim }
-    - { namespace: maxmellon, name: vim-jsx-pretty }
+    - { namespace: folke, name: trouble.nvim }
+    - { namespace: nvim-tree, name: nvim-web-devicons }
 
-- name: Install vaffle.vim
+- name: Install treesitter
   block:
-    - name: Install neovim plugins for vaffle.vim
+    - name: Install neovim plugins for treesitter
       git:
         repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
         dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
         depth: 1
+        update: false
         version: "{{ item.version | default('HEAD') }}"
       with_items:
-        - { namespace: cocopon, name: vaffle.vim }
-        - { namespace: ryanoasis, name: vim-devicons }
+        - { namespace: andymass, name: vim-matchup }
+        - { namespace: kylechui, name: nvim-surround }
+        - { namespace: nvim-treesitter, name: nvim-treesitter }
+        - {
+            namespace: windwp,
+            name: nvim-autopairs,
+            version: 2e8a10c5fc0dcaf8296a5f1a7077efcd37065cc8,
+          }
+        - { namespace: windwp, name: nvim-ts-autotag }
+    - template:
+        src: roles/cui/templates/.config/nvim/lua/plugin/nvim-surround.lua
+        dest: $HOME/.config/nvim/lua/plugin/nvim-surround.lua
+    - template:
+        src: roles/cui/templates/.config/nvim/lua/plugin/treesitter.lua
+        dest: $HOME/.config/nvim/lua/plugin/treesitter.lua
+    - template:
+        src: roles/cui/templates/.config/nvim/lua/plugin/nvim-autopairs.lua
+        dest: $HOME/.config/nvim/lua/plugin/nvim-autopairs.lua
 
-- name: Install lightline.vim
+- name: Install lualine.nvim
   block:
-    - name: Install neovim plugins for lightline.vim
+    - name: Install neovim plugins for lualine.nvim
       git:
         repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
         dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
         depth: 1
+        update: false
         version: "{{ item.version | default('HEAD') }}"
       with_items:
-        - { namespace: itchyny, name: lightline.vim }
-        - { namespace: ryanoasis, name: vim-devicons }
+        - { namespace: nvim-lualine, name: lualine.nvim }
+        - { namespace: nvim-tree, name: nvim-web-devicons }
+    - template:
+        src: roles/cui/templates/.config/nvim/lua/plugin/lualine.lua
+        dest: $HOME/.config/nvim/lua/plugin/lualine.lua
+
+- name: Install lazygit.nvim
+  block:
+    - homebrew:
+        name: ripgrep
+    - git:
+        repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
+        dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
+        depth: 1
+        update: false
+        version: "{{ item.version | default('HEAD') }}"
+      with_items:
+        - { namespace: kdheepak, name: lazygit.nvim }
+        - { namespace: nvim-lua, name: plenary.nvim }
 
 - name: Install telescope.nvim
   block:
@@ -81,27 +122,37 @@
         repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
         dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
         depth: 1
+        update: false
         version: "{{ item.version | default('HEAD') }}"
       with_items:
         - { namespace: kyazdani42, name: nvim-web-devicons }
-        - { namespace: nvim-lua, name: plenary.nvim  }
+        - { namespace: nvim-lua, name: plenary.nvim }
+        - { namespace: nvim-telescope, name: telescope-file-browser.nvim }
         - { namespace: nvim-telescope, name: telescope.nvim }
     - template:
         src: roles/cui/templates/.config/nvim/lua/plugin/telescope.lua
         dest: $HOME/.config/nvim/lua/plugin/telescope.lua
 
-- name: Install neovim nvim-lspconfig
+- name: Install lsp plugins
   block:
     - git:
         repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
         dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
         depth: 1
+        update: false
         version: "{{ item.version | default('HEAD') }}"
       with_items:
+        - { namespace: jay-babu, name: mason-null-ls.nvim }
         - { namespace: neovim, name: nvim-lspconfig }
+        - { namespace: nvimtools, name: none-ls.nvim }
+        - { namespace: williamboman, name: mason-lspconfig.nvim }
+        - { namespace: williamboman, name: mason.nvim }
     - template:
         src: roles/cui/templates/.config/nvim/lua/plugin/nvim-lspconfig.lua
         dest: $HOME/.config/nvim/lua/plugin/nvim-lspconfig.lua
+    - template:
+        src: roles/cui/templates/.config/nvim/lua/plugin/none-ls.lua
+        dest: $HOME/.config/nvim/lua/plugin/none-ls.lua
 
 - name: Install nvim-cmp
   block:
@@ -109,6 +160,7 @@
         repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
         dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
         depth: 1
+        update: false
         version: "{{ item.version | default('HEAD') }}"
       with_items:
         - { namespace: L3MON4D3, name: LuaSnip }
@@ -118,21 +170,11 @@
         - { namespace: hrsh7th, name: cmp-path }
         - { namespace: hrsh7th, name: nvim-cmp }
         - { namespace: onsails, name: lspkind-nvim }
+        - { namespace: zbirenbaum, name: copilot-cmp }
+        - { namespace: zbirenbaum, name: copilot.lua } # Run `:Copilot auth`
     - template:
         src: roles/cui/templates/.config/nvim/lua/plugin/nvim-cmp.lua
         dest: $HOME/.config/nvim/lua/plugin/nvim-cmp.lua
-
-# After installation, start Neovim and invoke :Copilot setup.
-- name: Enable copilot
-  block:
-    - name: Install copilot neovim plugins
-      git:
-        repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
-        dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
-        depth: 1
-        version: "{{ item.version | default('HEAD') }}"
-      with_items:
-        - { namespace: github, name: copilot.vim }
 
 - name: Create config file
   template:
