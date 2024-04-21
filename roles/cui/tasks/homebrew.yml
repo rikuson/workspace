@@ -14,10 +14,8 @@
     - { name: grex }
     - { name: hexyl }
     - { name: htop }
-    - { name: httpie }
     - { name: imagemagick }
     - { name: jq }
-    - { name: jump }
     - { name: lsd }
     - { name: mas }
     - { name: neofetch }
@@ -31,6 +29,13 @@
     - { name: tmux }
     - { name: w3m }
     - { name: yarn }
+
+- name: Install brew cask packages
+  homebrew_cask:
+    name: "{{ item.name }}"
+  with_items:
+    - { name: httpie }
+    - { name: jump }
 
 - name: Create .tmux.conf
   template:
