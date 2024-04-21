@@ -62,12 +62,10 @@
   file:
     path: $HOME/.gnupg
     state: directory
-    mode: 700
-- name: Change permission
-  shell: chmod 700 $HOME/.gnupg
+    mode: "0700"
 - name: Create conf
   copy:
-    content: ''
+    content: ""
     dest: $HOME/.gnupg/gpg-agent.conf
     force: no
 - name: Get path of pinentry-mac
@@ -75,8 +73,8 @@
   register: pinentry_mac_path
 - name: Change config
   lineinfile:
-    path:  $HOME/.gnupg/gpg-agent.conf
-    line: 'pinentry-program {{ pinentry_mac_path.stdout }}'
+    path: $HOME/.gnupg/gpg-agent.conf
+    line: "pinentry-program {{ pinentry_mac_path.stdout }}"
 
 - name: Create .asdfrc
   template:
