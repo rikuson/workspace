@@ -1,14 +1,9 @@
 ---
-- name: Check if gnupg exists
-  stat:
-    path: $HOME/.config/nvim/lua/plugin
-  register: nvim_plugin_dir
 - name: Create directories
   file:
     path: $HOME/.config/nvim/lua/plugin
     state: directory
-    mode: '755'
-  when: not nvim_plugin_dir.stat.isdir
+    mode: '0755'
 
 - name: Install for neovim general plugins
   block:

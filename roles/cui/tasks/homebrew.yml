@@ -63,10 +63,6 @@
 - name: Install safari extension
   homebrew_cask:
     name: adur1990/tap/passformacos
-- name: Check if gnupg exists
-  stat:
-    path: $HOME/.gnupg
-  register: gnupg_dir
 - name: Create gnupg directory
   file:
     path: $HOME/.gnupg
