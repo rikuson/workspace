@@ -76,6 +76,7 @@
 - name: Get path of pinentry-mac
   shell: which pinentry-mac
   register: pinentry_mac_path
+  changed_when: false
 - name: Change config
   lineinfile:
     path: $HOME/.gnupg/gpg-agent.conf
