@@ -102,3 +102,10 @@
       alias cat='bat --paging=never'
       export MANPAGER='`col -bx | bat -l man -p`'
     marker: "# {mark} ANSIBLE MANAGED BLOCK bat"
+
+- name: Set up nvim
+  blockinfile:
+    path: $HOME/.zprofile
+    block: |
+      alias vim='nvim'
+    marker: "# {mark} ANSIBLE MANAGED BLOCK nvim"

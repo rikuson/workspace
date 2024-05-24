@@ -19,6 +19,7 @@ cmp.setup({
     }),
   }),
   sources = cmp.config.sources({
+    { name = 'copilot' },
     { name = 'nvim_lsp' },
     { name = 'buffer' },
   }),
@@ -26,3 +27,18 @@ cmp.setup({
     format = lspkind.cmp_format({ with_text = false, maxwidth = 50 })
   }
 })
+
+-- Copilot
+require('copilot').setup({
+  suggestion = { enabled = false },
+  panel = { enabled = false },
+})
+
+require("copilot_cmp").setup()
+
+lspkind.init({
+  symbol_map = {
+    Copilot = "",
+  },
+})
+vim.api.nvim_set_hl(0, "CmpItemKindCopilot", {fg ="#6CC644"})
