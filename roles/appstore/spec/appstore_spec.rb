@@ -3,7 +3,7 @@ require 'spec_helper'
 [
   { 'name' => 'BetterSnapTool', 'id' => 417375580 },
   { 'name' => 'Evernote', 'id' => 406056744 },
-  { 'name' => 'Kindle', 'id' => 405399194 },
+  { 'name' => 'Kindle', 'id' => 302584613 },
   { 'name' => 'Logic Pro X', 'id' => 634148309 },
   { 'name' => 'Microsoft Remote Desktop', 'id' => 1295203466 },
   { 'name' => 'PDFOutliner', 'id' => 420874236 },
