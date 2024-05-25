@@ -55,6 +55,11 @@ endfor
 lua require('plugin.telescope')
 
 "------------------------------
+" toggleterm
+"------------------------------
+lua require('plugin.toggleterm')
+
+"------------------------------
 " vim-submode
 "------------------------------
 let g:submode_leave_with_key = 1
