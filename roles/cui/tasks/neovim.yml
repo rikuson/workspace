@@ -1,9 +1,14 @@
 ---
 - name: Create directories
-  file:
-    path: $HOME/.config/nvim/lua/plugin
-    state: directory
-    mode: "0755"
+  block:
+    - file:
+        path: $HOME/.config/nvim/lua/plugin
+        state: directory
+        mode: "0755"
+    - file:
+        path: $HOME/.config/lazygit
+        state: directory
+        mode: "0755"
 
 - name: Install for neovim general plugins
   block:
@@ -113,6 +118,9 @@
     - template:
         src: roles/cui/templates/.config/nvim/lua/plugin/toggleterm.lua
         dest: $HOME/.config/nvim/lua/plugin/toggleterm.lua
+    - template:
+        src: roles/cui/templates/.config/lazygit/config.yml
+        dest: $HOME/.config/lazygit/config.yml
 
 - name: Install telescope.nvim
   block:
