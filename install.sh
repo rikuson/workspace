@@ -8,15 +8,12 @@ abort() {
   printf "%s\n" "$@" >&2
   exit 1
 }
-if [[ -e $HOME/workspace ]]; then
-  abort '`workspace` directory already exists.'
-fi
+
+[[ -e $HOME/workspace ]] && abort '`workspace` directory already exists.'
 
 # Install homebrew
 /bin/bash -c `curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh`
-if [[ -d /opt/homebrew ]]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
+[[ -d /opt/homebrew ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
 brew update
 brew upgrade
 
