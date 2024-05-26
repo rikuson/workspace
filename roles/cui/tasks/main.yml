@@ -2,6 +2,7 @@
 - name: Create .zprofile
   file:
     path: $HOME/.zprofile
+    state: touch
 - name: Create .zshrc
   template:
     src: roles/cui/templates/.zshrc
