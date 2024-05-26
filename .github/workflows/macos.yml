@@ -11,7 +11,7 @@ env:
 
 jobs:
   cui:
-    runs-on: macos-12
+    runs-on: macos-13
     steps:
       - uses: actions/checkout@v4
       - name: Cache gem
@@ -51,7 +51,7 @@ jobs:
       - name: Play cui tasks
         run: make cui
   os:
-    runs-on: macos-12
+    runs-on: macos-13
     steps:
       - uses: actions/checkout@v4
       - name: Cache gem
