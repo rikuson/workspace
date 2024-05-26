@@ -60,9 +60,6 @@
     - { name: pass }
     - { name: pass-otp }
     - { name: pinentry-mac }
-- name: Install safari extension
-  homebrew_cask:
-    name: adur1990/tap/passformacos
 - name: Create gnupg directory
   file:
     path: $HOME/.gnupg
