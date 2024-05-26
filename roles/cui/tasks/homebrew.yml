@@ -42,17 +42,6 @@
     src: roles/cui/templates/.tmux.conf
     dest: $HOME
 
-- name: Tap lazygit
-  homebrew_tap:
-    name: "{{ item.name }}"
-  with_items:
-    - { name: "jesseduffield/lazygit" }
-- name: Install lazygit
-  homebrew:
-    name: "{{ item.name }}"
-  with_items:
-    - { name: "jesseduffield/lazygit/lazygit" }
-
 - name: Install pass
   homebrew:
     name: "{{ item.name }}"

@@ -107,6 +107,11 @@
 
 - name: Install toggleterm.nvim
   block:
+    - homebrew:
+        name: "{{ item.name }}"
+      with_items:
+        - { name: "lazygit" }
+        - { name: "lazydocker" }
     - git:
         repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
         dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
