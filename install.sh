@@ -2,15 +2,14 @@
 
 set -u
 
+WORKSPACE_REPOSITORY_URL="${WORKSPACE_REPOSITORY_URL:git@github.com:rikuson/workspace.git}"
+
 abort() {
   printf "%s\n" "$@" >&2
   exit 1
 }
 if [[ -e $HOME/workspace ]]; then
   abort '`workspace` directory already exists.'
-fi
-if [[ -z "$WORKSPACE_REPOSITORY_URL" ]]; then
-  abort '`WORKSPACE_REPOSITORY_URL` is undefined.'
 fi
 
 # Install homebrew
@@ -21,7 +20,7 @@ fi
 brew update
 brew upgrade
 
-# Create bare repository
+# Clone repository
 git clone $WORKSPACE_REPOSITORY_URL
 
 # Install oh-my-zsh
