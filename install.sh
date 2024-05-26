@@ -2,7 +2,7 @@
 
 set -u
 
-WORKSPACE_REPOSITORY_URL="${WORKSPACE_REPOSITORY_URL:git@github.com:rikuson/workspace.git}"
+WORKSPACE_REPOSITORY_URL=${WORKSPACE_REPOSITORY_URL:-git@github.com:rikuson/workspace.git}
 
 abort() {
   printf "%s\n" "$@" >&2
@@ -13,15 +13,17 @@ abort() {
 
 # Install homebrew
 /bin/bash -c `curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh`
-[[ -d /opt/homebrew ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Install oh-my-zsh
+sh -c `curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh`
+
+source "$(pwd)/roles/cui/templates/.zshrc"
+
 brew update
 brew upgrade
 
 # Clone repository
 git clone $WORKSPACE_REPOSITORY_URL
-
-# Install oh-my-zsh
-sh -c `curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh`
 
 # Initialize
 brew install ansible
