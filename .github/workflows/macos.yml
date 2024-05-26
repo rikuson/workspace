@@ -19,6 +19,8 @@ jobs:
         with:
           path: /Library/Ruby/Gems
           key: cui-${{ runner.os }}-gem-${{ hashFiles('install.sh') }}
+          restore-keys: |
+            cui-${{ runner.os }}-gem-
       - name: Cache homebrew
         uses: actions/cache@v4
         with:
@@ -26,11 +28,15 @@ jobs:
             /usr/local/Cellar
             /Users/runner/Library/Caches/Homebrew
           key: cui-${{ runner.os }}-homebrew-packages-${{ hashFiles('install.sh', 'roles/*/tasks/homebrew.yml') }}
+          restore-keys: |
+            cui-${{ runner.os }}-homebrew-packages-
       - name: Cache asdf
         uses: actions/cache@v4
         with:
           path: /Users/runner/.asdf
           key: cui-${{ runner.os }}-asdf-${{ hashFiles('install.sh') }}
+          restore-keys: |
+            cui-${{ runner.os }}-asdf-
       - name: Relink homebrew
         run: brew link --overwrite ansible || true
       - name: Install
@@ -48,6 +54,8 @@ jobs:
         with:
           path: /Library/Ruby/Gems
           key: os-${{ runner.os }}-gem-${{ hashFiles('install.sh') }}
+          restore-keys: |
+            os-${{ runner.os }}-gem-
       - name: Cache homebrew
         uses: actions/cache@v4
         with:
@@ -55,11 +63,15 @@ jobs:
             /usr/local/Cellar
             /Users/runner/Library/Caches/Homebrew
           key: os-${{ runner.os }}-homebrew-packages-${{ hashFiles('install.sh', 'roles/*/tasks/homebrew.yml') }}
+          restore-keys: |
+            os-${{ runner.os }}-homebrew-packages-
       - name: Cache asdf
         uses: actions/cache@v4
         with:
           path: /Users/runner/.asdf
           key: os-${{ runner.os }}-asdf-${{ hashFiles('install.sh') }}
+          restore-keys: |
+            os-${{ runner.os }}-asdf-
       - name: Relink homebrew
         run: brew link --overwrite ansible || true
       - name: Install
