@@ -26,5 +26,3 @@ sh -c `curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools
 # Initialize
 brew install ansible
 gem install bundler ansible_spec
-
-touch $HOME/.zprofile

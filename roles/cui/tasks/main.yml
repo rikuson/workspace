@@ -1,4 +1,7 @@
 ---
+- name: Create .zprofile
+  file:
+    path: $HOME/.zprofile
 - name: Create .zshrc
   template:
     src: roles/cui/templates/.zshrc
@@ -58,10 +61,10 @@
 - name: Set git email
   git_config:
     name: user.email
-    value: 'rikuson@users.noreply.github.com'
+    value: "rikuson@users.noreply.github.com"
     scope: global
 - name: Set git user name
   git_config:
     name: user.name
-    value: 'Riku Takeuchi'
+    value: "Riku Takeuchi"
     scope: global
