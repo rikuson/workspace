@@ -31,6 +31,8 @@ jobs:
         with:
           path: /Users/runner/.asdf
           key: cui-${{ runner.os }}-asdf-${{ hashFiles('install.sh') }}
+      - name: Relink homebrew
+        run: brew link --overwrite ansible || true
       - name: Install
         run: /bin/zsh ./install.sh
       - name: Play cui tasks
@@ -58,6 +60,8 @@ jobs:
         with:
           path: /Users/runner/.asdf
           key: os-${{ runner.os }}-asdf-${{ hashFiles('install.sh') }}
+      - name: Relink homebrew
+        run: brew link --overwrite ansible || true
       - name: Install
         run: /bin/zsh ./install.sh
       - name: Play os tasks
