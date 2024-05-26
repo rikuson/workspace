@@ -1,9 +1,14 @@
 ---
 - name: Create directories
-  file:
-    path: $HOME/.config/nvim/lua/plugin
-    state: directory
-    mode: '0755'
+  block:
+    - file:
+        path: $HOME/.config/nvim/lua/plugin
+        state: directory
+        mode: "0755"
+    - file:
+        path: $HOME/.config/lazygit
+        state: directory
+        mode: "0755"
 
 - name: Install for neovim general plugins
   block:
@@ -100,10 +105,8 @@
         src: roles/cui/templates/.config/nvim/lua/plugin/lualine.lua
         dest: $HOME/.config/nvim/lua/plugin/lualine.lua
 
-- name: Install lazygit.nvim
+- name: Install toggleterm.nvim
   block:
-    - homebrew:
-        name: ripgrep
     - git:
         repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
         dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
@@ -111,8 +114,13 @@
         update: false
         version: "{{ item.version | default('HEAD') }}"
       with_items:
-        - { namespace: kdheepak, name: lazygit.nvim }
-        - { namespace: nvim-lua, name: plenary.nvim }
+        - { namespace: akinsho, name: toggleterm.nvim }
+    - template:
+        src: roles/cui/templates/.config/nvim/lua/plugin/toggleterm.lua
+        dest: $HOME/.config/nvim/lua/plugin/toggleterm.lua
+    - template:
+        src: roles/cui/templates/.config/lazygit/config.yml
+        dest: $HOME/.config/lazygit/config.yml
 
 - name: Install telescope.nvim
   block:

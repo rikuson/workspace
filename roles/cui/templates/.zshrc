@@ -23,3 +23,7 @@ if [[ -d $HOME/.oh-my-zsh ]]; then
   ZSH_THEME="af-magic"
   source $ZSH/oh-my-zsh.sh
 fi
+
+export PATH="$HOME/.local/bin:$PATH"
+
+export XDG_CONFIG_HOME="$HOME/.config"

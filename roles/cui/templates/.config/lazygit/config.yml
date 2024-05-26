@@ -1,0 +1,12 @@
+os:
+  editPreset: "nvim-remote"
+customCommands:
+  - key: "<c-s>"
+    context: "files"
+    command: "[ -z $NVIM ] && (nvim -- {{ '{{.SelectedFile.Name}}' }}) || (nvim --server $NVIM --remote-send 'q<C-\\><C-n>:new {{ '{{.SelectedFile.Name}}' }}<CR>')"
+  - key: "<c-v>"
+    context: "files"
+    command: "[ -z $NVIM ] && (nvim -- {{ '{{.SelectedFile.Name}}' }}) || (nvim --server $NVIM --remote-send 'q<C-\\><C-n>:vnew {{ '{{.SelectedFile.Name}}' }}<CR>')"
+  - key: "<c-t>"
+    context: "files"
+    command: "[ -z $NVIM ] && (nvim -- {{ '{{.SelectedFile.Name}}' }}) || (nvim --server $NVIM --remote-send 'q<C-\\><C-n>:tabnew {{ '{{.SelectedFile.Name}}' }}<CR>')"
