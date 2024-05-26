@@ -38,7 +38,7 @@ jobs:
           restore-keys: |
             cui-${{ runner.os }}-asdf-
       - name: Relink homebrew
-        run: brew link --overwrite ansible pinentry-mac || true
+        run: brew link --overwrite ansible pinentry-mac asdf || true
       - name: Install
         run: /bin/zsh ./install.sh
       - name: Play cui tasks
