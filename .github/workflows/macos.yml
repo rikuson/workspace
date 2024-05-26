@@ -2,9 +2,9 @@ name: Check provision
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 env:
   WORKSPACE_REPOSITORY_URL: https://github.com/rikuson/workspace.git
@@ -13,50 +13,54 @@ jobs:
   cui:
     runs-on: macos-12
     steps:
-    - uses: actions/checkout@v4
-    - name: Cache gem
-      uses: actions/cache@v4
-      with:
-        path: /Library/Ruby/Gems
-        key: ${{ runner.os }}-gem-${{ hashFiles('install.sh') }}
-    - name: Cache homebrew
-      uses: actions/cache@v4
-      with:
-        path: /Users/runner/Library/Caches/Homebrew
-        key: ${{ runner.os }}-homebrew-${{ hashFiles('install.sh', 'roles/*/tasks/homebrew.yml') }}
-    - name: Cache asdf
-      uses: actions/cache@v4
-      with:
-        path: /Users/runner/.asdf
-        key: ${{ runner.os }}-asdf-${{ hashFiles('install.sh') }}
-    - name: Install
-      run: /bin/zsh ./install.sh
-    - name: Play cui tasks
-      run: make cui
-    - name: Check cui spec
-      run: rake serverspec:cui
+      - uses: actions/checkout@v4
+      - name: Cache gem
+        uses: actions/cache@v4
+        with:
+          path: /Library/Ruby/Gems
+          key: cui-${{ runner.os }}-gem-${{ hashFiles('install.sh') }}
+      - name: Cache homebrew
+        uses: actions/cache@v4
+        with:
+          path: |
+            /usr/local/Cellar
+            /Users/runner/Library/Caches/Homebrew
+          key: cui-${{ runner.os }}-homebrew-packages-${{ hashFiles('install.sh', 'roles/*/tasks/homebrew.yml') }}
+      - name: Cache asdf
+        uses: actions/cache@v4
+        with:
+          path: /Users/runner/.asdf
+          key: cui-${{ runner.os }}-asdf-${{ hashFiles('install.sh') }}
+      - name: Install
+        run: /bin/zsh ./install.sh
+      - name: Play cui tasks
+        run: make cui
+      - name: Check cui spec
+        run: rake serverspec:cui
   os:
     runs-on: macos-12
     steps:
-    - uses: actions/checkout@v4
-    - name: Cache gem
-      uses: actions/cache@v4
-      with:
-        path: /Library/Ruby/Gems
-        key: ${{ runner.os }}-gem-${{ hashFiles('install.sh') }}
-    - name: Cache homebrew
-      uses: actions/cache@v4
-      with:
-        path: /Users/runner/Library/Caches/Homebrew
-        key: ${{ runner.os }}-homebrew-${{ hashFiles('install.sh') }}
-    - name: Cache asdf
-      uses: actions/cache@v4
-      with:
-        path: /Users/runner/.asdf
-        key: ${{ runner.os }}-asdf-${{ hashFiles('install.sh') }}
-    - name: Install
-      run: /bin/zsh ./install.sh
-    - name: Play os tasks
-      run: make os
-    - name: Check os spec
-      run: rake serverspec:os
+      - uses: actions/checkout@v4
+      - name: Cache gem
+        uses: actions/cache@v4
+        with:
+          path: /Library/Ruby/Gems
+          key: os-${{ runner.os }}-gem-${{ hashFiles('install.sh') }}
+      - name: Cache homebrew
+        uses: actions/cache@v4
+        with:
+          path: |
+            /usr/local/Cellar
+            /Users/runner/Library/Caches/Homebrew
+          key: os-${{ runner.os }}-homebrew-packages-${{ hashFiles('install.sh', 'roles/*/tasks/homebrew.yml') }}
+      - name: Cache asdf
+        uses: actions/cache@v4
+        with:
+          path: /Users/runner/.asdf
+          key: os-${{ runner.os }}-asdf-${{ hashFiles('install.sh') }}
+      - name: Install
+        run: /bin/zsh ./install.sh
+      - name: Play os tasks
+        run: make os
+      - name: Check os spec
+        run: rake serverspec:os
