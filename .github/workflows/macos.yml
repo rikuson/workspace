@@ -15,17 +15,17 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Cache gem
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: /Library/Ruby/Gems
         key: ${{ runner.os }}-gem-${{ hashFiles('install.sh') }}
     - name: Cache homebrew
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: /Users/runner/Library/Caches/Homebrew
         key: ${{ runner.os }}-homebrew-${{ hashFiles('install.sh', 'roles/*/tasks/homebrew.yml') }}
     - name: Cache asdf
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: /Users/runner/.asdf
         key: ${{ runner.os }}-asdf-${{ hashFiles('install.sh') }}
@@ -40,17 +40,17 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Cache gem
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: /Library/Ruby/Gems
         key: ${{ runner.os }}-gem-${{ hashFiles('install.sh') }}
     - name: Cache homebrew
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: /Users/runner/Library/Caches/Homebrew
         key: ${{ runner.os }}-homebrew-${{ hashFiles('install.sh') }}
     - name: Cache asdf
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: /Users/runner/.asdf
         key: ${{ runner.os }}-asdf-${{ hashFiles('install.sh') }}
