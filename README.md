@@ -11,7 +11,7 @@ ssh-keygen -t ed25519
 Run install script.
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/rikuson/workspace/HEAD/install.sh | WORKSPACE_REPOSITORY_URL=git@github.com:rikuson/workspace.git && zsh -
+curl -fsSL https://raw.githubusercontent.com/rikuson/workspace/HEAD/install.sh | zsh -
 ```
 
 Restart terminal and run `make`.

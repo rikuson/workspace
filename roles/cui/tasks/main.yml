@@ -1,4 +1,8 @@
 ---
+- name: Create .zprofile
+  file:
+    path: $HOME/.zprofile
+    state: touch
 - name: Create .zshrc
   template:
     src: roles/cui/templates/.zshrc
@@ -20,48 +24,21 @@
 - import_tasks: ohmyzsh.yml
 - import_tasks: neovim.yml
 
-# git
-- name: Set git editor
-  git_config:
-    name: core.editor
-    scope: global
-    value: nvim
-- name: Create .gitignore
-  template:
-    src: roles/cui/templates/.gitignore
-    dest: $HOME
-- name: Set up global .gitignore
-  git_config:
-    name: core.excludesfile
-    value: ~/.gitignore
-    scope: global
-- name: Show Japanese properly
-  git_config:
-    name: core.quotepath
-    value: false
-    scope: global
-- name: Set pull rule
-  git_config:
-    name: pull.rebase
-    value: true
-    scope: global
-- name: Disable pager for branch
-  git_config:
-    name: pager.branch
-    value: false
-    scope: global
-- name: Disable pager for stash
-  git_config:
-    name: pager.stash
-    value: false
-    scope: global
-- name: Set git email
-  git_config:
-    name: user.email
-    value: 'rikuson@users.noreply.github.com'
-    scope: global
-- name: Set git user name
-  git_config:
-    name: user.name
-    value: 'Riku Takeuchi'
-    scope: global
+- name: Set git global configurations
+  block:
+    - git_config:
+        name: "{{ item.name }}"
+        value: "{{ item.value }}"
+        scope: global
+      with_items:
+        - { name: "core.editor", value: "nvim" }
+        - { name: "core.excludesfile", value: "~/.gitignore" }
+        - { name: "core.quotepath", value: "false" }
+        - { name: "pull.rebase", value: "true" }
+        - { name: "pager.branch", value: "false" }
+        - { name: "pager.stash", value: "false" }
+        - { name: "user.email", value: "rikuson@users.noreply.github.com" }
+        - { name: "user.name", value: "Riku Takeuchi" }
+    - template:
+        src: roles/cui/templates/.gitignore
+        dest: $HOME
