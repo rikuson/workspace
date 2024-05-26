@@ -37,6 +37,13 @@ jobs:
           key: cui-${{ runner.os }}-asdf-${{ hashFiles('install.sh') }}
           restore-keys: |
             cui-${{ runner.os }}-asdf-
+      - name: Cache neovim plugin
+        uses: actions/cache@v4
+        with:
+          path: /Users/runner/.local/share/nvim/site/pack
+          key: cui-${{ runner.os }}-nvim-${{ hashFiles('roles/*/tasks/neovim.yml') }}
+          restore-keys: |
+            cui-${{ runner.os }}-nvim-
       - name: Relink homebrew
         run: brew link --overwrite ansible pinentry-mac asdf || true
       - name: Install
