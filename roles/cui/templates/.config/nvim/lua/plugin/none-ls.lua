@@ -1,8 +1,3 @@
-require('mason-null-ls').setup({
-  ensure_installed = { 'eslint-lsp', 'prettier', 'rubocop' },
-  handlers = {},
-})
-
 local null_ls = require('null-ls')
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 null_ls.setup({
@@ -25,4 +20,9 @@ null_ls.setup({
       })
     end
   end,
+})
+
+require('mason-null-ls').setup({
+  ensure_installed = nil,
+  automatic_installation = true,
 })
