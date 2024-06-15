@@ -27,4 +27,4 @@ git clone $WORKSPACE_REPOSITORY_URL
 
 # Initialize
 brew install ansible
-gem install bundler ansible_spec
+gem install bundler
