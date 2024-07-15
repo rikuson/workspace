@@ -9,36 +9,7 @@
     dest: $HOME
 
 - import_tasks: homebrew.yml
-
-- name: Install runtime
-  asdf:
-    name: "{{ item.name }}"
-  with_items:
-    - { name: helm }
-    - { name: nodejs }
-    - { name: postgres }
-    - { name: python }
-    - { name: ruby }
-    - { name: terraform }
-
+- import_tasks: asdf.yml
 - import_tasks: ohmyzsh.yml
 - import_tasks: neovim.yml
-
-- name: Set git global configurations
-  block:
-    - git_config:
-        name: "{{ item.name }}"
-        value: "{{ item.value }}"
-        scope: global
-      with_items:
-        - { name: "core.editor", value: "nvim" }
-        - { name: "core.excludesfile", value: "~/.gitignore" }
-        - { name: "core.quotepath", value: "false" }
-        - { name: "pull.rebase", value: "true" }
-        - { name: "pager.branch", value: "false" }
-        - { name: "pager.stash", value: "false" }
-        - { name: "user.email", value: "rikuson@users.noreply.github.com" }
-        - { name: "user.name", value: "Riku Takeuchi" }
-    - template:
-        src: roles/cui/templates/.gitignore
-        dest: $HOME
+- import_tasks: git.yml
