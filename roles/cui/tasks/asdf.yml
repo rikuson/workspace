@@ -1,0 +1,20 @@
+---
+- name: Install brew packages
+  homebrew:
+    name: "asdf"
+
+- name: Create .asdfrc
+  template:
+    src: roles/cui/templates/.asdfrc
+    dest: $HOME
+
+- name: Install runtime
+  asdf:
+    name: "{{ item.name }}"
+  with_items:
+    - { name: helm }
+    - { name: nodejs }
+    - { name: postgres }
+    - { name: python }
+    - { name: ruby }
+    - { name: terraform }

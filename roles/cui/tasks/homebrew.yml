@@ -3,7 +3,6 @@
   homebrew:
     name: "{{ item.name }}"
   with_items:
-    - { name: asdf }
     - { name: bat }
     - { name: direnv }
     - { name: ffmpeg }
@@ -67,11 +66,6 @@
   lineinfile:
     path: $HOME/.gnupg/gpg-agent.conf
     line: "pinentry-program {{ pinentry_mac_path.stdout }}"
-
-- name: Create .asdfrc
-  template:
-    src: roles/cui/templates/.asdfrc
-    dest: $HOME
 
 - name: Set up lsd
   blockinfile:
