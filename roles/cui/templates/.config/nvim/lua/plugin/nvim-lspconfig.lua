@@ -15,6 +15,11 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
 end
 
+-- Rust
+nvim_lsp.rust_analyzer.setup{
+  on_attach = on_attach,
+}
+
 -- TypeScript
 nvim_lsp.tsserver.setup {
   on_attach = on_attach,
