@@ -17,4 +17,5 @@
     - { name: postgres }
     - { name: python }
     - { name: ruby }
+    - { name: rust }
     - { name: terraform }
