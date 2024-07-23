@@ -100,6 +100,11 @@ set completeopt=menuone,noinsert,noselect
 highlight! default link CmpItemKind CmpItemMenuDefault
 
 "------------------------------
+" CopilotChat
+"------------------------------
+lua require('plugin.CopilotChat')
+
+"------------------------------
 " nvim-surround
 "------------------------------
 lua require('plugin.nvim-surround')

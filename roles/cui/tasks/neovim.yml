@@ -189,6 +189,22 @@
         src: roles/cui/templates/.config/nvim/lua/plugin/nvim-cmp.lua
         dest: $HOME/.config/nvim/lua/plugin/nvim-cmp.lua
 
+- name: Install copilot chat
+  block:
+    - git:
+        repo: "https://github.com/{{ item.namespace }}/{{ item.name }}.git"
+        dest: "$HOME/.local/share/nvim/site/pack/{{ item.namespace }}/start/{{ item.name }}"
+        depth: 1
+        update: false
+        version: "{{ item.version | default('HEAD') }}"
+      with_items:
+        - { namespace: zbirenbaum, name: copilot.lua }
+        - { namespace: nvim-lua, name: plenary.nvim }
+        - { namespace: CopilotC-Nvim, name: CopilotChat.nvim, version: canary }
+    - template:
+        src: roles/cui/templates/.config/nvim/lua/plugin/CopilotChat.lua
+        dest: $HOME/.config/nvim/lua/plugin/CopilotChat.lua
+
 - name: Create config file
   template:
     src: roles/cui/templates/.config/nvim/init.vim
