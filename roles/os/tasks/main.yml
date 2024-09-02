@@ -154,3 +154,10 @@
       key: NSAutomaticQuoteSubstitutionEnabled
       type: int
       value: 0
+
+- name: Disable input source switching popup
+  osx_defaults:
+    domain: kCFPreferencesAnyApplication
+    key: TSMLanguageIndicatorEnabled
+    type: int
+    value: 0
