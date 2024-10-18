@@ -19,8 +19,3 @@ end
 nvim_lsp.rust_analyzer.setup{
   on_attach = on_attach,
 }
-
--- TypeScript
-nvim_lsp.tsserver.setup {
-  on_attach = on_attach,
-}
