@@ -4,6 +4,7 @@
     name: "{{ item.name }}"
   with_items:
     - { name: bat }
+    - { name: binaryen }
     - { name: direnv }
     - { name: ffmpeg }
     - { name: fzf }
