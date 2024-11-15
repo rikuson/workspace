@@ -50,14 +50,9 @@ for n in range(1, 9)
 endfor
 
 "------------------------------
-" telescope
+" lazy.nvim
 "------------------------------
-lua require('plugin.telescope')
-
-"------------------------------
-" toggleterm
-"------------------------------
-lua require('plugin.toggleterm')
+lua require('config.lazy')
 
 "------------------------------
 " vim-submode
@@ -78,52 +73,15 @@ call submode#map('undo', 'n', '', '-', 'g-')
 call submode#map('redo', 'n', '', '+', 'g+')
 
 "------------------------------
-" nvim-lspconfig
-"------------------------------
-lua require('plugin.nvim-lspconfig')
-
-"------------------------------
-" none-ls
-"------------------------------
-lua require('plugin.none-ls')
-
-"------------------------------
-" nvim-hlslens
-"------------------------------
-lua require('plugin.nvim-hlslens')
-
-"------------------------------
 " nvim-cmp
 "------------------------------
-lua require('plugin.nvim-cmp')
 set completeopt=menuone,noinsert,noselect
 highlight! default link CmpItemKind CmpItemMenuDefault
-
-"------------------------------
-" CopilotChat
-"------------------------------
-lua require('plugin.CopilotChat')
-
-"------------------------------
-" nvim-surround
-"------------------------------
-lua require('plugin.nvim-surround')
-
-"------------------------------
-" nvim-autopairs
-"------------------------------
-lua require('plugin.nvim-autopairs')
 
 "------------------------------
 " easymotion
 "------------------------------
 map <C-s> <Plug>(easymotion-prefix)
-lua require('plugin.easymotion')
-
-"------------------------------
-" which-key
-"------------------------------
-lua require("which-key").setup()
 
 "------------------------------
 " quickrun
@@ -149,31 +107,6 @@ augroup END
 " vim-highlightedyank
 "------------------------------
 let g:highlightedyank_highlight_duration = 500
-
-"------------------------
-" treesitter
-"------------------------
-lua require('plugin.treesitter')
-
-"------------------------
-" gitsigns
-"------------------------
-lua require('gitsigns').setup()
-
-"------------------------
-" lualine
-"------------------------
-lua require('plugin.lualine')
-
-"------------------------
-" bufferline
-"------------------------
-lua require('plugin.bufferline')
-
-"------------------------
-" Indent Blankline
-"------------------------
-lua require('ibl').setup({ indent = { char = '¦' } })
 
 "-----------------------------
 " colorscheme
