@@ -28,6 +28,7 @@
     - { name: tmux }
     - { name: w3m }
     - { name: yarn }
+    - { name: yt-dlp }
 
 - name: Install brew cask packages
   homebrew_cask:
