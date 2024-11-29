@@ -36,7 +36,6 @@ return {
 	{ "rebelot/kanagawa.nvim" },
 	{ "statianzo/vim-jade" },
 	{ "thinca/vim-quickrun" },
-	{ "thinca/vim-submode" },
 	{ "tpope/vim-abolish" },
 	{ "tpope/vim-fugitive" },
 	{ "williamboman/mason-lspconfig.nvim" },

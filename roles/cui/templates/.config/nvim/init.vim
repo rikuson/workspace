@@ -55,24 +55,6 @@ endfor
 lua require('config.lazy')
 
 "------------------------------
-" vim-submode
-"------------------------------
-let g:submode_leave_with_key = 1
-call submode#enter_with('bufmove', 'n', '', '<C-w>>', '<C-w>>')
-call submode#enter_with('bufmove', 'n', '', '<C-w><', '<C-w><')
-call submode#enter_with('bufmove', 'n', '', '<C-w>+', '<C-w>+')
-call submode#enter_with('bufmove', 'n', '', '<C-w>-', '<C-w>-')
-call submode#map('bufmove', 'n', '', '>', '<C-w>>')
-call submode#map('bufmove', 'n', '', '<', '<C-w><')
-call submode#map('bufmove', 'n', '', '+', '<C-w>+')
-call submode#map('bufmove', 'n', '', '-', '<C-w>-')
-
-call submode#enter_with('undo', 'n', '', 'g-', 'g-')
-call submode#enter_with('redo', 'n', '', 'g+', 'g+')
-call submode#map('undo', 'n', '', '-', 'g-')
-call submode#map('redo', 'n', '', '+', 'g+')
-
-"------------------------------
 " nvim-cmp
 "------------------------------
 set completeopt=menuone,noinsert,noselect
