@@ -54,47 +54,6 @@ endfor
 "------------------------------
 lua require('config.lazy')
 
-"------------------------------
-" nvim-cmp
-"------------------------------
-set completeopt=menuone,noinsert,noselect
-highlight! default link CmpItemKind CmpItemMenuDefault
-
-"------------------------------
-" easymotion
-"------------------------------
-map <C-s> <Plug>(easymotion-prefix)
-
-"------------------------------
-" quickrun
-"------------------------------
-if v:version >= 802
-  let g:quickrun_config = {
-        \ '_': {
-        \     'outputter': 'popup'
-        \   }
-        \ }
-endif
-let g:quickrun_no_default_key_mappings = 1
-
-"------------------------
-" vim-illuminate
-"------------------------
-augroup ILLUMINATE_AUGROUP
-    autocmd!
-    autocmd VimEnter * hi illuminatedWord cterm=underline gui=underline
-augroup END
-
-"------------------------------
-" vim-highlightedyank
-"------------------------------
-let g:highlightedyank_highlight_duration = 500
-
-"-----------------------------
-" colorscheme
-"-----------------------------
-colorscheme kanagawa-dragon
-
 "-----------------------------
 " Basic
 "-----------------------------

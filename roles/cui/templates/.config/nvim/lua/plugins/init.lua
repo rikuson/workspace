@@ -17,6 +17,7 @@ return {
     "lewis6991/gitsigns.nvim",
     config = true,
   },
+	{
 	  "lukas-reineke/indent-blankline.nvim",
 	  main = "ibl",
 	  ---@module "ibl"
@@ -25,7 +26,12 @@ return {
 	    indent = { char = '¦' }
 	  },
 	},
-	{ "machakann/vim-highlightedyank" },
+	{
+    "machakann/vim-highlightedyank",
+    config = function()
+      vim.g.highlightedyank_highlight_duration = 500
+    end,
+  },
 	{ "mbbill/undotree" },
 	{ "mg979/vim-visual-multi" },
 	{ "nvim-lua/plenary.nvim" },
@@ -33,9 +39,26 @@ return {
 	{ "nvim-tree/nvim-web-devicons" },
 	{ "onsails/lspkind-nvim" },
 	{ "psliwka/vim-smoothie" },
-	{ "rebelot/kanagawa.nvim" },
+	{
+    "rebelot/kanagawa.nvim",
+    config = function()
+      vim.cmd [[colorscheme kanagawa-dragon]]
+    end,
+  },
 	{ "statianzo/vim-jade" },
-	{ "thinca/vim-quickrun" },
+	{
+    "thinca/vim-quickrun",
+    config = function()
+      if vim.version().major > 8 or (vim.version().major == 8 and vim.version().minor >= 2) then
+        vim.g.quickrun_config = {
+          _ = {
+            outputter = "popup"
+          }
+        }
+      end
+      vim.g.quickrun_no_default_key_mappings = 1
+    end
+  },
 	{ "tpope/vim-abolish" },
 	{ "tpope/vim-fugitive" },
 	{ "williamboman/mason-lspconfig.nvim" },

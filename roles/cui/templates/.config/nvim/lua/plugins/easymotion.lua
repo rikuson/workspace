@@ -1,6 +1,7 @@
 return {
   "easymotion/vim-easymotion",
   config = function()
+    vim.api.nvim_set_keymap("n", "<C-s>", "<Plug>(easymotion-prefix)", {})
     vim.api.nvim_create_autocmd("User", {pattern = {"EasyMotionPromptBegin"}, callback = function() vim.diagnostic.disable() end})
     function check_easymotion()
       local timer = vim.loop.new_timer()

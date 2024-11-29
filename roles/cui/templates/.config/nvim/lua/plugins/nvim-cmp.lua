@@ -5,6 +5,9 @@ return {
     if (not status) then return end
     local lspkind = require 'lspkind'
 
+    vim.o.completeopt = "menuone,noinsert,noselect"
+    vim.api.nvim_set_hl(0, "CmpItemKind", { link = "CmpItemMenuDefault", default = true })
+
     cmp.setup({
       snippet = {
         expand = function(args)
