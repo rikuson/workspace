@@ -22,5 +22,8 @@ return {
     nvim_lsp.rust_analyzer.setup{
       on_attach = on_attach,
     }
+    nvim_lsp.ts_ls.setup{
+      on_attach = on_attach,
+    }
   end
 }
