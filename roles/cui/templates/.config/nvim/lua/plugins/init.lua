@@ -34,6 +34,20 @@ return {
   },
 	{ "mbbill/undotree" },
 	{ "mg979/vim-visual-multi" },
+  {
+    "rachartier/tiny-inline-diagnostic.nvim",
+    event = "LspAttach",
+    priority = 1000, -- needs to be loaded in first
+    config = function()
+      vim.diagnostic.config({ virtual_text = false })
+      require('tiny-inline-diagnostic').setup({
+        options = {
+          multilines = true,
+        },
+      })
+    end
+  },
+  { "j-hui/fidget.nvim" },
 	{ "nvim-lua/plenary.nvim" },
 	{ "nvim-telescope/telescope-file-browser.nvim" },
 	{ "nvim-tree/nvim-web-devicons" },
