@@ -1,7 +1,3 @@
-- name: Tap brew packages
-  homebrew_tap:
-    name: "homebrew/cask-fonts"
-
 - name: Install brew cask packages
   homebrew_cask:
     name: "{{ item.name }}"
@@ -10,7 +6,6 @@
     - { name: docker }
     - { name: drawio }
     - { name: dynalist }
-    - { name: font-fira-code-nerd-font }
     - { name: google-chrome }
     - { name: rectangle }
     - { name: typora }
