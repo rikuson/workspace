@@ -5,6 +5,7 @@
   with_items:
     - { name: bat }
     - { name: binaryen }
+    - { name: cmake }
     - { name: direnv }
     - { name: ffmpeg }
     - { name: font-fira-code-nerd-font }
@@ -25,6 +26,7 @@
     - { name: p7zip }
     - { name: pandoc }
     - { name: pict }
+    - { name: pkg-config }
     - { name: poppler }
     - { name: qrencode }
     - { name: tmux }
