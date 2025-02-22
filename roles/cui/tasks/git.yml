@@ -18,6 +18,7 @@
         - { name: "pager.stash", value: "false" }
         - { name: "user.email", value: "rikuson@users.noreply.github.com" }
         - { name: "user.name", value: "Riku Takeuchi" }
+        - { name: "merge.tool", value: "nvimdiff" }
     - template:
         src: roles/cui/templates/.gitignore
         dest: $HOME
