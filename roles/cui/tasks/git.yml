@@ -19,6 +19,7 @@
         - { name: "user.email", value: "rikuson@users.noreply.github.com" }
         - { name: "user.name", value: "Riku Takeuchi" }
         - { name: "merge.tool", value: "nvimdiff" }
+        - { name: "init.defaultBranch", value: "main" }
     - template:
         src: roles/cui/templates/.gitignore
         dest: $HOME
