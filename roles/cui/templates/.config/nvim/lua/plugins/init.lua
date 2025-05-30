@@ -78,6 +78,4 @@ return {
 	{ "williamboman/mason-lspconfig.nvim" },
 	{ "williamboman/mason.nvim" },
 	{ "windwp/nvim-ts-autotag" },
-	{ "zbirenbaum/copilot-cmp" },
-	{ "zbirenbaum/copilot.lua" },
 }
