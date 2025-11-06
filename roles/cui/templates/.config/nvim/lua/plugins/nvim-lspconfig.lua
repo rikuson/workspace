@@ -24,8 +24,5 @@ return {
     nvim_lsp.ts_ls.setup{
       on_attach = on_attach,
     }
-    nvim_lsp.gopls.setup{
-      on_attach = on_attach,
-    }
   end
 }

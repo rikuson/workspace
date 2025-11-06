@@ -2,8 +2,19 @@ return {
   "nvimtools/none-ls.nvim",
   dependencies = {
     "nvimtools/none-ls-extras.nvim",
+    "williamboman/mason.nvim",
+    "jay-babu/mason-null-ls.nvim",
   },
   config = function()
+    -- Ensure Mason is set up first
+    require("mason").setup()
+
+    -- Set up mason-null-ls BEFORE null-ls
+    require('mason-null-ls').setup({
+      ensure_installed = { "eslint_d" },
+      automatic_installation = true,
+    })
+
     local null_ls = require('null-ls')
 
     local lsp_formatting = function(bufnr)
@@ -31,19 +42,21 @@ return {
       end
     end
 
-    null_ls.setup({
-      sources = {
-        require("none-ls.diagnostics.eslint_d"),
-        null_ls.builtins.formatting.prettier,
-        null_ls.builtins.diagnostics.rubocop,
-        null_ls.builtins.formatting.rubocop,
-      },
-      on_attach = on_attach,
-    })
+    -- Build sources list, only including eslint_d if available
+    local sources = {
+      null_ls.builtins.formatting.prettier,
+      null_ls.builtins.diagnostics.rubocop,
+      null_ls.builtins.formatting.rubocop,
+    }
 
-    require('mason-null-ls').setup({
-      ensure_installed = nil,
-      automatic_installation = true,
+    -- Add eslint_d only if command exists
+    if vim.fn.executable("eslint_d") == 1 then
+      table.insert(sources, require("none-ls.diagnostics.eslint_d"))
+    end
+
+    null_ls.setup({
+      sources = sources,
+      on_attach = on_attach,
     })
   end
 }
