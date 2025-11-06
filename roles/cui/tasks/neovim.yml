@@ -6,42 +6,32 @@
         state: directory
         mode: "0755"
 
-- name: Debug current working directory
-  debug:
-    msg: "{{ lookup('env', 'PWD') }}"
+- name: Copy plugin manager config
+  copy:
+    src: roles/cui/templates/.config/nvim/lua/config
+    dest: $HOME/.config/nvim/lua
+    directory_mode: 0755
 
-- name: Add symbolic link
-  file:
-    src: "{{ lookup('env', 'PWD') }}/roles/cui/templates/.config/nvim"
-    dest: $HOME/.config/nvim
-    state: link
+- name: Copy plugin settings
+  copy:
+    src: roles/cui/templates/.config/nvim/lua/plugins
+    dest: $HOME/.config/nvim/lua
+    directory_mode: 0755
 
-# - name: Copy plugin manager config
-#   copy:
-#     src: roles/cui/templates/.config/nvim/lua/config
-#     dest: $HOME/.config/nvim/lua
-#     directory_mode: 0755
+- name: Install dependencies of toggleterm.nvim
+  homebrew:
+    name: "{{ item.name }}"
+  with_items:
+    - { name: lazygit }
+    - { name: lazydocker }
+    - { name: ripgrep }
 
-# - name: Copy plugin settings
-#   copy:
-#     src: roles/cui/templates/.config/nvim/lua/plugins
-#     dest: $HOME/.config/nvim/lua
-#     directory_mode: 0755
+- name: Create config file
+  template:
+    src: roles/cui/templates/.config/nvim/init.vim
+    dest: $HOME/.config/nvim/init.vim
 
-# - name: Install dependencies of toggleterm.nvim
-#   homebrew:
-#     name: "{{ item.name }}"
-#   with_items:
-#     - { name: lazygit }
-#     - { name: lazydocker }
-#     - { name: ripgrep }
-
-# - name: Create config file
-#   template:
-#     src: roles/cui/templates/.config/nvim/init.vim
-#     dest: $HOME/.config/nvim/init.vim
-
-# - name: Create plugin lock file
-#   template:
-#     src: roles/cui/templates/.config/nvim/lazy-lock.json
-#     dest: $HOME/.config/nvim/lazy-lock.json
+- name: Create plugin lock file
+  template:
+    src: roles/cui/templates/.config/nvim/lazy-lock.json
+    dest: $HOME/.config/nvim/lazy-lock.json
