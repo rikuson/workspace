@@ -1,7 +1,11 @@
 return {
   "stevearc/oil.nvim",
+  lazy = false,
   opts = {},
   dependencies = { "nvim-tree/nvim-web-devicons" },
+  keys = {
+    { "<C-w>.", "<CMD>Oil<CR>", desc = "Open parent directory", mode = "n" },
+  },
   config = function()
     require("oil").setup({
       default_file_explorer = true,
@@ -15,10 +19,8 @@ return {
         ["<C-s>"] = false,
         ["<C-h>"] = false,
         ["<C-t>"] = false,
+        ["<BS>"] = "actions.parent",
       },
     })
-
-    -- Keymap to open oil.nvim with <C-w>.
-    vim.keymap.set("n", "<C-w>.", "<CMD>Oil<CR>", { desc = "Open parent directory" })
   end,
 }
