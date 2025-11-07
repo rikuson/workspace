@@ -1,5 +1,12 @@
 return {
   "nvim-telescope/telescope.nvim",
+  keys = {
+    { '<leader>fg', '<cmd>Telescope git_files<cr>', desc = 'Git Files' },
+    { '<leader>gs', '<cmd>Telescope git_status<cr>', desc = 'Git Status' },
+    { '<leader>fb', '<cmd>Telescope buffers<cr>', desc = 'Buffers' },
+    { '<leader>sg', '<cmd>Telescope live_grep<cr>', desc = 'Grep' },
+    { '<leader>fr', '<cmd>Telescope oldfiles<cr>', desc = 'Recent' },
+  },
   config = function()
     local actions = require "telescope.actions"
     require('telescope').setup{
@@ -21,10 +28,5 @@ return {
         }
       }
     }
-    vim.keymap.set('n', '<leader>f', '<cmd>Telescope git_files<cr>')
-    vim.keymap.set('n', '<Leader>s', '<cmd>Telescope git_status<cr>')
-    vim.keymap.set('n', '<leader>b', '<cmd>Telescope buffers<cr>')
-    vim.keymap.set('n', '<leader>g', '<cmd>Telescope live_grep<cr>')
-    vim.keymap.set('n', '<leader>h', '<cmd>Telescope oldfiles<cr>')
   end
 }

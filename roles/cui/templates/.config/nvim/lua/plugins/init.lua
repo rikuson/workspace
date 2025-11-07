@@ -4,7 +4,6 @@ return {
 	{ "andymass/vim-matchup" },
 	{ "editorconfig/editorconfig-vim" },
 	{ "folke/trouble.nvim" },
-	{ "folke/which-key.nvim" },
 	{ "hashivim/vim-terraform" },
 	{ "hrsh7th/cmp-buffer" },
 	{ "hrsh7th/cmp-cmdline" },

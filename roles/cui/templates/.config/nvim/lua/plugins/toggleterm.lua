@@ -1,5 +1,10 @@
 return {
   "akinsho/toggleterm.nvim",
+  keys = {
+    { "<leader>gz", "<cmd>lua _lazygit_toggle()<CR>", desc = "Lazygit", mode = "n" },
+    { "<leader>dz", "<cmd>lua _lazydocker_toggle()<CR>", desc = "Lazydocker", mode = "n" },
+    { "<leader>t", "<cmd>ToggleTerm<CR>", desc = "Terminal", mode = "n" },
+  },
   config = function()
     require("toggleterm").setup()
     local Terminal = require("toggleterm.terminal").Terminal
@@ -21,9 +26,5 @@ return {
     function _lazydocker_toggle()
       lazydocker:toggle()
     end
-
-    vim.api.nvim_set_keymap("n", "<leader>z", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
-    vim.api.nvim_set_keymap("n", "<leader>d", "<cmd>lua _lazydocker_toggle()<CR>", { noremap = true, silent = true })
-    vim.api.nvim_set_keymap("n", "<leader>t", "<cmd>ToggleTerm<CR>", { noremap = true, silent = true })
   end
 }
