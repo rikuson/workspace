@@ -1,5 +1,6 @@
 return {
   "stevearc/oil.nvim",
+  lazy = false,
   opts = {},
   dependencies = { "nvim-tree/nvim-web-devicons" },
   keys = {
@@ -18,6 +19,7 @@ return {
         ["<C-s>"] = false,
         ["<C-h>"] = false,
         ["<C-t>"] = false,
+        ["<BS>"] = "actions.parent",
       },
     })
   end,
