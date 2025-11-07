@@ -1,12 +1,12 @@
 return {
   "neovim/nvim-lspconfig",
+  dependencies = {
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+  },
   config = function()
+    -- Ensure Mason is set up first (if not already done by another plugin)
     require("mason").setup()
-    require("mason-lspconfig").setup({ automatic_installation = true })
-    local status, nvim_lsp = pcall(require, "lspconfig")
-    if (not status) then return end
-
-    local protocol = require('vim.lsp.protocol')
 
     local on_attach = function(client, bufnr)
       -- Disable syntax highlighting
@@ -18,11 +18,18 @@ return {
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
     end
 
-    nvim_lsp.rust_analyzer.setup{
-      on_attach = on_attach,
-    }
-    nvim_lsp.ts_ls.setup{
-      on_attach = on_attach,
-    }
+    -- Set up mason-lspconfig with handlers
+    require("mason-lspconfig").setup({
+      ensure_installed = { "rust_analyzer", "ts_ls" },
+      automatic_installation = true,
+      handlers = {
+        -- Default handler - will be called for each installed server
+        function(server_name)
+          require("lspconfig")[server_name].setup({
+            on_attach = on_attach,
+          })
+        end,
+      },
+    })
   end
 }
