@@ -6,6 +6,11 @@
         state: directory
         mode: "0755"
 
+- name: Copy lazygit config
+  template:
+    src: roles/cui/templates/.config/lazygit/config.yml
+    dest: $HOME/.config/lazygit/config.yml
+
 - name: Copy plugin manager config
   copy:
     src: roles/cui/templates/.config/nvim/lua/config
