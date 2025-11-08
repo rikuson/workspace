@@ -73,7 +73,12 @@ return {
     end
   },
 	{ "tpope/vim-abolish" },
-	{ "tpope/vim-fugitive" },
+	{
+		"tpope/vim-fugitive",
+		keys = {
+			{ "<leader>gb", "<cmd>Git blame<cr>", desc = "Git Blame" },
+		},
+	},
 	{ "williamboman/mason-lspconfig.nvim" },
 	{ "williamboman/mason.nvim" },
 	{ "windwp/nvim-ts-autotag" },
