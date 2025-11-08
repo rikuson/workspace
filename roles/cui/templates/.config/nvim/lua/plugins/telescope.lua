@@ -1,11 +1,12 @@
 return {
   "nvim-telescope/telescope.nvim",
   keys = {
-    { '<leader>fg', '<cmd>Telescope git_files<cr>', desc = 'Git Files' },
-    { '<leader>gs', '<cmd>Telescope git_status<cr>', desc = 'Git Status' },
-    { '<leader>fb', '<cmd>Telescope buffers<cr>', desc = 'Buffers' },
-    { '<leader>sg', '<cmd>Telescope live_grep<cr>', desc = 'Grep' },
-    { '<leader>fr', '<cmd>Telescope oldfiles<cr>', desc = 'Recent' },
+    { '<leader>fb', function() require('telescope.builtin').buffers() end, desc = 'Buffers' },
+    { '<leader>ff', function() require('telescope.builtin').find_files() end, desc = 'Find Files' },
+    { '<leader>fg', function() require('telescope.builtin').git_files() end, desc = 'Git Files' },
+    { '<leader>fr', function() require('telescope.builtin').oldfiles() end, desc = 'Recent' },
+    { '<leader>gs', function() require('telescope.builtin').git_status() end, desc = 'Git Status' },
+    { '<leader>sg', function() require('telescope.builtin').live_grep() end, desc = 'Grep' },
   },
   config = function()
     local actions = require "telescope.actions"
