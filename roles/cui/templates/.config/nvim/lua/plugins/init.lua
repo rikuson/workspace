@@ -75,8 +75,10 @@ return {
 	{ "tpope/vim-abolish" },
 	{
 		"tpope/vim-fugitive",
+		cmd = { "Git", "Gdiffsplit", "Gvdiffsplit", "Gread", "Gwrite", "Ggrep", "GMove", "GDelete", "GBrowse" },
 		keys = {
 			{ "<leader>gb", "<cmd>Git blame<cr>", desc = "Git Blame" },
+			{ "<leader>gd", "<cmd>Gvdiffsplit<cr>", desc = "Git Diff" },
 		},
 	},
 	{ "williamboman/mason-lspconfig.nvim" },
