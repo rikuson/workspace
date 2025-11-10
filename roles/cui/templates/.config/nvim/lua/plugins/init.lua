@@ -31,7 +31,12 @@ return {
       vim.g.highlightedyank_highlight_duration = 500
     end,
   },
-	{ "mbbill/undotree" },
+	{
+    "mbbill/undotree",
+    keys = {
+      { "<leader>su", "<cmd>UndotreeToggle<cr>", desc = "Undotree Toggle" },
+    },
+  },
 	{ "mg979/vim-visual-multi" },
   {
     "rachartier/tiny-inline-diagnostic.nvim",
