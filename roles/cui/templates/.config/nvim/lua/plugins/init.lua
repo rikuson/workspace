@@ -28,7 +28,8 @@ return {
 	{
     "machakann/vim-highlightedyank",
     config = function()
-      vim.g.highlightedyank_highlight_duration = 500
+      local constants = require("config.constants")
+      vim.g.highlightedyank_highlight_duration = constants.timers.highlight_yank_duration
     end,
   },
 	{
@@ -41,7 +42,7 @@ return {
   {
     "rachartier/tiny-inline-diagnostic.nvim",
     event = "LspAttach",
-    priority = 1000, -- needs to be loaded in first
+    priority = function() return require("config.constants").priorities.tiny_inline_diagnostic end,
     config = function()
       vim.diagnostic.config({ virtual_text = false })
       require('tiny-inline-diagnostic').setup({
@@ -87,6 +88,5 @@ return {
 		},
 	},
 	{ "williamboman/mason-lspconfig.nvim" },
-	{ "williamboman/mason.nvim" },
 	{ "windwp/nvim-ts-autotag" },
 }

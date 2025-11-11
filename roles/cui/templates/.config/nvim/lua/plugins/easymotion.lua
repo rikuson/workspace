@@ -23,25 +23,52 @@ return {
     vim.g.EasyMotion_do_mapping = 0 -- Disable default mappings
   end,
   config = function()
-    vim.api.nvim_create_autocmd("User", {pattern = {"EasyMotionPromptBegin"}, callback = function() vim.diagnostic.disable() end})
-    function check_easymotion()
-      local timer = vim.loop.new_timer()
-      timer:start(500, 0, vim.schedule_wrap(function()
-        -- vim.notify("check_easymotion")
-        if vim.fn["EasyMotion#is_active"]() == 0 then
-          vim.diagnostic.enable()
-          vim.g.waiting_for_easy_motion = false
-        else
-          check_easymotion()
-        end
-      end))
+    local constants = require("config.constants")
+    local easymotion_timer = nil
+
+    local function stop_easymotion_poll()
+      if easymotion_timer then
+        easymotion_timer:stop()
+        easymotion_timer:close()
+        easymotion_timer = nil
+      end
     end
+
+    local function start_easymotion_poll()
+      -- Only start one poll at a time
+      stop_easymotion_poll()
+
+      easymotion_timer = vim.uv.new_timer()
+      easymotion_timer:start(
+        constants.timers.easymotion_poll_interval,
+        constants.timers.easymotion_poll_interval,
+        vim.schedule_wrap(function()
+          if vim.fn["EasyMotion#is_active"]() == 0 then
+            vim.diagnostic.enable()
+            stop_easymotion_poll()
+          end
+        end)
+      )
+    end
+
+    vim.api.nvim_create_autocmd("User", {
+      pattern = {"EasyMotionPromptBegin"},
+      callback = function()
+        vim.diagnostic.disable()
+      end
+    })
+
     vim.api.nvim_create_autocmd("User", {
       pattern = "EasyMotionPromptEnd",
       callback = function()
-        if vim.g.waiting_for_easy_motion then return end
-        vim.g.waiting_for_easy_motion = true
-        check_easymotion()
+        start_easymotion_poll()
+      end
+    })
+
+    -- Cleanup on VimLeave
+    vim.api.nvim_create_autocmd("VimLeave", {
+      callback = function()
+        stop_easymotion_poll()
       end
     })
   end

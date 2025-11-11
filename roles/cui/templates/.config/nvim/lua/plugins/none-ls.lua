@@ -6,16 +6,21 @@ return {
     "jay-babu/mason-null-ls.nvim",
   },
   config = function()
-    -- Ensure Mason is set up first
-    require("mason").setup()
+    local utils = require("config.utils")
 
-    -- Set up mason-null-ls BEFORE null-ls
-    require('mason-null-ls').setup({
-      ensure_installed = { "eslint_d" },
-      automatic_installation = true,
-    })
+    -- Set up mason-null-ls (Mason is already initialized by mason.lua)
+    local mason_null_ls = utils.safe_require("mason-null-ls")
+    if not mason_null_ls then return end
 
-    local null_ls = require('null-ls')
+    local null_ls = utils.safe_require("null-ls")
+    if not null_ls then return end
+
+    utils.safe_execute(function()
+      mason_null_ls.setup({
+        ensure_installed = { "eslint_d" },
+        automatic_installation = true,
+      })
+    end, "mason-null-ls.setup")
 
     local lsp_formatting = function(bufnr)
       vim.lsp.buf.format({
@@ -51,12 +56,17 @@ return {
 
     -- Add eslint_d only if command exists
     if vim.fn.executable("eslint_d") == 1 then
-      table.insert(sources, require("none-ls.diagnostics.eslint_d"))
+      local eslint_d = utils.safe_require("none-ls.diagnostics.eslint_d")
+      if eslint_d then
+        table.insert(sources, eslint_d)
+      end
     end
 
-    null_ls.setup({
-      sources = sources,
-      on_attach = on_attach,
-    })
+    utils.safe_execute(function()
+      null_ls.setup({
+        sources = sources,
+        on_attach = on_attach,
+      })
+    end, "null-ls.setup")
   end
 }
