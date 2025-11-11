@@ -28,6 +28,15 @@ return {
 
     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
+    -- Default: formatting enabled
+    vim.g.disable_autoformat = false
+
+    -- Toggle command
+    vim.api.nvim_create_user_command('ToggleAutoFormat', function()
+      vim.g.disable_autoformat = not vim.g.disable_autoformat
+      print('Format on save: ' .. (vim.g.disable_autoformat and 'disabled' or 'enabled'))
+    end, {})
+
     -- Fix on save
     local on_attach = function(client, bufnr)
       if client.supports_method("textDocument/formatting") then
@@ -36,7 +45,9 @@ return {
           group = augroup,
           buffer = bufnr,
           callback = function()
-            lsp_formatting(bufnr)
+            if not vim.g.disable_autoformat then
+              lsp_formatting(bufnr)
+            end
           end,
         })
       end
