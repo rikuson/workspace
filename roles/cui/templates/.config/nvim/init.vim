@@ -41,7 +41,6 @@ xmap s <Nop>
 nnoremap Q gq
 
 " Pane
-nnoremap <C-w>t :<C-u>tabnew<Space>%<Cr>
 nnoremap <C-w>w :<C-u>w<Cr>
 nnoremap <C-w>n gt
 nnoremap <C-w>p gT

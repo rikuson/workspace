@@ -7,6 +7,7 @@ return {
     { "<C-w>e", "<CMD>Oil<CR>", desc = "Open filer in current buffer", mode = "n" },
     { "<C-w>v", "<CMD>vsplit | Oil<CR>", desc = "Open filer in vertical split", mode = "n" },
     { "<C-w>s", "<CMD>split | Oil<CR>", desc = "Open filer in horizontal split", mode = "n" },
+    { "<C-w>t", "<CMD>tabnew | Oil<CR>", desc = "Open filer in new tab", mode = "n" },
   },
   config = function()
     require("oil").setup({
