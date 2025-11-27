@@ -8,6 +8,8 @@ return {
 
     -- Register key groups
     wk.add({
+      { "<leader>b", group = "Buffer" },
+      { "<leader>br", desc = "Refresh Buffer" },
       { "<leader>f", group = "File" },
       { "<leader>g", group = "Git" },
       { "<leader>d", group = "Docker" },
