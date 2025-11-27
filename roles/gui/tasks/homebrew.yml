@@ -9,3 +9,4 @@
     - { name: google-chrome }
     - { name: rectangle }
     - { name: typora }
+    - { name: wezterm@nightly }
