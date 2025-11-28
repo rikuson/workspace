@@ -12,7 +12,6 @@ inoremap <Left> <C-d>
 " Leader
 noremap <space> <Nop>
 let mapleader=" "
-nnoremap <leader>br :<C-u>edit<Cr>
 
 " FIXME: ft_sqlの関数がマッピングされててSQLファイルで<C-c>の実行が遅い
 inoremap <C-l> <Esc>
