@@ -30,10 +30,6 @@ return {
     local floatterm = Terminal:new({
       direction = "float",
       hidden = true,
-      float_opts = {
-        width = 100,
-        height = 30,
-      }
     })
     function _floatterm_toggle()
       floatterm:toggle()
