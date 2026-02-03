@@ -12,7 +12,7 @@ abort() {
 [[ -e $HOME/workspace ]] && abort '`workspace` directory already exists.'
 
 # Install homebrew
-/bin/bash -c `curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh`
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Add Homebrew to PATH for this session
 if [[ -d /opt/homebrew ]]; then
