@@ -14,10 +14,15 @@ abort() {
 # Install homebrew
 /bin/bash -c `curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh`
 
+# Add Homebrew to PATH for this session
+if [[ -d /opt/homebrew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -d /usr/local/Homebrew ]]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+fi
+
 # Install oh-my-zsh
 sh -c `curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh`
-
-source "$(pwd)/roles/cui/templates/.zshrc"
 
 brew update
 brew upgrade
