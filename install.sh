@@ -22,7 +22,7 @@ elif [[ -d /usr/local/Homebrew ]]; then
 fi
 
 # Install oh-my-zsh
-sh -c `curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh`
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 brew update
 brew upgrade
