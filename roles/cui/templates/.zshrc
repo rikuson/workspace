@@ -15,8 +15,6 @@ if [[ -d $HOME/.oh-my-zsh ]]; then
     asdf
     direnv
     fzf
-    jump
-    pass
     zsh-syntax-highlighting
     zsh-autosuggestions
   )

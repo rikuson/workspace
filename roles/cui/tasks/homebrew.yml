@@ -40,38 +40,11 @@
     name: "{{ item.name }}"
   with_items:
     - { name: httpie }
-    - { name: jump }
 
 - name: Create .tmux.conf
   template:
     src: roles/cui/templates/.tmux.conf
     dest: $HOME
-
-- name: Install pass
-  homebrew:
-    name: "{{ item.name }}"
-  with_items:
-    - { name: pass }
-    - { name: pass-otp }
-    - { name: pinentry-mac }
-- name: Create gnupg directory
-  file:
-    path: $HOME/.gnupg
-    state: directory
-    mode: "0700"
-- name: Create conf
-  copy:
-    content: ""
-    dest: $HOME/.gnupg/gpg-agent.conf
-    force: no
-- name: Get path of pinentry-mac
-  shell: which pinentry-mac
-  register: pinentry_mac_path
-  changed_when: false
-- name: Change config
-  lineinfile:
-    path: $HOME/.gnupg/gpg-agent.conf
-    line: "pinentry-program {{ pinentry_mac_path.stdout }}"
 
 - name: Set up lsd
   blockinfile:

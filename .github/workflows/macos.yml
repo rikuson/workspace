@@ -44,8 +44,6 @@ jobs:
           key: cui-${{ runner.os }}-nvim-${{ hashFiles('roles/*/tasks/neovim.yml') }}
           restore-keys: |
             cui-${{ runner.os }}-nvim-
-      - name: Relink homebrew
-        run: brew link --overwrite ansible pinentry-mac asdf || true
       - name: Install
         run: /bin/zsh ./install.sh
       - name: Play cui tasks
