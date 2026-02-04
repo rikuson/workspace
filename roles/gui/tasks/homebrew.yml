@@ -7,5 +7,4 @@
     - { name: drawio }
     - { name: dynalist }
     - { name: google-chrome }
-    - { name: rectangle }
     - { name: typora }

@@ -28,7 +28,7 @@ The repository uses four independent Ansible roles, each with specific responsib
    - Password management with pass/pass-otp
 
 2. **gui**: Installs GUI applications via Homebrew cask
-   - Docker, Google Chrome, Rectangle, Typora, Clipy, etc.
+   - Docker, Google Chrome, Typora, Clipy, etc.
 
 3. **os**: Configures macOS system preferences via osx_defaults
    - Trackpad settings (three-finger drag, tap-to-click)
