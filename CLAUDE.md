@@ -25,7 +25,6 @@ The repository uses four independent Ansible roles, each with specific responsib
    - Neovim configuration with Lazy.nvim plugin manager
    - Oh My Zsh and shell customizations
    - Git configuration
-   - Password management with pass/pass-otp
 
 2. **gui**: Installs GUI applications via Homebrew cask
    - Docker, Google Chrome, Rectangle, Typora, Clipy, etc.
