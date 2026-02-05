@@ -2,33 +2,21 @@
 
 ## Install
 
-Generate ssh keypair and register public key on GitHub.
-
 ```bash
+# Generate ssh keypair and register public key on GitHub
 ssh-keygen -t ed25519
-```
 
-Install Homebrew.
-
-```bash
+# Install Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
 
-Install Oh My Zsh.
-
-```bash
+# Install Oh My Zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-```
 
-Clone this repository.
-
-```bash
+# Clone this repository
 git clone git@github.com:rikuson/workspace.git ~/workspace
-```
 
-Install Ansible and run the playbook.
-
-```bash
+# Install Ansible and run the playbook
+brew update && brew upgrade
 brew install ansible
 cd ~/workspace && make
 ```
