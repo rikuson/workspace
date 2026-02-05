@@ -42,9 +42,7 @@ jobs:
           restore-keys: |
             cui-${{ runner.os }}-nvim-
       - name: Install
-        run: |
-          brew update && brew upgrade
-          brew install ansible
+        run: brew install ansible
       - name: Play cui tasks
         run: make cui
   os:
@@ -75,8 +73,6 @@ jobs:
           restore-keys: |
             os-${{ runner.os }}-asdf-
       - name: Install
-        run: |
-          brew update && brew upgrade
-          brew install ansible
+        run: brew install ansible
       - name: Play os tasks
         run: make os
