@@ -2,19 +2,24 @@
 
 ## Install
 
-Generate ssh keypair and register public key on GitHub.
-
 ```bash
+# Generate ssh keypair and register public key on GitHub
 ssh-keygen -t ed25519
+
+# Install Homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Install Oh My Zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# Clone this repository
+git clone git@github.com:rikuson/workspace.git ~/workspace
+
+# Install Ansible and run the playbook
+brew update && brew upgrade
+brew install ansible
+cd ~/workspace && make
 ```
-
-Run install script.
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/rikuson/workspace/HEAD/install.sh | zsh -
-```
-
-Restart terminal and run `make`.
 
 ## Terminal font setting
 

@@ -6,9 +6,6 @@ on:
   pull_request:
     branches: [master]
 
-env:
-  WORKSPACE_REPOSITORY_URL: https://github.com/rikuson/workspace.git
-
 jobs:
   cui:
     runs-on: macos-14
@@ -18,7 +15,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /Library/Ruby/Gems
-          key: cui-${{ runner.os }}-gem-${{ hashFiles('install.sh') }}
+          key: cui-${{ runner.os }}-gem
           restore-keys: |
             cui-${{ runner.os }}-gem-
       - name: Cache homebrew
@@ -27,14 +24,14 @@ jobs:
           path: |
             /usr/local/Cellar
             /Users/runner/Library/Caches/Homebrew
-          key: cui-${{ runner.os }}-homebrew-packages-${{ hashFiles('install.sh', 'roles/*/tasks/homebrew.yml') }}
+          key: cui-${{ runner.os }}-homebrew-packages-${{ hashFiles('roles/*/tasks/homebrew.yml') }}
           restore-keys: |
             cui-${{ runner.os }}-homebrew-packages-
       - name: Cache asdf
         uses: actions/cache@v4
         with:
           path: /Users/runner/.asdf
-          key: cui-${{ runner.os }}-asdf-${{ hashFiles('install.sh') }}
+          key: cui-${{ runner.os }}-asdf
           restore-keys: |
             cui-${{ runner.os }}-asdf-
       - name: Cache neovim plugin
@@ -45,7 +42,9 @@ jobs:
           restore-keys: |
             cui-${{ runner.os }}-nvim-
       - name: Install
-        run: /bin/zsh ./install.sh
+        run: |
+          brew update && brew upgrade
+          brew install ansible
       - name: Play cui tasks
         run: make cui
   os:
@@ -56,7 +55,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /Library/Ruby/Gems
-          key: os-${{ runner.os }}-gem-${{ hashFiles('install.sh') }}
+          key: os-${{ runner.os }}-gem
           restore-keys: |
             os-${{ runner.os }}-gem-
       - name: Cache homebrew
@@ -65,19 +64,19 @@ jobs:
           path: |
             /usr/local/Cellar
             /Users/runner/Library/Caches/Homebrew
-          key: os-${{ runner.os }}-homebrew-packages-${{ hashFiles('install.sh', 'roles/*/tasks/homebrew.yml') }}
+          key: os-${{ runner.os }}-homebrew-packages-${{ hashFiles('roles/*/tasks/homebrew.yml') }}
           restore-keys: |
             os-${{ runner.os }}-homebrew-packages-
       - name: Cache asdf
         uses: actions/cache@v4
         with:
           path: /Users/runner/.asdf
-          key: os-${{ runner.os }}-asdf-${{ hashFiles('install.sh') }}
+          key: os-${{ runner.os }}-asdf
           restore-keys: |
             os-${{ runner.os }}-asdf-
-      - name: Relink homebrew
-        run: brew link --overwrite ansible || true
       - name: Install
-        run: /bin/zsh ./install.sh
+        run: |
+          brew update && brew upgrade
+          brew install ansible
       - name: Play os tasks
         run: make os
