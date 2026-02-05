@@ -102,13 +102,6 @@
     value: true
   notify: Restart Finder
 
-- name: Avoid opening mission control
-  osx_defaults:
-    domain: com.apple.spaces
-    key: spans-displays
-    type: bool
-    value: true
-
 - name: Disable automatic spelling correction
   osx_defaults:
     domain: "{{ item.domain }}"
