@@ -22,6 +22,7 @@
 
 - name: Install Poetry using the official installer
   shell: |
+    source $(brew --prefix asdf)/libexec/asdf.sh
     curl -sSL https://install.python-poetry.org | python3
   args:
     executable: /bin/bash
