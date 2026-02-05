@@ -10,6 +10,7 @@
     - { name: ffmpeg }
     - { name: font-fira-code-nerd-font }
     - { name: fzf }
+    - { name: gh }
     - { name: ghc }
     - { name: git } # Use homebrew based git
     - { name: gnu-sed }
@@ -29,8 +30,8 @@
     - { name: qrencode }
     - { name: tmux }
     - { name: yarn }
-    - { name: yt-dlp }
     - { name: yq }
+    - { name: yt-dlp }
 
 - name: Install brew cask packages
   homebrew_cask:
