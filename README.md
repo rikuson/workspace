@@ -8,13 +8,30 @@ Generate ssh keypair and register public key on GitHub.
 ssh-keygen -t ed25519
 ```
 
-Run install script.
+Install Homebrew.
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/rikuson/workspace/HEAD/install.sh | zsh -
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-Restart terminal and run `make`.
+Install Oh My Zsh.
+
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+Clone this repository.
+
+```bash
+git clone git@github.com:rikuson/workspace.git ~/workspace
+```
+
+Install Ansible and run the playbook.
+
+```bash
+brew install ansible
+cd ~/workspace && make
+```
 
 ## Terminal font setting
 
