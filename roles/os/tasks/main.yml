@@ -102,6 +102,14 @@
     value: true
   notify: Restart Finder
 
+- name: Disable entering mission control by top window drag
+  osx_defaults:
+    domain: com.apple.dock
+    key: enterMissionControlByTopWindowDrag
+    type: bool
+    value: false
+  notify: Restart Dock
+
 - name: Disable automatic spelling correction
   osx_defaults:
     domain: "{{ item.domain }}"
