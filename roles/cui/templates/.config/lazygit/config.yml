@@ -10,3 +10,16 @@ customCommands:
   - key: "<c-t>"
     context: "files"
     command: "[ -z $NVIM ] && (nvim -- {{ '{{.SelectedFile.Name}}' }}) || (nvim --server $NVIM --remote-send 'q<C-\\><C-n>:tabnew {{ '{{.SelectedFile.Name}}' }}<CR>')"
+  - key: "<c-n>"
+    context: "localBranches"
+    command: >-
+      RAND_NAME=$(shuf -n 2 /usr/share/dict/words | tr -cd 'a-zA-Z\n' | tr 'A-Z' 'a-z' | paste -sd- -)
+      && REPO_NAME=$(basename "$(git rev-parse --show-toplevel)")
+      && WORKTREE_PATH="$HOME/.claude-worktrees/$REPO_NAME/$RAND_NAME"
+      && mkdir -p "$(dirname "$WORKTREE_PATH")"
+      && git worktree add -b "$RAND_NAME" "$WORKTREE_PATH" > /dev/null 2>&1
+      && echo "Branch: $RAND_NAME"
+      && echo "Path:   $WORKTREE_PATH"
+    description: "Create a new worktree with a random name"
+    loadingText: "Creating worktree..."
+    showOutput: true
