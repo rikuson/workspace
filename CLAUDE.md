@@ -53,7 +53,7 @@ Neovim is configured using Lazy.nvim as the plugin manager with modular Lua conf
 - Individual plugin configs in `.config/nvim/lua/plugins/` including:
   - LSP (nvim-lspconfig, none-ls)
   - Completion (nvim-cmp)
-  - Navigation (telescope, easymotion)
+  - Navigation (telescope, flash.nvim)
   - UI (lualine, bufferline)
   - Git integration (lazygit via toggleterm)
   - Code editing (treesitter, nvim-autopairs, nvim-surround)
