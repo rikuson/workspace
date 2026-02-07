@@ -1,0 +1,11 @@
+---
+- name: Create WezTerm config directory
+  file:
+    path: $HOME/.config/wezterm
+    state: directory
+    mode: "0755"
+
+- name: Copy WezTerm config
+  template:
+    src: roles/gui/templates/.wezterm.lua
+    dest: $HOME/.config/wezterm/wezterm.lua

@@ -8,3 +8,4 @@
     - { name: dynalist }
     - { name: google-chrome }
     - { name: typora }
+    - { name: wezterm@nightly }
