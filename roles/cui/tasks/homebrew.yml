@@ -6,6 +6,7 @@
     - { name: bat }
     - { name: binaryen }
     - { name: cmake }
+    - { name: coreutils }
     - { name: direnv }
     - { name: ffmpeg }
     - { name: font-fira-code-nerd-font }
