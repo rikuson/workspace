@@ -22,3 +22,5 @@ tags
 *.retry
 
 *.orig
+
+.claude/settings.local.json
