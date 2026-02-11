@@ -13,9 +13,10 @@ customCommands:
   - key: "<c-n>"
     context: "localBranches"
     command: >-
-      RAND_NAME=$(shuf -n 2 /usr/share/dict/words | tr -cd 'a-zA-Z\n' | tr 'A-Z' 'a-z' | paste -sd- -)
+      RAND_NAME=$(gshuf -n 2 /usr/share/dict/words | tr -cd 'a-zA-Z\n' | tr 'A-Z' 'a-z' | paste -sd- -)
       && REPO_ROOT=$(git rev-parse --show-toplevel)
       && REPO_NAME=$(basename "$REPO_ROOT")
+
       && WORKTREE_PATH="$HOME/.claude-worktrees/$REPO_NAME/$RAND_NAME"
       && mkdir -p "$(dirname "$WORKTREE_PATH")"
       && git worktree add -b "$RAND_NAME" "$WORKTREE_PATH" > /dev/null 2>&1

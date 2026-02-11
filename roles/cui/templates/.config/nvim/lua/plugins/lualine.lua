@@ -4,9 +4,15 @@ return {
     require('lualine').setup({
       options = {
         section_separators = { left = '', right = ''},
-        sections = {
-          lualine_a = {},
-        }
+      },
+      sections = {
+        lualine_a = {},
+        lualine_c = {
+          {
+            'filename',
+            path = 4,
+          },
+        },
       },
     })
   end
