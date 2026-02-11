@@ -22,7 +22,10 @@ return {
     local lazygit = Terminal:new({
       cmd = "lazygit",
       direction = "float",
-      hidden = true
+      hidden = true,
+      on_open = function(term)
+        vim.keymap.del("t", "<C-[>", { buffer = term.bufnr })
+      end,
     })
     function _lazygit_toggle()
       lazygit:toggle()
@@ -31,7 +34,10 @@ return {
     local lazydocker = Terminal:new({
       cmd = "lazydocker",
       direction = "float",
-      hidden = true
+      hidden = true,
+      on_open = function(term)
+        vim.keymap.del("t", "<C-[>", { buffer = term.bufnr })
+      end,
     })
     function _lazydocker_toggle()
       lazydocker:toggle()
