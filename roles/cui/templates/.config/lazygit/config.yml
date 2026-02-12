@@ -14,10 +14,13 @@ customCommands:
     context: "localBranches"
     command: >-
       RAND_NAME=$(gshuf -n 2 /usr/share/dict/words | tr -cd 'a-zA-Z\n' | tr 'A-Z' 'a-z' | paste -sd- -)
-      && REPO_NAME=$(basename "$(git rev-parse --show-toplevel)")
+      && REPO_ROOT=$(git rev-parse --show-toplevel)
+      && REPO_NAME=$(basename "$REPO_ROOT")
+
       && WORKTREE_PATH="$HOME/.claude-worktrees/$REPO_NAME/$RAND_NAME"
       && mkdir -p "$(dirname "$WORKTREE_PATH")"
       && git worktree add -b "$RAND_NAME" "$WORKTREE_PATH" > /dev/null 2>&1
+      && (cd "$REPO_ROOT" && git ls-files --others --ignored --exclude-standard | rsync -a --files-from=- . "$WORKTREE_PATH/")
       && echo "Branch: $RAND_NAME"
       && echo "Path:   $WORKTREE_PATH"
     description: "Create a new worktree with a random name"
