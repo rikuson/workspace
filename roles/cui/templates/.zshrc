@@ -19,6 +19,7 @@ if [[ -d $HOME/.oh-my-zsh ]]; then
     zsh-autosuggestions
   )
   ZSH_THEME="af-magic"
+  DISABLE_UPDATE_PROMPT=true
   source $ZSH/oh-my-zsh.sh
 fi
 
