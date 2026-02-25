@@ -24,3 +24,4 @@ tags
 *.orig
 
 .claude/settings.local.json
+.claude/worktrees/
