@@ -27,7 +27,6 @@ return {
             return {
               line.sep('', hl, theme.fill),
               tab.current_win().file_icon(),
-              tab.number(),
               tab.name(),
               tab.close_btn(''),
               line.sep('', hl, theme.fill),
