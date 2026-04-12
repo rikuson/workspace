@@ -37,23 +37,6 @@ return {
         -- vtsls duplicates ts_ls diagnostics; prevent it from starting
         -- even if Mason auto-installs it
         ["vtsls"] = function() end,
-        -- ts_ls: filter diagnostics that overlap with eslint
-        ["ts_ls"] = function()
-          require("lspconfig").ts_ls.setup({
-            handlers = {
-              ["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
-                if result and result.diagnostics then
-                  result.diagnostics = vim.tbl_filter(function(d)
-                    -- 6133: 'X' is declared but its value is never read (covered by @typescript-eslint/no-unused-vars)
-                    -- 6196: 'X' is declared but never used (covered by @typescript-eslint/no-unused-vars)
-                    return not vim.tbl_contains({ 6133, 6196 }, d.code)
-                  end, result.diagnostics)
-                end
-                vim.lsp.handlers["textDocument/publishDiagnostics"](err, result, ctx, config)
-              end,
-            },
-          })
-        end,
       },
     })
   end
