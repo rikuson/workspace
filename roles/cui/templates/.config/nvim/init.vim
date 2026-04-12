@@ -41,6 +41,10 @@ xmap s <Nop>
 nnoremap Q gq
 
 " Pane
+nnoremap <C-w>e :<C-u>edit<Cr>
+nnoremap <C-w>v :<C-u>vsplit<Cr>
+nnoremap <C-w>s :<C-u>split<Cr>
+nnoremap <C-w>t :<C-u>tabnew %<Cr>
 nnoremap <C-w>w :<C-u>w<Cr>
 nnoremap <C-w>n gt
 nnoremap <C-w>p gT
