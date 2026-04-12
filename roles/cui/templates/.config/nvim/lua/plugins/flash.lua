@@ -4,6 +4,10 @@ return {
   ---@type Flash.Config
   opts = {
     labels = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ;,.[]",
+    label = {
+      before = { 0, 0 },
+      after = false,
+    },
     modes = {
       search = {
         enabled = true,
