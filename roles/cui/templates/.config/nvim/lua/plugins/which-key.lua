@@ -9,7 +9,6 @@ return {
     -- Register key groups
     wk.add({
       { "<leader>b", group = "Buffer" },
-      { "<leader>br", "<cmd>edit<cr>", desc = "Refresh Buffer" },
       { "<leader>bo", "<cmd>%bd|e#|bd#<cr>", desc = "Close Other Buffers" },
       { "<leader>f", group = "File" },
       { "<leader>g", group = "Git" },
