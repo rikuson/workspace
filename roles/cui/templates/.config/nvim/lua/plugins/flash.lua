@@ -3,6 +3,11 @@ return {
   event = "VeryLazy",
   ---@type Flash.Config
   opts = {
+    labels = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ;,.[]",
+    label = {
+      before = { 0, 0 },
+      after = false,
+    },
     modes = {
       search = {
         enabled = true,
@@ -14,14 +19,14 @@ return {
     { "<c-s>j", mode = "n", function()
       require("flash").jump({
         search = { mode = "search", max_length = 0, forward = true, wrap = false, multi_window = false },
-        label = { after = { 0, 0 } },
+        label = { before = { 0, 0 }, after = false },
         pattern = [[^\s*\zs\S]],
       })
     end, desc = "Flash Line Down" },
     { "<c-s>k", mode = "n", function()
       require("flash").jump({
         search = { mode = "search", max_length = 0, forward = false, wrap = false, multi_window = false },
-        label = { after = { 0, 0 } },
+        label = { before = { 0, 0 }, after = false },
         pattern = [[^\s*\zs\S]],
       })
     end, desc = "Flash Line Up" },
@@ -49,5 +54,29 @@ return {
         pattern = [[\S\+]],
       })
     end, desc = "Flash WORD Backward" },
+    { "<c-s>e", mode = "n", function()
+      require("flash").jump({
+        search = { mode = "search", max_length = 0, forward = true, wrap = false, multi_window = false },
+        pattern = [[\w\ze\(\W\|$\)\|\S\ze\(\s\|$\)]],
+      })
+    end, desc = "Flash Word End Forward" },
+    { "<c-s>E", mode = "n", function()
+      require("flash").jump({
+        search = { mode = "search", max_length = 0, forward = true, wrap = false, multi_window = false },
+        pattern = [[\S\ze\(\s\|$\)]],
+      })
+    end, desc = "Flash WORD End Forward" },
+    { "<c-s>ge", mode = "n", function()
+      require("flash").jump({
+        search = { mode = "search", max_length = 0, forward = false, wrap = false, multi_window = false },
+        pattern = [[\w\ze\(\W\|$\)\|\S\ze\(\s\|$\)]],
+      })
+    end, desc = "Flash Word End Backward" },
+    { "<c-s>gE", mode = "n", function()
+      require("flash").jump({
+        search = { mode = "search", max_length = 0, forward = false, wrap = false, multi_window = false },
+        pattern = [[\S\ze\(\s\|$\)]],
+      })
+    end, desc = "Flash WORD End Backward" },
   },
 }
