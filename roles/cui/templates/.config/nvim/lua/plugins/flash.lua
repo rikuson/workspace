@@ -13,7 +13,16 @@ return {
         enabled = true,
       },
     },
+    highlight = {
+      groups = {
+        label = "FlashLabel",
+      },
+    },
   },
+  config = function(_, opts)
+    require("flash").setup(opts)
+    vim.api.nvim_set_hl(0, "FlashLabel", { fg = "#ff0000", bg = "NONE", bold = true })
+  end,
   keys = {
     { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     { "<c-s>j", mode = "n", function()
