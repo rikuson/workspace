@@ -10,7 +10,12 @@ return {
     },
     modes = {
       search = {
-        enabled = true,
+        enabled = false,
+      },
+    },
+    highlight = {
+      groups = {
+        label = "FlashLabel",
       },
     },
     highlight = {
