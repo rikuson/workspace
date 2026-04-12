@@ -11,7 +11,7 @@ return {
 
     -- Set up mason-null-ls BEFORE null-ls
     require('mason-null-ls').setup({
-      ensure_installed = { "eslint_d" },
+      ensure_installed = {},
       automatic_installation = true,
     })
 
@@ -53,17 +53,11 @@ return {
       end
     end
 
-    -- Build sources list, only including eslint_d if available
     local sources = {
       null_ls.builtins.formatting.prettier,
       null_ls.builtins.diagnostics.rubocop,
       null_ls.builtins.formatting.rubocop,
     }
-
-    -- Add eslint_d only if command exists
-    if vim.fn.executable("eslint_d") == 1 then
-      table.insert(sources, require("none-ls.diagnostics.eslint_d"))
-    end
 
     null_ls.setup({
       sources = sources,

@@ -27,13 +27,16 @@ return {
 
     -- Set up mason-lspconfig with handlers
     require("mason-lspconfig").setup({
-      ensure_installed = { "rust_analyzer", "ts_ls" },
+      ensure_installed = { "rust_analyzer", "ts_ls", "eslint" },
       automatic_installation = true,
       handlers = {
         -- Default handler - will be called for each installed server
         function(server_name)
           require("lspconfig")[server_name].setup({})
         end,
+        -- vtsls duplicates ts_ls diagnostics; prevent it from starting
+        -- even if Mason auto-installs it
+        ["vtsls"] = function() end,
       },
     })
   end
