@@ -25,18 +25,6 @@ return {
       end,
     })
 
-    -- Filter ts_ls diagnostics that overlap with eslint
-    local original_handler = vim.lsp.handlers["textDocument/publishDiagnostics"]
-    vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx, ...)
-      local client = vim.lsp.get_client_by_id(ctx.client_id)
-      if client and client.name == "ts_ls" and result and result.diagnostics then
-        result.diagnostics = vim.tbl_filter(function(d)
-          return not vim.tbl_contains({ 6133, 6196 }, d.code)
-        end, result.diagnostics)
-      end
-      return original_handler(err, result, ctx, ...)
-    end
-
     -- Set up mason-lspconfig with handlers
     require("mason-lspconfig").setup({
       ensure_installed = { "rust_analyzer", "ts_ls", "eslint" },
@@ -46,8 +34,26 @@ return {
         function(server_name)
           require("lspconfig")[server_name].setup({})
         end,
-        -- Disable vtsls (duplicates ts_ls diagnostics)
+        -- vtsls duplicates ts_ls diagnostics; prevent it from starting
+        -- even if Mason auto-installs it
         ["vtsls"] = function() end,
+        -- ts_ls: filter diagnostics that overlap with eslint
+        ["ts_ls"] = function()
+          require("lspconfig").ts_ls.setup({
+            handlers = {
+              ["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
+                if result and result.diagnostics then
+                  result.diagnostics = vim.tbl_filter(function(d)
+                    -- 6133: 'X' is declared but its value is never read (covered by @typescript-eslint/no-unused-vars)
+                    -- 6196: 'X' is declared but never used (covered by @typescript-eslint/no-unused-vars)
+                    return not vim.tbl_contains({ 6133, 6196 }, d.code)
+                  end, result.diagnostics)
+                end
+                vim.lsp.handlers["textDocument/publishDiagnostics"](err, result, ctx, config)
+              end,
+            },
+          })
+        end,
       },
     })
   end
