@@ -53,7 +53,7 @@ return {
     { "<c-s>W", mode = "n", function()
       require("flash").jump({
         search = { mode = "search", max_length = 0, forward = true, wrap = false, multi_window = false },
-        pattern = [[\S\+]],
+        pattern = [[\(\s\|^\)\zs\S]],
       })
     end, desc = "Flash WORD Forward" },
     { "<c-s>b", mode = "n", function()
@@ -65,7 +65,7 @@ return {
     { "<c-s>B", mode = "n", function()
       require("flash").jump({
         search = { mode = "search", max_length = 0, forward = false, wrap = false, multi_window = false },
-        pattern = [[\S\+]],
+        pattern = [[\(\s\|^\)\zs\S]],
       })
     end, desc = "Flash WORD Backward" },
     { "<c-s>e", mode = "n", function()
