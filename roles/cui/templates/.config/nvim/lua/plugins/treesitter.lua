@@ -1,8 +1,23 @@
 return {
-  "nvim-treesitter/nvim-treesitter",
-  build = ":TSUpdate",
-  config = function()
-    require("nvim-treesitter").setup()
-    vim.treesitter.language.register("bash", "zsh")
-  end,
+  {
+    "nvim-treesitter/nvim-treesitter",
+    branch = "main",
+    init = function()
+      vim.g.loaded_nvim_treesitter = 1
+    end,
+  },
+  {
+    "lewis6991/ts-install.nvim",
+    config = function()
+      require("ts-install").setup({
+        ensure_install = { "c", "lua", "vim", "vimdoc", "query" },
+        auto_install = true,
+      })
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function(args)
+          pcall(vim.treesitter.start, args.buf)
+        end,
+      })
+    end,
+  },
 }
