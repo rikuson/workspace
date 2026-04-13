@@ -14,6 +14,7 @@ return {
       { "<leader>g", group = "Git" },
       { "<leader>d", group = "Docker" },
       { "<leader>s", group = "Search" },
+      { "gp", group = "LSP Preview" },
     })
   end,
 }
