@@ -2,7 +2,7 @@
 name: uninstall
 description: Uninstall tools, plugins, or applications by updating the Ansible playbook. Use when the user wants to remove a CLI tool, GUI app, Neovim plugin, ASDF runtime, or App Store app.
 argument-hint: "[tool-or-plugin-name]"
-allowed-tools: Read Edit Bash(rm *)
+allowed-tools: Read Edit Glob Bash(rm *)
 ---
 
 # Uninstall Tool/Plugin
@@ -33,8 +33,7 @@ If unclear, search the Ansible files to find where the target is defined. If fou
 
 Read the corresponding Ansible file(s) and confirm the target is present:
 - brew: `roles/cui/tasks/homebrew.yml` (`Install brew packages`)
-- cask (cui): `roles/cui/tasks/homebrew.yml` (`Install brew cask packages`)
-- cask (gui): `roles/gui/tasks/homebrew.yml`
+- cask: check **both** `roles/cui/tasks/homebrew.yml` (`Install brew cask packages`) and `roles/gui/tasks/homebrew.yml`
 - asdf: `roles/cui/tasks/asdf.yml`
 - neovim: files under `roles/cui/templates/.config/nvim/lua/plugins/`
 - appstore: `roles/appstore/tasks/mas.yml`

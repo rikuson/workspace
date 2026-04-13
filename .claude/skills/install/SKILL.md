@@ -2,7 +2,7 @@
 name: install
 description: Install tools, plugins, or applications by updating the Ansible playbook. Use when the user wants to add a new CLI tool, GUI app, Neovim plugin, ASDF runtime, or App Store app.
 argument-hint: "[tool-or-plugin-name]"
-allowed-tools: Read Edit Write WebSearch Bash(brew info *) Bash(brew search *) Bash(mas search *)
+allowed-tools: Read Edit Write WebSearch Bash(brew info *) Bash(brew search *) Bash(mas search *) Bash(asdf *)
 ---
 
 # Install Tool/Plugin
@@ -48,10 +48,9 @@ Skip this question if no additional configuration is needed.
 
 ## Step 2: Check for duplicates
 
-Read the corresponding Ansible file and verify the target is not already present:
+Read the corresponding Ansible file(s) and verify the target is not already present:
 - brew: `roles/cui/tasks/homebrew.yml` (`Install brew packages`)
-- cask (cui): `roles/cui/tasks/homebrew.yml` (`Install brew cask packages`)
-- cask (gui): `roles/gui/tasks/homebrew.yml`
+- cask: check **both** `roles/cui/tasks/homebrew.yml` (`Install brew cask packages`) and `roles/gui/tasks/homebrew.yml`
 - asdf: `roles/cui/tasks/asdf.yml`
 - appstore: `roles/appstore/tasks/mas.yml`
 - neovim: files under `roles/cui/templates/.config/nvim/lua/plugins/`
