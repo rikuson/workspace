@@ -1,10 +1,17 @@
 return {
 	{ "L3MON4D3/LuaSnip" },
-	{ "RRethy/vim-illuminate" },
-	{ "andymass/vim-matchup" },
+	{ "RRethy/vim-illuminate", event = "BufReadPost" },
+	{ "andymass/vim-matchup", event = "BufReadPost" },
 	{ "editorconfig/editorconfig-vim" },
-	{ "folke/trouble.nvim" },
-	{ "hashivim/vim-terraform" },
+	{
+    "folke/trouble.nvim",
+    cmd = "Trouble",
+    keys = {
+      { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics" },
+      { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics" },
+    },
+  },
+	{ "hashivim/vim-terraform", ft = "terraform" },
 	{ "hrsh7th/cmp-buffer" },
 	{ "hrsh7th/cmp-cmdline" },
 	{ "hrsh7th/cmp-nvim-lsp" },
@@ -14,11 +21,13 @@ return {
 	{ "kyazdani42/nvim-web-devicons" },
 	{
     "lewis6991/gitsigns.nvim",
+    event = "BufReadPre",
     config = true,
   },
 	{
 	  "lukas-reineke/indent-blankline.nvim",
 	  main = "ibl",
+	  event = "BufReadPre",
 	  ---@module "ibl"
 	  ---@type ibl.config
 	  opts = {
@@ -37,7 +46,7 @@ return {
       { "<leader>su", "<cmd>UndotreeToggle<cr>", desc = "Undotree Toggle" },
     },
   },
-	{ "mg979/vim-visual-multi" },
+	{ "mg979/vim-visual-multi", event = "BufReadPost" },
   {
     "rachartier/tiny-inline-diagnostic.nvim",
     event = "LspAttach",
@@ -51,7 +60,7 @@ return {
       })
     end
   },
-  { "j-hui/fidget.nvim" },
+  { "j-hui/fidget.nvim", event = "LspAttach", opts = {} },
 	{ "nvim-lua/plenary.nvim" },
 	{ "nvim-telescope/telescope-file-browser.nvim" },
 	{ "nvim-tree/nvim-web-devicons" },
@@ -66,6 +75,7 @@ return {
 	{ "statianzo/vim-jade" },
 	{
     "thinca/vim-quickrun",
+    cmd = "QuickRun",
     config = function()
       if vim.version().major > 8 or (vim.version().major == 8 and vim.version().minor >= 2) then
         vim.g.quickrun_config = {
@@ -77,7 +87,7 @@ return {
       vim.g.quickrun_no_default_key_mappings = 1
     end
   },
-	{ "tpope/vim-abolish" },
+	{ "tpope/vim-abolish", event = "BufReadPost" },
 	{
 		"tpope/vim-fugitive",
 		cmd = { "Git", "Gdiffsplit", "Gvdiffsplit", "Gread", "Gwrite", "Ggrep", "GMove", "GDelete", "GBrowse" },
@@ -88,7 +98,7 @@ return {
 	},
 	{ "williamboman/mason-lspconfig.nvim" },
 	{ "williamboman/mason.nvim" },
-	{ "windwp/nvim-ts-autotag" },
+	{ "windwp/nvim-ts-autotag", event = "InsertEnter" },
 	{
 		"zbirenbaum/copilot.lua",
 		cmd = "Copilot",
