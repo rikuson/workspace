@@ -37,6 +37,8 @@
     dest: $HOME/.config/nvim/init.vim
 
 - name: Create plugin lock file
-  template:
-    src: roles/cui/templates/.config/nvim/lazy-lock.json
+  file:
+    src: "{{ playbook_dir }}/roles/cui/templates/.config/nvim/lazy-lock.json"
     dest: $HOME/.config/nvim/lazy-lock.json
+    state: link
+    force: true
