@@ -122,3 +122,9 @@ augroup VIMRC_EX
   au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
   \ exe "normal g`\"" | endif
 augroup END
+
+" Highlight on yank (replaces vim-highlightedyank)
+augroup YankHighlight
+  au!
+  au TextYankPost * silent! lua vim.hl.on_yank({ timeout = 500 })
+augroup END

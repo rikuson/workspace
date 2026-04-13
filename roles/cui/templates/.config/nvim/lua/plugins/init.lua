@@ -2,16 +2,13 @@ return {
 	{ "L3MON4D3/LuaSnip" },
 	{ "RRethy/vim-illuminate" },
 	{ "andymass/vim-matchup" },
-	{ "editorconfig/editorconfig-vim" },
 	{ "folke/trouble.nvim" },
 	{ "hashivim/vim-terraform" },
 	{ "hrsh7th/cmp-buffer" },
 	{ "hrsh7th/cmp-cmdline" },
 	{ "hrsh7th/cmp-nvim-lsp" },
 	{ "hrsh7th/cmp-path" },
-	{ "itchyny/lightline.vim" },
 	{ "jay-babu/mason-null-ls.nvim" },
-	{ "kyazdani42/nvim-web-devicons" },
 	{
     "lewis6991/gitsigns.nvim",
     config = true,
@@ -25,12 +22,6 @@ return {
 	    indent = { char = '¦' }
 	  },
 	},
-	{
-    "machakann/vim-highlightedyank",
-    config = function()
-      vim.g.highlightedyank_highlight_duration = 500
-    end,
-  },
 	{
     "mbbill/undotree",
     keys = {
@@ -63,7 +54,6 @@ return {
       vim.cmd [[colorscheme kanagawa-dragon]]
     end,
   },
-	{ "statianzo/vim-jade" },
 	{
     "thinca/vim-quickrun",
     config = function()
