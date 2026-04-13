@@ -37,6 +37,7 @@
     - { name: datadog-labs/pack/pup }
     - { name: qrencode }
     - { name: tmux }
+    - { name: tree-sitter-cli }
     - { name: yarn }
     - { name: yq }
     - { name: yt-dlp }
