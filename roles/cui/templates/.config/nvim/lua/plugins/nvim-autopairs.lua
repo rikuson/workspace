@@ -4,7 +4,6 @@ return {
     local npairs = require('nvim-autopairs')
     local cmp = require("cmp")
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-    local ts_utils = require("nvim-treesitter.ts_utils")
     local Rule = require('nvim-autopairs.rule')
     local cond = require('nvim-autopairs.conds')
 
@@ -65,7 +64,8 @@ return {
 
     local default_handler = cmp_autopairs.filetypes["*"]["("].handler
     cmp_autopairs.filetypes["*"]["("].handler = function(char, item, bufnr, rules, commit_character)
-      local node_type = ts_utils.get_node_at_cursor():type()
+      local node = vim.treesitter.get_node()
+      local node_type = node and node:type() or ""
       if ts_node_func_parens_disabled[node_type] then
         if item.data then
           item.data.funcParensDisabled = true
