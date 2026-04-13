@@ -6,7 +6,7 @@ return {
         section_separators = { left = '', right = ''},
       },
       sections = {
-        lualine_a = {},
+        lualine_a = { 'mode' },
         lualine_c = {
           {
             'filename',

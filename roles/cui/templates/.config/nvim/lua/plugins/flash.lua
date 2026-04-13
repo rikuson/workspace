@@ -18,11 +18,6 @@ return {
         label = "FlashLabel",
       },
     },
-    highlight = {
-      groups = {
-        label = "FlashLabel",
-      },
-    },
   },
   config = function(_, opts)
     require("flash").setup(opts)
