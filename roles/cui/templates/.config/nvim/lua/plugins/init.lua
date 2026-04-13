@@ -89,4 +89,15 @@ return {
 	{ "williamboman/mason-lspconfig.nvim" },
 	{ "williamboman/mason.nvim" },
 	{ "windwp/nvim-ts-autotag" },
+	{
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+		dependencies = {
+			"copilotlsp-nvim/copilot-lsp",
+		},
+		config = function()
+			require("copilot").setup({})
+		end,
+	},
 }
