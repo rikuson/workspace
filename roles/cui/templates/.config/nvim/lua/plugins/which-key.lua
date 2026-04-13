@@ -15,6 +15,7 @@ return {
       { "<leader>d", group = "Docker" },
       { "<leader>c", group = "Code" },
       { "<leader>s", group = "Search" },
+      { "gp", group = "LSP Preview" },
     })
   end,
 }
