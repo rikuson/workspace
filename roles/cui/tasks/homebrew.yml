@@ -1,4 +1,10 @@
 ---
+- name: Tap brew repositories
+  homebrew_tap:
+    name: "{{ item.name }}"
+  with_items:
+    - { name: datadog-labs/pack }
+
 - name: Install brew packages
   homebrew:
     name: "{{ item.name }}"
@@ -28,6 +34,7 @@
     - { name: pict }
     - { name: pkg-config }
     - { name: poppler }
+    - { name: datadog-labs/pack/pup }
     - { name: qrencode }
     - { name: tmux }
     - { name: yarn }
