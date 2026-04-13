@@ -13,9 +13,10 @@ return {
     pcall(vim.keymap.del, "x", "S")
     pcall(vim.keymap.del, "x", "gS")
 
-    -- Custom keymaps
-    vim.keymap.set("n", "s", "<Plug>(nvim-surround-normal)")
-    vim.keymap.set("n", "ss", "<Plug>(nvim-surround-normal-cur)")
-    vim.keymap.set("x", "s", "<Plug>(nvim-surround-visual)")
+    -- Custom keymaps (noremap=false required for <Plug> mappings)
+    local opts = { noremap = false, silent = true }
+    vim.keymap.set("n", "s", "<Plug>(nvim-surround-normal)", opts)
+    vim.keymap.set("n", "ss", "<Plug>(nvim-surround-normal-cur)", opts)
+    vim.keymap.set("x", "s", "<Plug>(nvim-surround-visual)", opts)
   end
 }
