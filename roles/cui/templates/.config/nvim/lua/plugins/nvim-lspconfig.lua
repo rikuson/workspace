@@ -22,6 +22,8 @@ return {
         vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+        vim.keymap.set('n', '<leader>cr', '<cmd>Telescope lsp_references<cr>',
+          vim.tbl_extend('force', bufopts, { desc = "References" }))
       end,
     })
 

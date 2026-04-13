@@ -13,6 +13,7 @@ return {
       { "<leader>f", group = "File" },
       { "<leader>g", group = "Git" },
       { "<leader>d", group = "Docker" },
+      { "<leader>c", group = "Code" },
       { "<leader>s", group = "Search" },
     })
   end,
