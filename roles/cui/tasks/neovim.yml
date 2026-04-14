@@ -12,16 +12,18 @@
     dest: $HOME/.config/lazygit/config.yml
 
 - name: Copy plugin manager config
-  copy:
-    src: roles/cui/templates/.config/nvim/lua/config
-    dest: $HOME/.config/nvim/lua
-    directory_mode: 0755
+  template:
+    src: "{{ item }}"
+    dest: "$HOME/.config/nvim/lua/config/{{ item | basename }}"
+  with_fileglob:
+    - roles/cui/templates/.config/nvim/lua/config/*.lua
 
 - name: Copy plugin settings
-  copy:
-    src: roles/cui/templates/.config/nvim/lua/plugins
-    dest: $HOME/.config/nvim/lua
-    directory_mode: 0755
+  template:
+    src: "{{ item }}"
+    dest: "$HOME/.config/nvim/lua/plugins/{{ item | basename }}"
+  with_fileglob:
+    - roles/cui/templates/.config/nvim/lua/plugins/*.lua
 
 - name: Install dependencies of toggleterm.nvim
   homebrew:

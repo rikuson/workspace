@@ -25,6 +25,7 @@
     - { name: hexyl }
     - { name: htop }
     - { name: imagemagick }
+    - { name: jinja2-cli }
     - { name: jq }
     - { name: lsd }
     - { name: mas }
