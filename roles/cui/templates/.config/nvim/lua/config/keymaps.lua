@@ -6,6 +6,8 @@ map("", "<space>", "<Nop>")
 -- General
 map({ "n", "v", "o" }, "Y", "y$")
 map("v", "$", "$h")
+map("v", "<", "<gv")
+map("v", ">", ">gv")
 map("o", "W", [[:execute 'normal! '.v:count1.'W'<CR>]])
 map({ "n", "v", "o" }, "<C-l>", "<Cmd>nohlsearch<CR>", { silent = true })
 map("n", "<CR>", "A<CR><Esc>")

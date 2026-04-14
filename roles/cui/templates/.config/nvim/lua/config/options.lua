@@ -8,6 +8,8 @@ opt.list = true
 opt.listchars = { tab = "¦ ", trail = "-", eol = "¬" }
 opt.virtualedit = "block"
 opt.mouse = "n"
+opt.signcolumn = "yes"
+opt.splitkeep = "screen"
 
 -- Charcode
 opt.encoding = "utf-8"
@@ -20,7 +22,12 @@ vim.cmd("lang en_US.UTF-8")
 opt.incsearch = true
 opt.hlsearch = true
 opt.wrapscan = false
-opt.ignorecase = false
+opt.ignorecase = true
+opt.smartcase = true
+
+-- Scroll
+opt.scrolloff = 8
+opt.sidescrolloff = 8
 
 -- Indentation
 opt.tabstop = 2
