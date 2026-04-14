@@ -1,14 +1,8 @@
 return {
-	{ "L3MON4D3/LuaSnip" },
 	{ "RRethy/vim-illuminate" },
 	{ "andymass/vim-matchup" },
 	{ "folke/trouble.nvim" },
 	{ "hashivim/vim-terraform" },
-	{ "hrsh7th/cmp-buffer" },
-	{ "hrsh7th/cmp-cmdline" },
-	{ "hrsh7th/cmp-nvim-lsp" },
-	{ "hrsh7th/cmp-path" },
-	{ "jay-babu/mason-null-ls.nvim" },
 	{
     "lewis6991/gitsigns.nvim",
     config = true,
@@ -46,7 +40,6 @@ return {
 	{ "nvim-lua/plenary.nvim" },
 	{ "nvim-telescope/telescope-file-browser.nvim" },
 	{ "nvim-tree/nvim-web-devicons" },
-	{ "onsails/lspkind-nvim" },
 	{ "psliwka/vim-smoothie" },
 	{
     "rebelot/kanagawa.nvim",
@@ -87,7 +80,13 @@ return {
 			"copilotlsp-nvim/copilot-lsp",
 		},
 		config = function()
-			require("copilot").setup({})
+			require("copilot").setup({
+				suggestion = {
+					keymap = {
+						accept = "<C-CR>",
+					},
+				},
+			})
 		end,
 	},
 }
