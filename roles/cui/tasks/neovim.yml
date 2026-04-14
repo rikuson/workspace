@@ -27,12 +27,11 @@
   loop: "{{ lookup('fileglob', 'roles/cui/templates/.config/nvim/lua/plugins/*.lua', wantlist=True) }}"
 
 - name: Install dependencies of toggleterm.nvim
-  homebrew:
-    name: "{{ item.name }}"
-  with_items:
-    - { name: lazygit }
-    - { name: lazydocker }
-    - { name: ripgrep }
+  community.general.homebrew:
+    name:
+      - lazygit
+      - lazydocker
+      - ripgrep
 
 - name: Create config file
   template:

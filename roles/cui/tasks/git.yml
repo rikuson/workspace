@@ -1,7 +1,7 @@
 ---
 - name: Use homebrew based git
-  homebrew:
-    name: "git"
+  community.general.homebrew:
+    name: git
 
 - name: Set git global configurations
   block:

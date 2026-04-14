@@ -1,53 +1,50 @@
 ---
 - name: Tap brew repositories
-  homebrew_tap:
-    name: "{{ item.name }}"
-  with_items:
-    - { name: datadog-labs/pack }
+  community.general.homebrew_tap:
+    name:
+      - datadog-labs/pack
 
 - name: Install brew packages
-  homebrew:
-    name: "{{ item.name }}"
-  with_items:
-    - { name: bat }
-    - { name: binaryen }
-    - { name: cmake }
-    - { name: coreutils }
-    - { name: direnv }
-    - { name: ffmpeg }
-    - { name: font-fira-code-nerd-font }
-    - { name: fzf }
-    - { name: gh }
-    - { name: ghc }
-    - { name: git } # Use homebrew based git
-    - { name: gnu-sed }
-    - { name: grex }
-    - { name: hexyl }
-    - { name: htop }
-    - { name: imagemagick }
-    - { name: jinja2-cli }
-    - { name: jq }
-    - { name: lsd }
-    - { name: mas }
-    - { name: neovim }
-    - { name: nkf }
-    - { name: pandoc }
-    - { name: pict }
-    - { name: pkg-config }
-    - { name: poppler }
-    - { name: datadog-labs/pack/pup }
-    - { name: qrencode }
-    - { name: tmux }
-    - { name: tree-sitter-cli }
-    - { name: yarn }
-    - { name: yq }
-    - { name: yt-dlp }
+  community.general.homebrew:
+    name:
+      - bat
+      - binaryen
+      - cmake
+      - coreutils
+      - direnv
+      - ffmpeg
+      - font-fira-code-nerd-font
+      - fzf
+      - gh
+      - ghc
+      - git # Use homebrew based git
+      - gnu-sed
+      - grex
+      - hexyl
+      - htop
+      - imagemagick
+      - jinja2-cli
+      - jq
+      - lsd
+      - mas
+      - neovim
+      - nkf
+      - pandoc
+      - pict
+      - pkg-config
+      - poppler
+      - datadog-labs/pack/pup
+      - qrencode
+      - tmux
+      - tree-sitter-cli
+      - yarn
+      - yq
+      - yt-dlp
 
 - name: Install brew cask packages
-  homebrew_cask:
-    name: "{{ item.name }}"
-  with_items:
-    - { name: httpie }
+  community.general.homebrew_cask:
+    name:
+      - httpie
 
 - name: Create .tmux.conf
   template:

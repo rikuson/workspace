@@ -1,10 +1,10 @@
+---
 - name: Install brew cask packages
-  homebrew_cask:
-    name: "{{ item.name }}"
-  with_items:
-    - { name: clipy }
-    - { name: docker }
-    - { name: drawio }
-    - { name: dynalist }
-    - { name: google-chrome }
-    - { name: typora }
+  community.general.homebrew_cask:
+    name:
+      - clipy
+      - docker
+      - drawio
+      - dynalist
+      - google-chrome
+      - typora
