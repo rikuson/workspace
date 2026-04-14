@@ -80,7 +80,13 @@ return {
 			"copilotlsp-nvim/copilot-lsp",
 		},
 		config = function()
-			require("copilot").setup({})
+			require("copilot").setup({
+				suggestion = {
+					keymap = {
+						accept = "<C-CR>",
+					},
+				},
+			})
 		end,
 	},
 }
