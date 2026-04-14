@@ -1,3 +1,5 @@
+.PHONY: all cui gui appstore os sync test
+
 all:
 	ansible-playbook playbook.yml -i hosts
 cui:
@@ -12,5 +14,6 @@ sync:
 	jinja2 roles/cui/templates/.config/lazygit/config.yml -o ~/.config/lazygit/config.yml
 	jinja2 roles/cui/templates/.config/nvim/init.lua -o ~/.config/nvim/init.lua
 	rsync -av --delete roles/cui/templates/.config/nvim/lua/ ~/.config/nvim/lua/
+
 test:
 	rake serverspec:all

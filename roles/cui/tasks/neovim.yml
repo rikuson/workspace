@@ -15,15 +15,13 @@
   template:
     src: "{{ item }}"
     dest: "$HOME/.config/nvim/lua/config/{{ item | basename }}"
-  with_fileglob:
-    - roles/cui/templates/.config/nvim/lua/config/*.lua
+  loop: "{{ lookup('fileglob', 'roles/cui/templates/.config/nvim/lua/config/*.lua', wantlist=True) }}"
 
 - name: Copy plugin settings
   template:
     src: "{{ item }}"
     dest: "$HOME/.config/nvim/lua/plugins/{{ item | basename }}"
-  with_fileglob:
-    - roles/cui/templates/.config/nvim/lua/plugins/*.lua
+  loop: "{{ lookup('fileglob', 'roles/cui/templates/.config/nvim/lua/plugins/*.lua', wantlist=True) }}"
 
 - name: Install dependencies of toggleterm.nvim
   homebrew:
