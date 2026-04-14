@@ -8,6 +8,7 @@ return {
   },
   {
     "lewis6991/ts-install.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
       require("ts-install").setup({
         ensure_install = { "c", "lua", "vim", "vimdoc", "query" },
