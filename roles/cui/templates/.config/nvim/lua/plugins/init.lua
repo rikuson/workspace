@@ -1,7 +1,6 @@
 return {
 	{ "RRethy/vim-illuminate" },
 	{ "andymass/vim-matchup" },
-	{ "folke/trouble.nvim" },
 	{ "hashivim/vim-terraform" },
 	{
     "lewis6991/gitsigns.nvim",
@@ -36,29 +35,12 @@ return {
       })
     end
   },
-  { "j-hui/fidget.nvim" },
-	{ "nvim-lua/plenary.nvim" },
-	{ "nvim-telescope/telescope-file-browser.nvim" },
-	{ "nvim-tree/nvim-web-devicons" },
 	{ "psliwka/vim-smoothie" },
 	{
     "rebelot/kanagawa.nvim",
     config = function()
       vim.cmd [[colorscheme kanagawa-dragon]]
     end,
-  },
-	{
-    "thinca/vim-quickrun",
-    config = function()
-      if vim.version().major > 8 or (vim.version().major == 8 and vim.version().minor >= 2) then
-        vim.g.quickrun_config = {
-          _ = {
-            outputter = "popup"
-          }
-        }
-      end
-      vim.g.quickrun_no_default_key_mappings = 1
-    end
   },
 	{ "tpope/vim-abolish" },
 	{
