@@ -14,7 +14,6 @@
   with_items:
     - { name: helm }
     - { name: nodejs }
-    - { name: postgres }
     - { name: python }
     - { name: ruby }
     - { name: rust }
