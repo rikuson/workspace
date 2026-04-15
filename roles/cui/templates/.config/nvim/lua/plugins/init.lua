@@ -7,12 +7,11 @@ return {
     config = true,
   },
 	{
-	  "lukas-reineke/indent-blankline.nvim",
-	  main = "ibl",
-	  ---@module "ibl"
-	  ---@type ibl.config
+	  "folke/snacks.nvim",
+	  ---@type snacks.Config
 	  opts = {
-	    indent = { char = '¦' }
+	    indent = { enabled = true },
+	    scope = { enabled = true },
 	  },
 	},
 	{
