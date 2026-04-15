@@ -15,24 +15,12 @@ def main():
 
     try:
         output = subprocess.run(['asdf', 'plugin', 'list'], capture_output=True, text=True)
-        if output.returncode != 0:
-            module.fail_json(msg=f'Failed to list plugins: {output.stderr or output.stdout}')
         if name not in output.stdout:
-            result = subprocess.run(['asdf', 'plugin', 'add', name], capture_output=True, text=True)
-            if result.returncode != 0:
-                module.fail_json(msg=f'Failed to add plugin {name}: {result.stderr or result.stdout}')
+            subprocess.run(['asdf', 'plugin', 'add', f'{name}'])
         output = subprocess.run(['asdf', 'list', name], capture_output=True, text=True)
-        if not output.stdout.strip():
-            result = subprocess.run(['asdf', 'latest', name], capture_output=True, text=True)
-            if result.returncode != 0 or not result.stdout.strip():
-                module.fail_json(msg=f'No latest version found for {name}: {result.stderr or result.stdout}')
-            version = result.stdout.strip()
-            result = subprocess.run(['asdf', 'install', name, version], capture_output=True, text=True)
-            if result.returncode != 0:
-                module.fail_json(msg=f'Failed to install {name} {version}: {result.stderr or result.stdout}')
-            result = subprocess.run(['asdf', 'global', name, version], capture_output=True, text=True)
-            if result.returncode != 0:
-                module.fail_json(msg=f'Failed to set global version for {name}: {result.stderr or result.stdout}')
+        if not output.stdout:
+            subprocess.run(['asdf', 'install', f'{name}', 'latest'])
+            subprocess.run(['asdf', 'global', f'{name}', 'latest'])
             module.exit_json(changed=True)
         else:
             module.exit_json(changed=False)
