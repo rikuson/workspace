@@ -8,6 +8,8 @@ opt.list = true
 opt.listchars = { tab = "¦ ", trail = "-", eol = "¬" }
 opt.virtualedit = "block"
 opt.mouse = "n"
+opt.cursorline = true
+opt.cursorlineopt = "number"
 opt.signcolumn = "yes"
 opt.splitkeep = "screen"
 

@@ -1,7 +1,7 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
--- Highlight active window with cursorline/cursorcolumn
+-- Highlight cursorline number only in active window
 augroup("CursorLine", { clear = true })
 autocmd({ "VimEnter", "WinEnter", "BufWinEnter" }, {
   group = "CursorLine",
@@ -10,16 +10,6 @@ autocmd({ "VimEnter", "WinEnter", "BufWinEnter" }, {
 autocmd("WinLeave", {
   group = "CursorLine",
   callback = function() vim.wo.cursorline = false end,
-})
-
-augroup("CursorColumn", { clear = true })
-autocmd({ "VimEnter", "WinEnter", "BufWinEnter" }, {
-  group = "CursorColumn",
-  callback = function() vim.wo.cursorcolumn = true end,
-})
-autocmd("WinLeave", {
-  group = "CursorColumn",
-  callback = function() vim.wo.cursorcolumn = false end,
 })
 
 -- Remember cursor position
