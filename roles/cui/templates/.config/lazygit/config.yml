@@ -22,4 +22,4 @@ customCommands:
       && echo "Path:   $WORKTREE_PATH"
     description: "Create a new worktree with a random name"
     loadingText: "Creating worktree..."
-    showOutput: true
+    output: popup
