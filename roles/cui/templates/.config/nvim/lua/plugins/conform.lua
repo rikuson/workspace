@@ -12,10 +12,10 @@ return {
 
     require("conform").setup({
       formatters_by_ft = {
-        javascript = { "prettier" },
-        typescript = { "prettier" },
-        javascriptreact = { "prettier" },
-        typescriptreact = { "prettier" },
+        javascript = { "oxfmt", "prettier", stop_after_first = true },
+        typescript = { "oxfmt", "prettier", stop_after_first = true },
+        javascriptreact = { "oxfmt", "prettier", stop_after_first = true },
+        typescriptreact = { "oxfmt", "prettier", stop_after_first = true },
         css = { "prettier" },
         html = { "prettier" },
         json = { "prettier" },
