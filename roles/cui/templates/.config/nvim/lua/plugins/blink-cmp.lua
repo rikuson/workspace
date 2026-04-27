@@ -11,6 +11,8 @@ return {
     keymap = {
       preset = "none",
       ["<CR>"] = { "accept", "fallback" },
+      ["<Up>"] = { "select_prev", "fallback" },
+      ["<Down>"] = { "select_next", "fallback" },
     },
     appearance = {
       nerd_font_variant = "mono",
