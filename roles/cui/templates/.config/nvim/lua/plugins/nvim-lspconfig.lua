@@ -29,7 +29,7 @@ return {
 
     -- Set up mason-lspconfig with handlers
     require("mason-lspconfig").setup({
-      ensure_installed = { "rust_analyzer", "ts_ls", "eslint", "oxc" },
+      ensure_installed = { "rust_analyzer", "ts_ls", "eslint", "oxlint" },
       automatic_installation = true,
       handlers = {
         -- Default handler - will be called for each installed server
