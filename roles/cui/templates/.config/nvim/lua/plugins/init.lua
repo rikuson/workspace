@@ -1,5 +1,13 @@
 return {
-	{ "RRethy/vim-illuminate" },
+	{
+		"RRethy/vim-illuminate",
+		event = { "BufReadPost", "BufNewFile" },
+		config = function()
+			require("illuminate").configure({
+				providers = { "lsp", "regex" },
+			})
+		end,
+	},
 	{ "andymass/vim-matchup" },
 	{ "hashivim/vim-terraform" },
 	{
