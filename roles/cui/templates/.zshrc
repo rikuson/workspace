@@ -12,7 +12,6 @@ fi
 if [[ -d $HOME/.oh-my-zsh ]]; then
   export ZSH="$HOME/.oh-my-zsh"
   plugins=(
-    asdf
     direnv
     fzf
     zsh-syntax-highlighting
@@ -26,3 +25,8 @@ fi
 export PATH="$HOME/.local/bin:$PATH"
 
 export XDG_CONFIG_HOME="$HOME/.config"
+
+# mise
+if command -v mise &>/dev/null; then
+  eval "$(mise activate zsh)"
+fi

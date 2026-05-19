@@ -1,0 +1,20 @@
+---
+- name: Install mise
+  community.general.homebrew:
+    name: mise
+
+- name: Create mise config directory
+  file:
+    path: $HOME/.config/mise
+    state: directory
+
+- name: Create mise config
+  template:
+    src: roles/cui/templates/.config/mise/config.toml
+    dest: $HOME/.config/mise/config.toml
+
+- name: Install runtimes via mise
+  shell: mise install
+  args:
+    executable: /bin/zsh
+  changed_when: false

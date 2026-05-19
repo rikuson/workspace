@@ -1,0 +1,10 @@
+[settings]
+python.github_attestations = false
+
+[tools]
+helm = "latest"
+node = "lts"
+python = "latest"
+ruby = "latest"
+rust = "stable"
+terraform = "latest"
