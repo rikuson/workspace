@@ -1,3 +1,6 @@
+[settings]
+python.github_attestations = false
+
 [tools]
 helm = "latest"
 node = "lts"
