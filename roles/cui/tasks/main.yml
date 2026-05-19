@@ -10,7 +10,7 @@
     dest: $HOME
 
 - import_tasks: homebrew.yml
-- import_tasks: asdf.yml
+- import_tasks: mise.yml
 - import_tasks: ohmyzsh.yml
 - import_tasks: neovim.yml
 - import_tasks: git.yml
