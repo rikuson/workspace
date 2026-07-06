@@ -1,8 +1,8 @@
 ---
 name: install
-description: Install tools, plugins, or applications by updating the Ansible playbook. Use when the user wants to add a new CLI tool, GUI app, Neovim plugin, ASDF runtime, or App Store app.
+description: Install tools, plugins, or applications by updating the Ansible playbook. Use when the user wants to add a new CLI tool, GUI app, Neovim plugin, mise runtime, or App Store app.
 argument-hint: "[tool-or-plugin-name]"
-allowed-tools: Read Edit Write WebSearch Bash(brew info *) Bash(brew search *) Bash(mas search *) Bash(asdf *)
+allowed-tools: Read Edit Write WebSearch Bash(brew info *) Bash(brew search *) Bash(mas search *) Bash(mise *)
 ---
 
 # Install Tool/Plugin
@@ -20,7 +20,7 @@ Ask the user to choose the install type:
 1. **brew** - Homebrew CLI package (e.g. ripgrep, lazygit, wget)
 2. **cask** - Homebrew Cask GUI app (e.g. slack, visual-studio-code, firefox)
 3. **neovim** - Neovim plugin (e.g. nvim-tree, copilot.nvim)
-4. **asdf** - ASDF runtime (e.g. golang, java, elixir)
+4. **mise** - mise runtime (e.g. golang, java, elixir)
 5. **appstore** - Mac App Store app (e.g. LINE, Things 3)
 
 Skip this question if the type is obvious from `$ARGUMENTS` (e.g. "nvim-tree" → neovim).
@@ -31,7 +31,7 @@ If `$ARGUMENTS` does not include a package name, ask for it. Use search commands
 - brew/cask: `brew search <keyword>`
 - appstore: `mas search <keyword>`
 - neovim: WebSearch
-- asdf: `asdf plugin list all | grep <keyword>`, etc.
+- mise: `mise registry | grep <keyword>`, etc.
 
 ### Question 3: Additional configuration
 
@@ -51,7 +51,7 @@ Skip this question if no additional configuration is needed.
 Read the corresponding Ansible file(s) and verify the target is not already present:
 - brew: `roles/cui/tasks/homebrew.yml` (`Install brew packages`)
 - cask: check **both** `roles/cui/tasks/homebrew.yml` (`Install brew cask packages`) and `roles/gui/tasks/homebrew.yml`
-- asdf: `roles/cui/tasks/asdf.yml`
+- mise: `roles/cui/templates/.config/mise/config.toml`
 - appstore: `roles/appstore/tasks/mas.yml`
 - neovim: files under `roles/cui/templates/.config/nvim/lua/plugins/`
 
@@ -73,10 +73,10 @@ For CLI-oriented casks, add to `roles/cui/tasks/homebrew.yml` under `Install bre
     - { name: <cask-name> }
 ```
 
-### asdf
-Add to `roles/cui/tasks/asdf.yml` under `Install runtime` → `with_items` in alphabetical order:
-```yaml
-    - { name: <runtime-name> }
+### mise
+Add to `roles/cui/templates/.config/mise/config.toml` under the `[tools]` table in alphabetical order:
+```toml
+<runtime-name> = "latest"
 ```
 
 ### appstore
