@@ -1,6 +1,6 @@
 ---
 name: uninstall
-description: Uninstall tools, plugins, or applications by updating the Ansible playbook. Use when the user wants to remove a CLI tool, GUI app, Neovim plugin, ASDF runtime, or App Store app.
+description: Uninstall tools, plugins, or applications by updating the Ansible playbook. Use when the user wants to remove a CLI tool, GUI app, Neovim plugin, mise runtime, or App Store app.
 argument-hint: "[tool-or-plugin-name]"
 allowed-tools: Read Edit Glob Bash(rm *)
 ---
@@ -24,7 +24,7 @@ Determine which type of install it is:
 1. **brew** - Homebrew CLI package
 2. **cask** - Homebrew Cask GUI app
 3. **neovim** - Neovim plugin
-4. **asdf** - ASDF runtime
+4. **mise** - mise runtime
 5. **appstore** - Mac App Store app
 
 If unclear, search the Ansible files to find where the target is defined. If found in multiple places, ask the user which one to remove.
@@ -34,7 +34,7 @@ If unclear, search the Ansible files to find where the target is defined. If fou
 Read the corresponding Ansible file(s) and confirm the target is present:
 - brew: `roles/cui/tasks/homebrew.yml` (`Install brew packages`)
 - cask: check **both** `roles/cui/tasks/homebrew.yml` (`Install brew cask packages`) and `roles/gui/tasks/homebrew.yml`
-- asdf: `roles/cui/tasks/asdf.yml`
+- mise: `roles/cui/templates/.config/mise/config.toml`
 - neovim: files under `roles/cui/templates/.config/nvim/lua/plugins/`
 - appstore: `roles/appstore/tasks/mas.yml`
 
@@ -42,8 +42,11 @@ If not found, inform the user and stop.
 
 ## Step 3: Remove from the Ansible files
 
-### brew / cask / asdf / appstore
+### brew / cask / appstore
 Remove the corresponding `- { name: ... }` line from the `with_items` list in the appropriate YAML file.
+
+### mise
+Remove the runtime's line from the `[tools]` table in `roles/cui/templates/.config/mise/config.toml`.
 
 ### neovim
 - If the plugin is defined in `roles/cui/templates/.config/nvim/lua/plugins/init.lua`, remove its entry from the `return {}` table.

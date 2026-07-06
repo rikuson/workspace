@@ -21,7 +21,7 @@ The repository uses four independent Ansible roles, each with specific responsib
 
 1. **cui** (Command Line Interface): Installs and configures terminal-based tools
    - Homebrew packages (bat, fzf, neovim, tmux, lazygit, ripgrep, etc.)
-   - ASDF version manager with multiple runtimes (Node.js, Python, Ruby, Rust, Terraform, etc.)
+   - mise version manager with multiple runtimes (Node.js, Python, Ruby, Rust, Terraform, etc.)
    - Neovim configuration with Lazy.nvim plugin manager
    - Oh My Zsh and shell customizations
    - Git configuration
@@ -38,13 +38,12 @@ The repository uses four independent Ansible roles, each with specific responsib
 4. **appstore**: Installs Mac App Store applications using mas
    - Xcode, Logic Pro X, Microsoft Remote Desktop, Evernote, etc.
 
-### Custom Ansible Modules
+### Runtime Version Management
 
-**library/asdf.py**
-Custom module for idempotent ASDF plugin and runtime installation:
-- Checks if plugin exists, adds if missing
-- Installs latest version if no version installed
-- Sets global version to latest
+**mise**
+Runtimes are managed by [mise](https://mise.jdx.dev/), configured declaratively via
+`roles/cui/templates/.config/mise/config.toml`. The `[tools]` table pins each runtime
+(e.g. `rust = "stable"`, `node = "lts"`), and `mise install` installs everything in one pass.
 
 ### Neovim Configuration
 
@@ -103,9 +102,9 @@ Edit the appropriate file:
 
 Add to the `with_items` list following the existing pattern.
 
-### Adding New ASDF Runtimes
+### Adding New Runtimes (mise)
 
-Edit `roles/cui/tasks/asdf.yml` and add to the `with_items` list under the "Install runtime" task.
+Edit `roles/cui/templates/.config/mise/config.toml` and add the runtime to the `[tools]` table (e.g. `go = "latest"`). Running `make cui` (or `mise install`) will install it.
 
 ### Adding Neovim Plugins
 
@@ -124,5 +123,5 @@ Edit `roles/appstore/tasks/mas.yml` and add to the `with_items` list with the ap
 - All roles are tagged and can be run independently
 - The playbook runs locally (localhost) with connection: local
 - OS preference changes may require Dock/Finder restarts (handled via Ansible handlers)
-- The custom asdf module ensures idempotent runtime installations
+- mise manages runtime versions declaratively via its config.toml
 - Neovim uses Lazy.nvim for plugin management with lock file versioning
