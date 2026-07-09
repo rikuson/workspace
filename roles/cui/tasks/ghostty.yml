@@ -1,0 +1,11 @@
+---
+- name: Create ghostty config directory
+  file:
+    path: $HOME/.config/ghostty
+    state: directory
+    mode: "0755"
+
+- name: Copy ghostty config
+  template:
+    src: roles/cui/templates/.config/ghostty/config
+    dest: $HOME/.config/ghostty/config
